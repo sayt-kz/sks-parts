@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: закрыто от поиска. На финальном сайте (sksparts.kz) убрать эту строку. -->
+<meta name="robots" content="noindex, nofollow">
+<title>SKS PARTS — гидравлические насосы для спецтехники в Алматы</title>
+<meta name="description" content="SKS PARTS — гидравлические насосы, запчасти, ремкомплекты, ремонт и диагностика для спецтехники. Дилер Boxin Hydraulic в Казахстане. Доставка по всему Казахстану.">
+<meta name="theme-color" content="#1d2229">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305080f'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%231677e6' stroke-width='6' stroke-dasharray='6 4'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%2343a0ff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1677e6; --blue-d:#0f5fbd; --blue-l:#43a0ff;
+  --bg:#ffffff; --bg2:#f2f5f9; --line:#e1e7ef;
+  --ink:#1b2430; --ink2:#5b6676; --muted:#8a95a5;
+  --dark:#1d2229; --dark2:#262c35; --hero:#05080f;
+  --wa:#1fb655; --wa-d:#17994a; --red:#d92d20;
+  --r:10px; --shadow:0 6px 24px rgba(16,32,60,.08);
+  --f-head:"Russo One",system-ui,sans-serif;
+  --f-text:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --wrap:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.55 var(--f-text);overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+input,select{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--f-head);font-weight:400;line-height:1.15;margin:0}
+.mono{font-family:var(--f-mono)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.ico{width:20px;height:20px;flex:none}
+
+/* ---------- Кнопки ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 22px;border-radius:8px;font-weight:700;font-size:15px;transition:background .2s,transform .2s,box-shadow .2s;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:var(--blue-d)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:var(--wa-d)}
+.btn-ghost{border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-line{border:1.5px solid rgba(255,255,255,.28);color:#fff}
+.btn-line:hover{border-color:var(--blue-l);color:var(--blue-l)}
+.btn-sm{height:38px;padding:0 14px;font-size:14px}
+
+/* ---------- Шапка ---------- */
+.top{background:#fff;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:92px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo svg{width:52px;height:52px}
+.logo b{display:block;font:400 22px/1 var(--f-head);letter-spacing:.5px}
+.logo b span{color:var(--blue)}
+.logo small{display:block;font-size:11px;color:var(--ink2);letter-spacing:.4px;margin-top:4px;text-transform:uppercase}
+.badges{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink2)}
+.badges span{display:flex;align-items:center;gap:8px}
+.badges .ico{width:18px;height:18px;color:var(--blue)}
+.search{flex:1;display:flex;min-width:180px;max-width:420px;height:44px;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;transition:border-color .2s}
+.search:focus-within{border-color:var(--blue)}
+.search input{flex:1;min-width:0;border:0;outline:0;padding:0 14px;background:transparent}
+.search button{width:48px;background:var(--blue);color:#fff;display:grid;place-items:center}
+.search button:hover{background:var(--blue-d)}
+.top-wa{display:flex;align-items:center;gap:10px;flex:none}
+.top-wa .ico{width:34px;height:34px;color:var(--wa)}
+.top-wa b{display:block;font-size:17px;font-weight:800;white-space:nowrap}
+.top-wa small{display:block;font-size:12px;color:var(--wa-d);font-weight:700}
+.top-hours{font-size:12.5px;color:var(--ink2);line-height:1.45;flex:none}
+.top-hours b{color:var(--ink)}
+.top-wa-m{display:none}
+
+/* ---------- Меню ---------- */
+.nav{background:var(--dark);position:sticky;top:0;z-index:40;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.nav .wrap{display:flex;align-items:stretch;height:54px;gap:6px;position:relative}
+.cat-btn{display:flex;align-items:center;gap:10px;background:var(--blue);color:#fff;font-weight:800;padding:0 22px;font-size:15px;letter-spacing:.2px;flex:none}
+.cat-btn:hover,.cat-btn[aria-expanded="true"]{background:var(--blue-d)}
+.cat-btn .burger{width:18px;height:14px;position:relative;display:inline-block}
+.cat-btn .burger::before,.cat-btn .burger::after,.cat-btn .burger i{content:"";position:absolute;left:0;right:0;height:2px;background:#fff;border-radius:2px;transition:transform .25s,opacity .25s}
+.cat-btn .burger::before{top:0}.cat-btn .burger i{top:6px}.cat-btn .burger::after{top:12px}
+.cat-btn[aria-expanded="true"] .burger::before{transform:translateY(6px) rotate(45deg)}
+.cat-btn[aria-expanded="true"] .burger i{opacity:0}
+.cat-btn[aria-expanded="true"] .burger::after{transform:translateY(-6px) rotate(-45deg)}
+.links{display:flex;align-items:stretch;margin-left:10px}
+.links a{display:flex;align-items:center;padding:0 16px;color:#c9d1dc;font-weight:700;font-size:14.5px;position:relative;transition:color .2s}
+.links a:hover{color:#fff}
+.links a.on{color:#fff}
+.links a.on::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:3px;background:var(--blue);border-radius:3px 3px 0 0}
+.nav-search{display:none}
+
+.cat-menu{position:absolute;top:54px;left:24px;width:340px;background:#fff;border-radius:0 0 var(--r) var(--r);box-shadow:0 18px 40px rgba(10,20,40,.22);padding:8px 0;display:none;z-index:45;max-height:calc(100vh - 120px);overflow:auto}
+.cat-menu.open{display:block;animation:drop .2s ease-out}
+@keyframes drop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.cat-menu a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 20px;font-weight:600;font-size:14.5px}
+.cat-menu a:hover{background:var(--bg2);color:var(--blue)}
+.cat-menu a em{font-style:normal;font-size:12px;font-weight:800;color:var(--ink2);background:var(--bg2);border-radius:20px;padding:2px 9px;min-width:30px;text-align:center}
+.cat-menu a:hover em{background:#e2edfb;color:var(--blue)}
+.cat-menu .grp{font-size:11.5px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:800;padding:12px 20px 6px}
+.cat-menu .m-only{display:none}
+
+/* ---------- Строка пути ---------- */
+.crumbs{background:var(--bg2);border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink2)}
+.crumbs .wrap{display:flex;flex-wrap:wrap;gap:6px;padding-top:13px;padding-bottom:13px}
+.crumbs a{color:var(--ink2)}
+.crumbs a:hover{color:var(--blue)}
+.crumbs span[aria-current]{color:var(--ink);font-weight:700}
+.crumbs i{font-style:normal;color:var(--muted)}
+
+/* ---------- Страницы ---------- */
+main{min-height:60vh}
+.page{animation:pageIn .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sec{padding:56px 0}
+.sec-gray{background:var(--bg2)}
+.h-page{font-size:clamp(26px,3.4vw,38px);margin:36px 0 10px;text-transform:uppercase;letter-spacing:.3px}
+.h-sec{font-size:clamp(22px,2.6vw,30px);margin-bottom:8px}
+.lead{color:var(--ink2);font-size:16px;max-width:760px;margin:0 0 28px}
+.note{display:flex;gap:10px;align-items:flex-start;background:#fff8e6;border:1px solid #f3dfa6;color:#7a5a06;border-radius:8px;padding:12px 14px;font-size:13.5px;line-height:1.5}
+.note .ico{width:18px;height:18px;margin-top:1px}
+
+/* ---------- Баннер ---------- */
+.hero{position:relative;background:var(--hero);color:#fff;overflow:hidden;isolation:isolate}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:24px;min-height:560px;padding-top:40px;padding-bottom:90px;z-index:2}
+.hero-ring{position:absolute;border-radius:50%;z-index:0;pointer-events:none}
+.hero-ring.r1{width:520px;height:520px;left:-200px;top:-220px;border:70px solid rgba(22,119,230,.16);animation:ring 14s ease-in-out infinite alternate}
+.hero-ring.r2{width:300px;height:300px;left:-60px;top:-110px;border:2px solid rgba(67,160,255,.35);animation:ring 10s ease-in-out infinite alternate-reverse}
+.hero-ring.r3{width:600px;height:600px;right:-260px;bottom:-330px;border:90px solid rgba(22,119,230,.13);animation:ring 16s ease-in-out infinite alternate}
+.hero-ring.r4{width:220px;height:220px;right:60px;bottom:-120px;border:2px solid rgba(67,160,255,.3);animation:ring 9s ease-in-out infinite alternate}
+@keyframes ring{from{transform:scale(1) rotate(0)}to{transform:scale(1.08) rotate(20deg)}}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(67,160,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(67,160,255,.06) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at 70% 50%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 70% 50%,#000 10%,transparent 70%)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue-l);border:1px solid rgba(67,160,255,.35);border-radius:30px;padding:7px 14px;background:rgba(22,119,230,.08)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue-l);box-shadow:0 0 10px var(--blue-l)}
+.hero h1{font-size:clamp(32px,4.6vw,56px);margin:20px 0 16px;text-transform:uppercase}
+.hero h1 span{color:var(--blue-l);text-shadow:0 0 28px rgba(22,119,230,.55)}
+.hero p{color:#aeb9c8;font-size:17px;max-width:520px;margin:0 0 28px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:30px;font-size:13px;color:#8d9aab}
+.hero-meta b{display:block;font:400 22px/1.1 var(--f-head);color:#fff}
+.hero-stage{position:relative;aspect-ratio:420/300;width:100%;max-width:620px;justify-self:center}
+.hero-glow{position:absolute;left:8%;right:8%;bottom:4%;height:40%;background:radial-gradient(ellipse at center,rgba(22,119,230,.55),rgba(22,119,230,0) 70%);filter:blur(10px);animation:glow 4s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.55}to{opacity:1}}
+.hero-pump{position:absolute;inset:0;animation:reveal 2.6s cubic-bezier(.2,.6,.2,1) both}
+.hero-pump svg{width:100%;height:100%;overflow:visible;animation:dolly 22s ease-in-out 2.6s infinite alternate;filter:drop-shadow(0 0 22px rgba(22,119,230,.35))}
+@keyframes reveal{from{opacity:0;filter:brightness(0) blur(6px);transform:scale(.94)}60%{opacity:1}to{opacity:1;filter:brightness(1) blur(0);transform:none}}
+@keyframes dolly{from{transform:scale(1) translateX(0)}to{transform:scale(1.07) translateX(-2%)}}
+.glint{animation:glint 6s ease-in-out 2.4s infinite}
+@keyframes glint{0%{transform:translateX(-160px)}45%,100%{transform:translateX(520px)}}
+
+/* ---------- Преимущества и плитки ---------- */
+.adv{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:-46px;position:relative;z-index:3}
+.adv div{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:22px;border-top:3px solid var(--blue)}
+.adv .ico{width:34px;height:34px;color:var(--blue);margin-bottom:12px}
+.adv b{display:block;font-size:16px;margin-bottom:4px}
+.adv p{margin:0;color:var(--ink2);font-size:13.5px;line-height:1.5}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tile{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:10px;min-height:210px;overflow:hidden;transition:border-color .2s,box-shadow .25s,transform .25s}
+.tile:hover{border-color:var(--blue);box-shadow:0 14px 30px rgba(22,119,230,.14);transform:translateY(-3px)}
+.tile svg.pic{height:96px;width:100%;margin:0 auto 4px;transition:transform .35s}
+.tile:hover svg.pic{transform:scale(1.06)}
+.tile b{font-size:15.5px;line-height:1.3}
+.tile small{color:var(--ink2);font-size:13px;margin-top:auto;display:flex;justify-content:space-between;align-items:center}
+.tile small span{color:var(--blue);font-weight:800}
+.strip{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;background:var(--dark);color:#fff;border-radius:14px;padding:34px;position:relative;overflow:hidden}
+.strip::after{content:"";position:absolute;right:-90px;top:-90px;width:260px;height:260px;border-radius:50%;border:44px solid rgba(22,119,230,.18)}
+.strip h2{font-size:clamp(22px,2.4vw,28px);margin-bottom:8px}
+.strip p{color:#aeb9c8;margin:0}
+.strip .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end;position:relative;z-index:1}
+
+/* ---------- Каталог ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{height:38px;padding:0 14px;border-radius:30px;border:1.5px solid var(--line);font-weight:700;font-size:13.5px;background:#fff;transition:all .2s}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.filters select,.filters input,.pick select{height:40px;border:1.5px solid var(--line);border-radius:8px;padding:0 12px;background:#fff;outline:0;min-width:0}
+.filters select:focus,.filters input:focus,.pick select:focus{border-color:var(--blue)}
+.filters .grow{flex:1;min-width:180px}
+.found{font-size:13.5px;color:var(--ink2);margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s,border-color .2s}
+.card:hover{box-shadow:0 14px 30px rgba(16,32,60,.12);transform:translateY(-3px);border-color:#cfdbea}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .type{font-size:11.5px;text-transform:uppercase;letter-spacing:.8px;font-weight:800;color:var(--blue)}
+.card h3{font:700 16px/1.35 var(--f-mono);letter-spacing:-.2px}
+.card h3 a:hover{color:var(--blue)}
+.card p{margin:0;font-size:13.5px;color:var(--ink2)}
+.card .price{font-size:13px;color:var(--ink2);margin-top:auto;padding-top:6px}
+.card .price b{color:var(--ink)}
+.card .act{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px 16px}
+.card .act .btn{height:40px;padding:0 10px;font-size:13.5px}
+.empty{grid-column:1/-1;text-align:center;padding:50px 20px;background:#fff;border:1px dashed var(--line);border-radius:var(--r);color:var(--ink2)}
+.empty b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
+
+/* Фото-заглушка */
+.photo{position:relative;background:linear-gradient(180deg,#f7f9fc,#e9eef5);aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
+.photo::before{content:"";position:absolute;inset:-40%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90'%3E%3Ctext x='0' y='50' font-family='Arial' font-size='15' font-weight='700' fill='%231d2229' fill-opacity='.06' transform='rotate(-22 90 45)'%3Esks-parts%3C/text%3E%3C/svg%3E");pointer-events:none}
+.photo svg{width:78%;height:auto;aspect-ratio:420/260;position:relative;transition:transform .4s}
+.card:hover .photo svg{transform:scale(1.05)}
+.photo .soon{position:absolute;left:10px;top:10px;background:rgba(29,34,41,.82);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;letter-spacing:.3px}
+.photo .wm{position:absolute;right:10px;bottom:8px;font:700 11px var(--f-mono);color:rgba(29,34,41,.32)}
+
+/* ---------- Товар ---------- */
+.prod{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.prod .photo{border:1px solid var(--line);border-radius:var(--r)}
+.prod h1{font:800 clamp(24px,3vw,34px)/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:-.5px;margin:30px 0 22px}
+.spec{width:100%;border-collapse:collapse;font-size:14.5px}
+.spec th,.spec td{text-align:left;padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{color:var(--ink2);font-weight:600;width:42%;padding-right:12px}
+.spec td{font-weight:700}
+.spec .pr{color:var(--blue);font-size:17px}
+.buy{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:24px 0 14px;padding:18px;background:var(--bg2);border-radius:var(--r)}
+.buy .wa-num{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;margin-right:auto}
+.buy .wa-num .ico{width:30px;height:30px;color:var(--wa)}
+.buy .wa-num small{display:block;font-size:12px;color:var(--ink2);font-weight:600}
+.ask-ai{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:800;font-size:14.5px}
+.ask-ai:hover{text-decoration:underline}
+.tabs{margin-top:46px;border-bottom:2px solid var(--line);display:flex;gap:4px}
+.tabs button{padding:14px 22px;font-weight:800;font-size:15px;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--blue)}
+.tabpanel{padding:26px 0;max-width:900px}
+.tabpanel h3{font:800 17px var(--f-text);margin:22px 0 8px}
+.tabpanel p,.tabpanel li{color:#394454}
+.warn{color:var(--red);font-weight:800;margin:0 0 16px}
+.tabpanel ul{padding-left:20px;margin:6px 0}
+.similar{display:flex;align-items:center;justify-content:space-between;margin:20px 0 18px;gap:12px}
+.arrows{display:flex;gap:8px}
+.arrows button{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;background:#fff;transition:all .2s}
+.arrows button:hover{border-color:var(--blue);color:var(--blue)}
+.track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 54px)/4);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
+.track::-webkit-scrollbar{display:none}
+.track .card{scroll-snap-align:start}
+
+/* ---------- Подбор ---------- */
+.pick{display:grid;grid-template-columns:repeat(2,1fr) auto;gap:14px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.pick label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.6px}
+.pick select{height:48px;font-size:15px;color:var(--ink);text-transform:none;letter-spacing:0;font-weight:600}
+.pick select:disabled{background:var(--bg2);color:var(--muted)}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;font-size:13.5px;color:var(--ink2)}
+.steps span{display:flex;align-items:center;gap:8px}
+.steps b{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px}
+.result{margin-top:26px}
+.result h3{font:800 18px var(--f-text);margin-bottom:14px}
+.nofind{margin-top:28px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;background:var(--dark);color:#fff;border-radius:var(--r);padding:24px}
+.nofind .ico{width:46px;height:46px;color:var(--blue-l)}
+.nofind b{display:block;font-size:18px;margin-bottom:4px}
+.nofind p{margin:0;color:#aeb9c8;font-size:14px}
+
+/* ---------- О компании / услуги / контакты ---------- */
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:start}
+.prose p{color:#394454;font-size:16px;margin:0 0 14px}
+.factory{display:grid;gap:16px}
+.factory div{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;border-left:4px solid var(--blue)}
+.factory b{display:block;font-size:16px}
+.factory small{display:block;color:var(--ink2);font-size:13px;margin:2px 0 8px}
+.factory p{margin:0;font-size:14px;color:#394454}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:#fff;border:1px solid var(--line);border-radius:6px;padding:6px 11px;font-weight:700;font-size:13.5px}
+.tags.mono span{font-family:var(--f-mono);font-size:13px}
+.lists{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.lists h3{font:800 15px var(--f-text);margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink2)}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc article{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:12px;transition:box-shadow .25s,border-color .2s}
+.svc article:hover{box-shadow:var(--shadow);border-color:#cfdbea}
+.svc .ico{width:42px;height:42px;color:var(--blue)}
+.svc h2{font-size:20px}
+.svc ul{margin:0;padding-left:18px;color:#394454;font-size:14.5px}
+.svc .btn{margin-top:auto}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.how div{position:relative;padding:22px;background:#fff;border-radius:var(--r);border:1px solid var(--line)}
+.how div::before{counter-increment:s;content:counter(s);font:400 30px var(--f-head);color:var(--blue);display:block;margin-bottom:6px}
+.how b{display:block;margin-bottom:4px}
+.how p{margin:0;font-size:13.5px;color:var(--ink2)}
+.contacts{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:stretch}
+.cbox{display:grid;gap:14px;align-content:start}
+.cbox div{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.cbox .ico{width:26px;height:26px;color:var(--blue);margin-top:2px}
+.cbox .wa .ico{color:var(--wa)}
+.cbox small{display:block;color:var(--ink2);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.cbox b{font-size:15.5px}
+.cbox a:hover{color:var(--blue)}
+.map{position:relative;border-radius:var(--r);overflow:hidden;min-height:380px;background:#e8edf3;border:1px solid var(--line)}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map .pin{position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.map .pin span{background:var(--dark);color:#fff;font-size:12.5px;font-weight:700;padding:7px 11px;border-radius:7px;white-space:nowrap;margin-bottom:6px}
+.map .pin i{width:22px;height:22px;border-radius:50% 50% 50% 0;background:var(--blue);transform:rotate(-45deg);box-shadow:0 0 0 6px rgba(22,119,230,.2)}
+.map .btn{position:absolute;left:16px;bottom:16px}
+
+/* ---------- Подвал ---------- */
+footer{background:var(--dark);color:#c3ccd8;margin-top:0}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:40px;padding-top:52px;padding-bottom:40px}
+footer h4{font:400 16px var(--f-head);color:#fff;margin:0 0 18px;text-transform:uppercase;letter-spacing:.5px}
+footer p{margin:0 0 12px;font-size:14px}
+footer small{display:block;color:#8592a3;font-size:12px;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+footer a:hover{color:#fff}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:14px}
+footer .wa-f{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:800;font-size:16px}
+footer .wa-f .ico{color:var(--wa)}
+.copy{border-top:1px solid #303743;font-size:12.5px;color:#7d8899}
+.copy .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-top:18px;padding-bottom:18px}
+
+/* ---------- Правая панель ---------- */
+.rail{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:35;display:flex;flex-direction:column;background:var(--dark);border-radius:10px 0 0 10px;overflow:hidden;box-shadow:-4px 6px 20px rgba(0,0,0,.18)}
+.rail a,.rail button{width:48px;height:48px;display:grid;place-items:center;color:#c9d1dc;transition:background .2s,color .2s;position:relative}
+.rail a:hover,.rail button:hover{background:var(--blue);color:#fff}
+.rail .wa:hover{background:var(--wa)}
+.rail [data-tip]:hover::after{content:attr(data-tip);position:fixed;right:56px;background:var(--dark);color:#fff;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:6px;white-space:nowrap}
+
+/* ---------- ИИ-чат ---------- */
+.fab{position:fixed;right:24px;bottom:24px;z-index:50;width:64px;height:64px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px rgba(22,119,230,.45)}
+.fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--blue);animation:ping 2.4s ease-out infinite}
+@keyframes ping{from{transform:scale(1);opacity:.8}to{transform:scale(1.55);opacity:0}}
+.fab .ico{width:30px;height:30px}
+.fab b{position:absolute;top:-4px;right:-4px;background:var(--wa);font-size:10px;font-weight:800;padding:2px 6px;border-radius:10px;border:2px solid #fff}
+.fab[aria-expanded="true"]{display:none}
+.chat{position:fixed;right:24px;bottom:24px;z-index:60;width:390px;height:min(600px,calc(100vh - 48px));background:#fff;border-radius:16px;box-shadow:0 24px 60px rgba(10,20,40,.3);display:none;flex-direction:column;overflow:hidden}
+.chat.open{display:flex;animation:chatIn .28s cubic-bezier(.2,.7,.2,1)}
+@keyframes chatIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.chat-h{background:var(--dark);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.chat-h .av{width:40px;height:40px;border-radius:50%;background:var(--hero);display:grid;place-items:center;border:2px solid var(--blue)}
+.chat-h .av .ico{color:var(--blue-l);width:22px;height:22px}
+.chat-h b{display:block;font-size:15px}
+.chat-h small{display:flex;align-items:center;gap:6px;font-size:12px;color:#9fb0c4}
+.chat-h small::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--wa)}
+.chat-h button{margin-left:auto;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;color:#c9d1dc}
+.chat-h button:hover{background:rgba(255,255,255,.1);color:#fff}
+.msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--bg2)}
+.msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-line;word-wrap:break-word;overflow-wrap:anywhere}
+.msg.me{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg .lnk{display:flex;flex-direction:column;gap:6px;margin-top:10px;white-space:normal}
+.msg .lnk a{color:var(--blue);font-weight:700;font-size:13.5px}
+.msg .lnk a:hover{text-decoration:underline}
+.msg .to-wa{display:flex;width:fit-content;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;font-weight:800;color:var(--wa-d);white-space:normal}
+.msg .to-wa .ico{width:16px;height:16px}
+.msg .to-wa:hover{text-decoration:underline}
+.typing{display:flex;gap:4px;padding:14px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,80%,100%{opacity:.3;transform:none}40%{opacity:1;transform:translateY(-3px)}}
+.quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px 0;background:#fff;border-top:1px solid var(--line)}
+.quick button{font-size:12.5px;font-weight:700;border:1.5px solid var(--line);border-radius:20px;padding:5px 11px;color:var(--ink2)}
+.quick button:hover{border-color:var(--blue);color:var(--blue)}
+.chat form{display:flex;gap:8px;padding:12px;background:#fff}
+.chat input{flex:1;min-width:0;height:44px;border:1.5px solid var(--line);border-radius:10px;padding:0 12px;outline:0}
+.chat input:focus{border-color:var(--blue)}
+.chat form button{width:44px;height:44px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center}
+.chat form button:disabled{opacity:.5;cursor:default}
+.chat .disc{font-size:11px;color:var(--muted);text-align:center;padding:0 12px 10px;background:#fff}
+
+/* ---------- Нижняя панель телефона ---------- */
+.mbar{display:none}
+
+/* ---------- Адаптив ---------- */
+@media (max-width:1180px){
+  .top-hours{display:none}
+  .badges{display:none}
+}
+@media (max-width:1100px){
+  .rail{display:none}
+  .adv,.tiles{grid-template-columns:repeat(2,1fr)}
+  .track{grid-auto-columns:calc((100% - 36px)/3)}
+  .how{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .wrap{padding:0 16px}
+  .top .wrap{height:66px;gap:12px;justify-content:space-between}
+  .logo svg{width:42px;height:42px}
+  .logo b{font-size:19px}
+  .top .search,.top-wa{display:none}
+  .top-wa-m{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--wa);color:#fff}
+  .top-wa-m .ico{width:24px;height:24px}
+  .nav .wrap{height:52px;padding:0;gap:0}
+  .links{display:none}
+  .cat-btn{padding:0 16px}
+  .nav-search{display:flex;flex:1;min-width:0;align-items:center;padding:0 10px}
+  .nav-search .search{height:38px;min-width:0;max-width:none;border-color:#3a424e;background:#2a3039}
+  .nav-search input{color:#fff}
+  .nav-search input::placeholder{color:#8d99a8}
+  .cat-menu{position:fixed;top:var(--mt,0px);left:0;right:0;width:auto;border-radius:0;max-height:none;bottom:64px;padding-bottom:20px;overscroll-behavior:contain}
+  .cat-menu .m-only{display:block}
+  .cat-menu a.m-only{display:flex}
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:30px;padding-bottom:70px;gap:6px}
+  .hero-stage{order:-1;max-width:420px}
+  .hero p{font-size:15.5px}
+  .hero-cta .btn{flex:1 1 100%}
+  .adv,.tiles,.svc,.how,.lists{grid-template-columns:1fr}
+  .tile{min-height:0;flex-direction:row;align-items:center}
+  .tile svg.pic{width:90px;height:64px;margin:0;flex:none}
+  .tile small{margin-top:4px;flex-direction:column;align-items:flex-start;gap:2px}
+  .strip{grid-template-columns:1fr;padding:24px}
+  .strip .btns{justify-content:stretch}
+  .strip .btns .btn{flex:1 1 100%}
+  .sec{padding:40px 0}
+  .grid{grid-template-columns:1fr}
+  .filters{flex-direction:column;align-items:stretch}
+  .filters .found{margin-left:0}
+  .prod,.two,.contacts{grid-template-columns:1fr;gap:20px}
+  .prod h1{margin-top:6px}
+  .buy .btn{flex:1}
+  .buy .wa-num{flex:1 1 100%}
+  .track{grid-auto-columns:85%}
+  .tabs button{flex:1;padding:12px 8px}
+  .pick{grid-template-columns:1fr}
+  .pick .btn{width:100%}
+  .nofind{grid-template-columns:1fr;text-align:left}
+  footer .wrap{grid-template-columns:1fr;gap:28px}
+  .fab{display:none}
+  .chat{inset:0;width:auto;height:auto;border-radius:0;bottom:64px}
+  .mbar{display:grid;grid-template-columns:repeat(3,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;height:64px;background:var(--dark);border-top:1px solid #2f3641;padding-bottom:env(safe-area-inset-bottom)}
+  .mbar a,.mbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#c9d1dc;font-size:11.5px;font-weight:700}
+  .mbar .ico{width:22px;height:22px}
+  .mbar .wa{color:#fff}
+  .mbar .wa .ico{color:var(--wa)}
+  .mbar [aria-expanded="true"]{color:var(--blue-l)}
+  body{padding-bottom:64px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero canvas{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Векторные иконки, логотип и насосы (без внешних картинок) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1f5fa"/><stop offset=".3" stop-color="#b9c4d2"/><stop offset=".65" stop-color="#76859a"/><stop offset="1" stop-color="#3b4658"/>
+    </linearGradient>
+    <linearGradient id="gDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5d6a7d"/><stop offset=".5" stop-color="#36404f"/><stop offset="1" stop-color="#1c232d"/>
+    </linearGradient>
+    <linearGradient id="gGlint" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gLogo" cx=".5" cy=".5" r=".6">
+      <stop offset="0" stop-color="#0d1a2e"/><stop offset="1" stop-color="#05080f"/>
+    </radialGradient>
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Силуэт насоса для маски блика -->
+    <mask id="pumpMask" maskUnits="userSpaceOnUse" x="0" y="0" width="420" height="260">
+      <g fill="#fff">
+        <rect x="38" y="58" width="34" height="160" rx="6"/><rect x="66" y="74" width="200" height="128" rx="20"/>
+        <rect x="150" y="36" width="96" height="42" rx="6"/><rect x="260" y="88" width="56" height="100" rx="12"/>
+        <rect x="312" y="104" width="22" height="68" rx="4"/><rect x="332" y="124" width="62" height="28" rx="5"/>
+      </g>
+    </mask>
+  </defs>
+
+  <symbol id="logo" viewBox="0 0 64 64">
+    <rect width="64" height="64" rx="14" fill="url(#gLogo)"/>
+    <g filter="url(#neon)" fill="none" stroke="#2f8cff" stroke-width="3">
+      <path d="M32 13l3 4.2 5-1.4 1 5.1 5 1.6-1.6 5 3.6 3.5-3.6 3.5 1.6 5-5 1.6-1 5.1-5-1.4L32 51l-3-4.2-5 1.4-1-5.1-5-1.6 1.6-5L16 33l3.6-3.5-1.6-5 5-1.6 1-5.1 5 1.4z"/>
+      <circle cx="32" cy="32" r="8"/>
+    </g>
+    <circle cx="32" cy="32" r="3" fill="#7cc0ff"/>
+    <path d="M10 46h10M44 18h10" stroke="#2f8cff" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+  </symbol>
+
+  <symbol id="pump-axial" viewBox="0 0 420 260">
+    <ellipse cx="215" cy="236" rx="175" ry="11" fill="#000" opacity=".16"/>
+    <rect x="38" y="58" width="34" height="160" rx="6" fill="url(#gDark)"/>
+    <circle cx="55" cy="76" r="5" fill="#c9d3df"/><circle cx="55" cy="200" r="5" fill="#c9d3df"/><circle cx="55" cy="138" r="5" fill="#c9d3df"/>
+    <rect x="92" y="194" width="44" height="24" rx="4" fill="url(#gDark)"/>
+    <circle cx="114" cy="206" r="7" fill="#0f1620" stroke="#1677e6" stroke-width="3"/>
+    <rect x="66" y="74" width="200" height="128" rx="20" fill="url(#gMetal)"/>
+    <g stroke="#0b1320" stroke-opacity=".14" stroke-width="2"><path d="M100 78v120M128 78v120M240 78v120"/></g>
+    <rect x="76" y="82" width="180" height="9" rx="4.5" fill="#fff" opacity=".5"/>
+    <rect x="150" y="36" width="96" height="42" rx="6" fill="url(#gDark)"/>
+    <rect x="160" y="24" width="30" height="16" rx="3" fill="url(#gMetal)"/>
+    <circle cx="226" cy="57" r="9" fill="#0f1620" stroke="#1677e6" stroke-width="3"/>
+    <circle cx="164" cy="48" r="3" fill="#c9d3df"/><circle cx="196" cy="48" r="3" fill="#c9d3df"/>
+    <rect x="150" y="116" width="74" height="38" rx="3" fill="#dde4ec" stroke="#8796a8"/>
+    <path d="M158 126h40M158 134h56M158 142h30" stroke="#8796a8" stroke-width="2"/>
+    <rect x="260" y="88" width="56" height="100" rx="12" fill="url(#gMetal)"/>
+    <rect x="312" y="104" width="22" height="68" rx="4" fill="url(#gDark)"/>
+    <circle cx="323" cy="114" r="3.5" fill="#c9d3df"/><circle cx="323" cy="162" r="3.5" fill="#c9d3df"/>
+    <rect x="332" y="124" width="62" height="28" rx="5" fill="url(#gMetal)"/>
+    <rect x="352" y="129" width="30" height="5" rx="2" fill="#2a3340"/>
+  </symbol>
+
+  <symbol id="pump-gear" viewBox="0 0 420 260">
+    <ellipse cx="215" cy="236" rx="160" ry="11" fill="#000" opacity=".16"/>
+    <rect x="70" y="60" width="38" height="160" rx="6" fill="url(#gDark)"/>
+    <circle cx="89" cy="78" r="5" fill="#c9d3df"/><circle cx="89" cy="202" r="5" fill="#c9d3df"/>
+    <rect x="104" y="64" width="190" height="152" rx="16" fill="url(#gMetal)"/>
+    <rect x="114" y="72" width="170" height="8" rx="4" fill="#fff" opacity=".5"/>
+    <path d="M150 64v152M250 64v152" stroke="#0b1320" stroke-opacity=".15" stroke-width="2"/>
+    <circle cx="200" cy="104" r="15" fill="#0f1620" stroke="#1677e6" stroke-width="4"/>
+    <circle cx="200" cy="176" r="15" fill="#0f1620" stroke="#1677e6" stroke-width="4"/>
+    <rect x="290" y="96" width="26" height="88" rx="5" fill="url(#gDark)"/>
+    <rect x="314" y="124" width="62" height="30" rx="5" fill="url(#gMetal)"/>
+    <rect x="334" y="129" width="30" height="5" rx="2" fill="#2a3340"/>
+  </symbol>
+
+  <symbol id="pump-plunger" viewBox="0 0 420 260">
+    <ellipse cx="210" cy="236" rx="170" ry="11" fill="#000" opacity=".16"/>
+    <g fill="url(#gMetal)"><rect x="96" y="30" width="44" height="90" rx="8"/><rect x="160" y="30" width="44" height="90" rx="8"/><rect x="224" y="30" width="44" height="90" rx="8"/></g>
+    <g fill="url(#gDark)"><rect x="92" y="22" width="52" height="16" rx="4"/><rect x="156" y="22" width="52" height="16" rx="4"/><rect x="220" y="22" width="52" height="16" rx="4"/></g>
+    <rect x="62" y="110" width="250" height="110" rx="14" fill="url(#gMetal)"/>
+    <rect x="72" y="118" width="230" height="8" rx="4" fill="#fff" opacity=".5"/>
+    <circle cx="110" cy="176" r="12" fill="#0f1620" stroke="#1677e6" stroke-width="4"/>
+    <rect x="160" y="150" width="90" height="44" rx="3" fill="#dde4ec" stroke="#8796a8"/>
+    <path d="M168 162h50M168 172h70M168 182h36" stroke="#8796a8" stroke-width="2"/>
+    <rect x="308" y="128" width="24" height="76" rx="4" fill="url(#gDark)"/>
+    <rect x="330" y="150" width="62" height="30" rx="5" fill="url(#gMetal)"/>
+    <rect x="350" y="155" width="30" height="5" rx="2" fill="#2a3340"/>
+  </symbol>
+
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.8 4.2 1.8.8 2.5.8 3.4.7.6-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></g></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></g></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 14l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><g fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></g></symbol>
+  <symbol id="i-ai" viewBox="0 0 24 24"><g fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9z"/><path d="M5 15l.7 1.6 1.6.7-1.6.7L5 19.6l-.7-1.6-1.6-.7 1.6-.7z"/></g></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 9h4l3 3v4h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></g></symbol>
+  <symbol id="i-factory" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21V10l5 3V10l5 3V10l5 3V4h3v17z"/><path d="M7 17h2M12 17h2M17 17h2"/></g></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3.5-3.5 8-8M14.7 6.3L13 4.6a4 4 0 0 0-5.6 5.6l1.7 1.7M3 21l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g></symbol>
+  <symbol id="i-kit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 12h18M11 12v3h2v-3"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></g></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13.5" r="3.5"/></g></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></g></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home" aria-label="SKS PARTS — на главную">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <div><b>SKS <span>PARTS</span></b><small>Гидравлика для спецтехники</small></div>
+    </a>
+    <div class="badges">
+      <span><svg class="ico"><use href="#i-truck"/></svg>Доставка по всему Казахстану</span>
+      <span><svg class="ico"><use href="#i-shield"/></svg>Работаем с 2018 года</span>
+    </div>
+    <form class="search js-search" role="search">
+      <label class="sr" for="q1">Поиск по каталогу</label>
+      <input id="q1" name="q" type="search" placeholder="Поиск: K3V112, HPV102, Hitachi…" autocomplete="off" maxlength="60">
+      <button type="submit" aria-label="Искать"><svg class="ico"><use href="#i-search"/></svg></button>
+    </form>
+    <a class="top-wa js-wa" data-wa="Здравствуйте! Пишу с сайта SKS PARTS." target="_blank" rel="noopener">
+      <svg class="ico"><use href="#i-wa"/></svg>
+      <div><b>+7 777 030 55 66</b><small>Написать в WhatsApp</small></div>
+    </a>
+    <div class="top-hours"><b>Пн–Пт</b> 9:00–18:00 (обед 13–14)<br><b>Сб</b> 10:00–17:00, <b>Вс</b> выходной</div>
+    <a class="top-wa-m js-wa" data-wa="Здравствуйте! Пишу с сайта SKS PARTS." target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><svg class="ico"><use href="#i-wa"/></svg></a>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Основное меню">
+  <div class="wrap">
+    <button class="cat-btn" id="catBtn" aria-expanded="false" aria-controls="catMenu"><span class="burger"><i></i></span>Категории</button>
+    <div class="links" id="links">
+      <a href="#home" data-p="home">Главная</a>
+      <a href="#about" data-p="about">О компании</a>
+      <a href="#pick" data-p="pick">Подбор</a>
+      <a href="#catalog" data-p="catalog">Каталог</a>
+      <a href="#services" data-p="services">Услуги</a>
+      <a href="#contacts" data-p="contacts">Контакты</a>
+    </div>
+    <div class="nav-search">
+      <form class="search js-search" role="search">
+        <label class="sr" for="q2">Поиск по каталогу</label>
+        <input id="q2" name="q" type="search" placeholder="Поиск насоса…" autocomplete="off" maxlength="60">
+        <button type="submit" aria-label="Искать"><svg class="ico"><use href="#i-search"/></svg></button>
+      </form>
+    </div>
+    <div class="cat-menu" id="catMenu"></div>
+  </div>
+</nav>
+
+<div id="crumbs"></div>
+<main id="main" tabindex="-1"></main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Офис</h4>
+      <p><small>Адрес</small>Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26</p>
+      <p><small>Отдел продаж</small><a class="wa-f js-wa" data-wa="Здравствуйте! Пишу с сайта SKS PARTS." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>+7 777 030 55 66</a></p>
+      <p><small>Почта</small><a href="mailto:info@sksparts.kz">info@sksparts.kz</a></p>
+      <p><small>Режим работы</small>Пн–Пт 9:00–18:00 (обед 13–14)<br>Сб 10:00–17:00, Вс — выходной</p>
+    </div>
+    <div>
+      <h4>Меню</h4>
+      <ul>
+        <li><a href="#home">Главная</a></li><li><a href="#about">О компании</a></li><li><a href="#pick">Подбор по технике</a></li>
+        <li><a href="#catalog">Каталог</a></li><li><a href="#services">Услуги</a></li><li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Категории</h4>
+      <ul id="footCats"></ul>
+    </div>
+  </div>
+  <div class="copy"><div class="wrap"><span>© 2018–<span id="year">2026</span> SKS PARTS (SKS HYDRAULIC). Алматы, Казахстан.</span><span>Цены и наличие уточняйте у менеджера в WhatsApp</span></div></div>
+</footer>
+
+<div class="rail" aria-label="Быстрые действия">
+  <button type="button" data-tip="Категории" data-act="cats" aria-label="Категории"><svg class="ico"><use href="#i-grid"/></svg></button>
+  <button type="button" data-tip="Поиск" data-act="search" aria-label="Поиск"><svg class="ico"><use href="#i-search"/></svg></button>
+  <a class="wa js-wa" data-tip="WhatsApp" data-wa="Здравствуйте! Пишу с сайта SKS PARTS." target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico"><use href="#i-wa"/></svg></a>
+  <a href="mailto:info@sksparts.kz" data-tip="info@sksparts.kz" aria-label="Почта"><svg class="ico"><use href="#i-mail"/></svg></a>
+  <button type="button" data-tip="Наверх" data-act="top" aria-label="Наверх"><svg class="ico"><use href="#i-up"/></svg></button>
+</div>
+
+<button class="fab" id="fab" aria-expanded="false" aria-controls="chat" aria-label="Открыть ИИ-помощника"><svg class="ico"><use href="#i-ai"/></svg><b>ИИ</b></button>
+
+<section class="chat" id="chat" role="dialog" aria-label="ИИ-помощник SKS PARTS">
+  <div class="chat-h">
+    <div class="av"><svg class="ico"><use href="#i-ai"/></svg></div>
+    <div><b>ИИ-помощник SKS</b><small id="chatMode">подбор насосов · онлайн</small></div>
+    <button type="button" id="chatClose" aria-label="Закрыть"><svg class="ico"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="quick" id="quick">
+    <button type="button">Подобрать насос на Hitachi ZX200</button>
+    <button type="button">Как узнать модель насоса?</button>
+    <button type="button">Где вы находитесь?</button>
+    <button type="button">Доставка в Астану</button>
+  </div>
+  <form id="chatForm" autocomplete="off">
+    <label class="sr" for="chatIn">Сообщение</label>
+    <input id="chatIn" maxlength="500" placeholder="Марка и модель техники или номер насоса…">
+    <button type="submit" aria-label="Отправить"><svg class="ico"><use href="#i-send"/></svg></button>
+  </form>
+  <div class="disc">ИИ может ошибаться. Цены, наличие и совместимость подтверждает менеджер.</div>
+</section>
+
+<nav class="mbar" aria-label="Быстрое меню">
+  <button type="button" id="mCats" aria-expanded="false"><svg class="ico"><use href="#i-grid"/></svg>Категории</button>
+  <a class="wa js-wa" data-wa="Здравствуйте! Пишу с сайта SKS PARTS." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</a>
+  <button type="button" id="mAi" aria-expanded="false"><svg class="ico"><use href="#i-ai"/></svg>ИИ-подбор</button>
+</nav>
+
+<script>
+"use strict";
+/* =====================================================================
+   НАСТРОЙКИ
+   AI_ENDPOINT — адрес сервера-посредника (Cloudflare Worker, папка worker/).
+   Пусто → помощник работает готовыми ответами (демо). Ключ API в этом
+   файле не хранится и храниться не должен.
+   ===================================================================== */
+const AI_ENDPOINT = "";
+const WA_NUMBER = "77770305566";
+const CHAT_LIMIT = 30; // сообщений за сессию
+
+/* ---------- Данные (демо — финальный каталог даёт клиент) ---------- */
+const TYPES = {
+  axial:   {name:"Аксиально-поршневые насосы", short:"Аксиально-поршневой", icon:"pump-axial"},
+  plunger: {name:"Плунжерные насосы",          short:"Плунжерный",          icon:"pump-plunger"},
+  gear:    {name:"Шестерёнчатые насосы",       short:"Шестерёнчатый",       icon:"pump-gear"}
+};
+const TECH = {
+  excavator:{name:"Для экскаваторов",                 icon:"pump-axial"},
+  backhoe:  {name:"Для тракторов 3в1",                icon:"pump-gear"},
+  crane:    {name:"Для кранов, КМУ и мусоровозов",    icon:"pump-gear"},
+  lift:     {name:"Для автовышек",                    icon:"pump-plunger"},
+  road:     {name:"Для катков, фрез и комбайнов",     icon:"pump-plunger"}
+};
+const P = (id,name,brand,type,tech,use,compat,desc,keys) => ({id,name,brand,type,tech,use,compat,desc,keys});
+const PRODUCTS = [
+  P("k3v63dt","Kawasaki K3V63DT","Kawasaki","axial",["excavator"],"Экскаваторы 12–16 т",["Hyundai R170W-7","Hyundai R140LC-7","Doosan S140"],"Сдвоенный аксиально-поршневой насос с наклонной шайбой. Основной насос гидросистемы колёсных и гусеничных экскаваторов среднего класса.",["k3v63"]),
+  P("k3v112dt","Kawasaki K3V112DT","Kawasaki","axial",["excavator"],"Экскаваторы 20–25 т",["Hyundai R210LC-7","CAT 320C","New Holland E215B","Volvo EC210"],"Один из самых распространённых насосов для экскаваторов 20-тонного класса. Сдвоенный, с регулятором мощности и пилотным шестерёнчатым насосом.",["k3v112"]),
+  P("k3v140dt","Kawasaki K3V140DT","Kawasaki","axial",["excavator"],"Экскаваторы 28–33 т",["Case CX290B","Hyundai R290LC-7","Doosan DX300"],"Сдвоенный насос повышенной производительности для тяжёлых экскаваторов.",["k3v140"]),
+  P("k5v140dtp","Kawasaki K5V140DTP","Kawasaki","axial",["excavator"],"Экскаваторы 20–24 т нового поколения",["SANY SY215","Kobelco SK200-8","JCB JS220"],"Насос серии K5V — развитие K3V с повышенным рабочим давлением и КПД.",["k5v140"]),
+  P("k5v200dth","Kawasaki K5V200DTH","Kawasaki","axial",["excavator"],"Экскаваторы 30–36 т",["SANY SY335","SANY SY365","Doosan DX340"],"Насос большого рабочего объёма для тяжёлых экскаваторов.",["k5v200"]),
+  P("k7v63dtp","Kawasaki K7V63DTP","Kawasaki","axial",["excavator"],"Экскаваторы 15–18 т",["Volvo EC180","Volvo EC160","Hyundai R160"],"Компактный сдвоенный насос серии K7V для экскаваторов среднего класса.",["k7v63"]),
+  P("hpv102","Hitachi HPV102 / HPV118","Hitachi","axial",["excavator"],"Экскаваторы Hitachi 20–30 т",["Hitachi ZX200","Hitachi EX200","Hitachi EX300/330 (HPV118)"],"Оригинальная серия насосов Hitachi для экскаваторов ZX и EX.",["hpv102","hpv118"]),
+  P("hpv95","Komatsu HPV95 / HPV132","Komatsu","axial",["excavator"],"Экскаваторы Komatsu 20–30 т",["Komatsu PC200 (HPV95)","Komatsu PC300 (HPV132)"],"Насосы Komatsu серии HPV для экскаваторов PC200 и PC300.",["hpv95","hpv132"]),
+  P("nachi","Nachi PVD-2B / PVK-2B","Nachi","axial",["excavator"],"Мини-экскаваторы 3–8 т",["Hitachi ZX55","Hitachi ZX50","Yanmar ViO55"],"Компактные насосы Nachi для мини-экскаваторов.",["pvd2b","pvk2b","pvd","pvk","nachi"]),
+  P("uchida","Uchida AP2D","Uchida","axial",["excavator"],"Мини- и миди-экскаваторы",["Doosan DH55","Hyundai R55","Komatsu PC40"],"Насос Uchida (Rexroth) серии AP2D для малой техники.",["ap2d","uchida"]),
+  P("a10vso","Rexroth A10VSO (A10VO)","Rexroth","axial",["backhoe","crane"],"Тракторы 3в1, краны, промышленная гидравлика",["CAT 428/432","Case 580","Hidromek 102","JCB 3CX"],"Регулируемый насос открытого контура — стандарт для экскаваторов-погрузчиков и мобильной техники.",["a10vso","a10vo","a10"]),
+  P("a4vg","Rexroth A4VG","Rexroth","axial",["road"],"Закрытый контур: катки, фрезы, комбайны",["Катки Bomag, Hamm","Дорожные фрезы Wirtgen","Зерноуборочные комбайны"],"Насос закрытого контура для гидростатических трансмиссий хода.",["a4vg"]),
+  P("a8vo","Rexroth A8VO","Rexroth","axial",["excavator"],"Сдвоенный насос для экскаваторов",["CAT E200B","CAT 320B","Liebherr R900"],"Сдвоенный насос с наклонным блоком для экскаваторов старшего поколения.",["a8vo","a8v"]),
+  P("a2fo","Rexroth A2FO / A7VO","Rexroth","axial",["crane","road"],"Краны, КМУ, бетоносмесители",["Автокраны","Краны-манипуляторы (КМУ)","Бетоносмесители"],"Нерегулируемый (A2FO) и регулируемый (A7VO) насосы с наклонным блоком.",["a2fo","a7vo","a2f","a7v"]),
+  P("sd90r","Sauer Danfoss 90R","Sauer Danfoss","plunger",["road"],"Катки, фрезы, комбайны (закрытый контур)",["Дорожные катки","Дорожные фрезы","Комбайны"],"Насос серии 90 для гидростатического привода хода.",["90r","sauer","danfoss"]),
+  P("lift","Плунжерный насос для автовышек","Boxin Hydraulic","plunger",["lift"],"Автовышки и подъёмники",["Автовышки на шасси КамАЗ, ГАЗ","Ножничные подъёмники"],"Плунжерный насос для гидравлики подъёма и поворота стрелы автовышек.",["автовышк"]),
+  P("gear-3in1","Шестерёнчатый насос для тракторов 3в1","Boxin Hydraulic","gear",["backhoe"],"Экскаваторы-погрузчики (3в1)",["CAT 428/432","Case 580","Hidromek 102","JCB 3CX"],"Шестерёнчатый насос для гидросистемы экскаваторов-погрузчиков.",["3в1","3 в 1"]),
+  P("gear-kmu","Шестерёнчатый насос для мусоровозов и КМУ","Hattat Hema","gear",["crane"],"Мусоровозы, КМУ, самосвалы",["Мусоровозы","Краны-манипуляторы (КМУ)","Самосвалы (подъём кузова)"],"Шестерёнчатый насос для навесного оборудования грузовиков (через коробку отбора мощности).",["мусоровоз","кму"])
+];
+const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+
+/* Таблица «машина → насос» — ПРИМЕР по открытым данным */
+const PICK = {
+  "Komatsu":    {"PC200":["hpv95"], "PC300":["hpv95"]},
+  "Hitachi":    {"EX200":["hpv102"], "ZX200":["hpv102"], "EX300/330":["hpv102"], "ZX55":["nachi"]},
+  "CAT":        {"E200B":["a8vo"], "320":["k3v112dt","a8vo"], "428/432":["a10vso","gear-3in1"]},
+  "Hyundai":    {"R210LC-7":["k3v112dt"], "R170W-7":["k3v63dt"]},
+  "Volvo":      {"EC180":["k7v63dtp"]},
+  "New Holland":{"E215B":["k3v112dt"]},
+  "SANY":       {"SY335":["k5v200dth"]},
+  "Case":       {"CX290B":["k3v140dt"], "580":["gear-3in1","a10vso"]},
+  "Hidromek":   {"102":["gear-3in1","a10vso"]}
+};
+const BRAND_ALIASES = {
+  "Komatsu":["komatsu","коматсу","комацу"], "Hitachi":["hitachi","хитачи","хитачы"], "CAT":["cat","caterpillar","катерпиллер","катерпилар","кат "],
+  "Hyundai":["hyundai","хендай","хундай","хюндай","хёндай"], "Volvo":["volvo","вольво"], "New Holland":["new holland","newholland","нью холланд","ньюхолланд"],
+  "SANY":["sany","сани","сany"], "Case":["case","кейс"], "Hidromek":["hidromek","хидромек","гидромек"]
+};
+
+/* ---------- Утилиты ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const wa = text => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+const norm = s => String(s).toLowerCase().replace(/ё/g,"е").replace(/[\s\-_/.]+/g,"");
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const icon = (id, cls="ico") => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
+const plural = (n, a, b, c) => { const m=n%10, h=n%100; return n+" "+(m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c); };
+
+function catLinks(){
+  const t = Object.entries(TYPES).map(([k,v]) => ({href:`#catalog?type=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.type===k).length, icon:v.icon}));
+  const h = Object.entries(TECH).map(([k,v]) => ({href:`#catalog?tech=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.tech.includes(k)).length, icon:v.icon}));
+  return {t, h, all:[...t, ...h]};
+}
+function searchProducts(q){
+  const n = norm(q); if(!n) return PRODUCTS;
+  return PRODUCTS.filter(p => norm([p.name,p.brand,p.use,TYPES[p.type].name,...p.compat,...p.keys].join(" ")).includes(n));
+}
+
+/* ---------- Карточка товара ---------- */
+function cardHTML(p){
+  return `<article class="card">
+    <a class="photo" href="#p-${p.id}" aria-label="${esc(p.name)}">
+      <span class="soon">фото скоро</span>${icon(TYPES[p.type].icon,"")}<span class="wm">sks-parts</span>
+    </a>
+    <div class="body">
+      <span class="type">${esc(TYPES[p.type].short)}</span>
+      <h3><a href="#p-${p.id}">${esc(p.name)}</a></h3>
+      <p>${esc(p.use)}</p>
+      <div class="price">Цена: <b>по запросу</b></div>
+    </div>
+    <div class="act">
+      <a class="btn btn-ghost" href="#p-${p.id}">Подробнее</a>
+      <a class="btn btn-wa" href="${wa(`Здравствуйте! Хочу узнать цену: ${p.name}`)}" target="_blank" rel="noopener">Узнать цену</a>
+    </div>
+  </article>`;
+}
+
+/* ---------- Страницы ---------- */
+const PAGES = {
+  home(){
+    const c = catLinks();
+    return {title:"SKS PARTS — гидравлические насосы для спецтехники в Алматы", crumbs:null, html:`
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <span class="hero-ring r1"></span><span class="hero-ring r2"></span><span class="hero-ring r3"></span><span class="hero-ring r4"></span>
+      <canvas id="sparks" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Дилер Boxin Hydraulic в Казахстане</span>
+          <h1>Гидравлические насосы <span>для спецтехники</span></h1>
+          <p>Аксиально-поршневые, шестерёнчатые и плунжерные насосы, запчасти, ремкомплекты, ремонт и диагностика. Подберём насос по марке техники или по шильдику.</p>
+          <div class="hero-cta">
+            <a class="btn btn-blue" href="#pick">Подобрать насос</a>
+            <a class="btn btn-line" href="#catalog">Каталог</a>
+            <a class="btn btn-wa" href="${wa("Здравствуйте! Отправляю фото шильдика насоса, помогите подобрать.")}" target="_blank" rel="noopener">${icon("i-wa")}Фото шильдика</a>
+          </div>
+          <div class="hero-meta"><div><b>2018</b>работаем с</div><div><b>${PRODUCTS.length}+</b>моделей насосов</div><div><b>КЗ</b>доставка по стране</div></div>
+        </div>
+        <div class="hero-stage" aria-hidden="true">
+          <div class="hero-glow"></div>
+          <div class="hero-pump">
+            <svg viewBox="0 0 420 260">
+              <use href="#pump-axial"/>
+              <g mask="url(#pumpMask)"><rect class="glint" x="0" y="0" width="120" height="260" fill="url(#gGlint)" transform="translate(-160 0)" style="mix-blend-mode:screen"/></g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap">
+      <div class="adv">
+        <div>${icon("i-factory")}<b>Прямые поставки</b><p>Дилер завода Boxin Hydraulic, работаем с турецким заводом Hattat Hema</p></div>
+        <div>${icon("i-shield")}<b>С 2018 года</b><p>Опыт подбора насосов для экскаваторов, кранов, катков и 3в1</p></div>
+        <div>${icon("i-truck")}<b>Доставка по Казахстану</b><p>Отправляем в любой город — Астана, Шымкент, Костанай и другие</p></div>
+        <div>${icon("i-wrench")}<b>Ремонт и диагностика</b><p>Ремкомплекты, запчасти к насосам и гидромоторам</p></div>
+      </div>
+    </div>
+    <section class="sec">
+      <div class="wrap">
+        <h2 class="h-sec">Категории</h2>
+        <p class="lead">Выберите тип насоса или технику — покажем подходящие модели.</p>
+        <div class="tiles">${c.all.map(x => `<a class="tile" href="${x.href}">${icon(x.icon,"pic")}<div><b>${esc(x.name)}</b><small>${plural(x.n,"товар","товара","товаров")} <span>Смотреть →</span></small></div></a>`).join("")}</div>
+      </div>
+    </section>
+    <section class="sec sec-gray">
+      <div class="wrap">
+        <div class="strip">
+          <div><h2>Не знаете модель насоса?</h2><p>Сфотографируйте шильдик (табличку на корпусе насоса) и отправьте в WhatsApp — менеджер подберёт насос или аналог.</p></div>
+          <div class="btns">
+            <a class="btn btn-wa" href="${wa("Здравствуйте! Отправляю фото шильдика насоса, помогите подобрать.")}" target="_blank" rel="noopener">${icon("i-camera")}Отправить фото шильдика</a>
+            <a class="btn btn-line" href="#pick">Подбор по технике</a>
+          </div>
+        </div>
+      </div>
+    </section>`};
+  },
+
+  about(){
+    return {title:"О компании — SKS PARTS", crumbs:[["О компании"]], html:`
+    <div class="wrap"><h1 class="h-page">О компании</h1></div>
+    <section class="sec" style="padding-top:20px"><div class="wrap two">
+      <div class="prose">
+        <p><b>SKS PARTS</b> (юридическое лицо — SKS HYDRAULIC) работает в Алматы с 2018 года. Мы занимаемся гидравлическим оборудованием для спецтехники: продаём насосы, запчасти к насосам и гидромоторам, ремкомплекты, выполняем ремонт и диагностику.</p>
+        <p>Мы — дилер китайского завода <b>Boxin Hydraulic</b> по Казахстану и работаем с турецким заводом <b>Hattat Hema</b>. Поставляем аксиально-поршневые, шестерёнчатые и плунжерные насосы для экскаваторов, тракторов 3в1, кранов, КМУ, автовышек, катков, дорожных фрез, мусоровозов и комбайнов.</p>
+        <p>Подбираем насос по марке и модели техники или по шильдику. Отправляем в любой город Казахстана.</p>
+        <p><a class="btn btn-wa" href="${wa("Здравствуйте! Хочу проконсультироваться по насосу.")}" target="_blank" rel="noopener">${icon("i-wa")}Написать в WhatsApp</a></p>
+      </div>
+      <div class="factory">
+        <div><b>Boxin Hydraulic</b><small>Qingzhou Boxinhuasheng Hydraulic Technology Co., Ltd., Шаньдун, Китай</small><p>SKS PARTS — дилер завода по Казахстану. Аксиально-поршневые и плунжерные насосы, запчасти и ремкомплекты.</p></div>
+        <div><b>Hattat Hema</b><small>Турция</small><p>Шестерёнчатые насосы и гидравлика для коммунальной и грузовой техники.</p></div>
+      </div>
+    </div></section>
+    <section class="sec sec-gray"><div class="wrap lists">
+      <div><h3>Насосы</h3><div class="tags mono">${["Kawasaki K3V","Kawasaki K5V","Kawasaki K7V","Rexroth","Sauer Danfoss","Nachi","Uchida","KYB"].map(t=>`<span>${t}</span>`).join("")}</div></div>
+      <div><h3>Техника</h3><div class="tags">${["Komatsu","Hitachi","CAT","Hyundai","Volvo","Case","New Holland","SANY","Hidromek"].map(t=>`<span>${t}</span>`).join("")}</div></div>
+      <div><h3>Виды техники</h3><div class="tags">${["Экскаваторы","Тракторы 3в1","Краны","КМУ","Автовышки","Катки","Дорожные фрезы","Мусоровозы","Комбайны"].map(t=>`<span>${t}</span>`).join("")}</div></div>
+    </div></section>`};
+  },
+
+  pick(params){
+    const brand = PICK[params.get("brand")] ? params.get("brand") : "";
+    const model = brand && PICK[brand][params.get("model")] ? params.get("model") : "";
+    return {title:"Подбор насоса по технике — SKS PARTS", crumbs:[["Подбор по технике"]], html:`
+    <div class="wrap"><h1 class="h-page">Подбор насоса по технике</h1>
+      <p class="lead">Выберите марку и модель техники — покажем насосы, которые на неё ставят.</p>
+    </div>
+    <section class="sec" style="padding-top:6px"><div class="wrap">
+      <div class="steps"><span><b>1</b>Марка</span><span><b>2</b>Модель</span><span><b>3</b>Насос</span></div>
+      <form class="pick" id="pickForm">
+        <label>Марка техники<select id="pBrand"><option value="">— выберите марку —</option>${Object.keys(PICK).map(b=>`<option${b===brand?" selected":""}>${esc(b)}</option>`).join("")}</select></label>
+        <label>Модель<select id="pModel"${brand?"":" disabled"}><option value="">— выберите модель —</option>${brand?Object.keys(PICK[brand]).map(m=>`<option${m===model?" selected":""}>${esc(m)}</option>`).join(""):""}</select></label>
+        <a class="btn btn-ghost" href="#catalog">Весь каталог</a>
+      </form>
+      <div class="result" id="pickResult">${pickResult(brand, model)}</div>
+      <div class="note" style="margin-top:22px">${icon("i-info")}<span>Таблица подбора — пример по открытым данным. На одну модель техники в разные годы ставили разные насосы, поэтому <b>совместимость всегда подтверждает менеджер</b> по шильдику или VIN.</span></div>
+      <div class="nofind">
+        ${icon("i-camera")}
+        <div><b>Не нашли свою модель в списке?</b><p>Сфотографируйте шильдик насоса (металлическая табличка на корпусе) и отправьте в WhatsApp — подберём насос или аналог.</p></div>
+        <a class="btn btn-wa" href="${wa("Здравствуйте! Не нашёл свою модель в подборе. Отправляю фото шильдика насоса.")}" target="_blank" rel="noopener">${icon("i-wa")}Отправить фото шильдика</a>
+      </div>
+    </div></section>`, after(){
+      const b = $("#pBrand"), m = $("#pModel");
+      const go = () => location.hash = "#pick" + (b.value ? "?brand="+encodeURIComponent(b.value) + (m.value && !m.disabled ? "&model="+encodeURIComponent(m.value) : "") : "");
+      b.addEventListener("change", () => { m.disabled = true; m.value = ""; go(); });
+      m.addEventListener("change", go);
+    }};
+  },
+
+  catalog(params){
+    const type = TYPES[params.get("type")] ? params.get("type") : "";
+    const tech = TECH[params.get("tech")] ? params.get("tech") : "";
+    const q = (params.get("q") || "").slice(0, 60);
+    const crumbs = type ? [["Каталог","#catalog"],[TYPES[type].name]] : tech ? [["Каталог","#catalog"],[TECH[tech].name]] : [["Каталог"]];
+    const h = type ? TYPES[type].name : tech ? "Насосы " + TECH[tech].name.toLowerCase() : "Каталог";
+    return {title:`${h} — SKS PARTS`, crumbs, html:`
+    <div class="wrap"><h1 class="h-page" id="catH">${esc(h)}</h1>
+      <p class="lead">Цены — по запросу: напишите в WhatsApp, менеджер уточнит цену, наличие и сроки.</p>
+    </div>
+    <section class="sec" style="padding-top:6px"><div class="wrap">
+      <div class="filters">
+        <div class="chips" role="group" aria-label="Тип насоса">
+          <button type="button" class="chip" data-type="" aria-pressed="${!type}">Все</button>
+          ${Object.entries(TYPES).map(([k,v])=>`<button type="button" class="chip" data-type="${k}" aria-pressed="${type===k}">${esc(v.short)}</button>`).join("")}
+        </div>
+        <label class="sr" for="fTech">Техника</label>
+        <select id="fTech"><option value="">Любая техника</option>${Object.entries(TECH).map(([k,v])=>`<option value="${k}"${tech===k?" selected":""}>${esc(v.name.replace("Для ",""))}</option>`).join("")}</select>
+        <label class="sr" for="fQ">Поиск</label>
+        <input class="grow" id="fQ" type="search" placeholder="Модель, марка техники…" value="${esc(q)}" maxlength="60">
+        <span class="found" id="found"></span>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="note" style="margin-top:24px">${icon("i-info")}<span>Демо-каталог: список моделей примерный, фото — заглушки. Финальный каталог, описания и фотографии предоставит SKS PARTS.</span></div>
+    </div></section>`, after(){
+      const state = {type, tech, q};
+      const draw = () => {
+        const list = searchProducts(state.q).filter(p => (!state.type || p.type===state.type) && (!state.tech || p.tech.includes(state.tech)));
+        $("#grid").innerHTML = list.length ? list.map(cardHTML).join("") :
+          `<div class="empty"><b>Ничего не нашлось</b>Попробуйте другой запрос или <a class="ask-ai" href="${wa("Здравствуйте! Ищу насос: " + state.q)}" target="_blank" rel="noopener">спросите менеджера в WhatsApp</a></div>`;
+        $("#found").textContent = "Найдено: " + plural(list.length, "товар", "товара", "товаров");
+        const sp = new URLSearchParams(); if(state.type) sp.set("type",state.type); if(state.tech) sp.set("tech",state.tech); if(state.q) sp.set("q",state.q);
+        const s = sp.toString(); history.replaceState(null, "", "#catalog" + (s ? "?" + s : ""));
+      };
+      $$(".chip").forEach(b => b.addEventListener("click", () => { state.type = b.dataset.type; $$(".chip").forEach(x => x.setAttribute("aria-pressed", x===b)); draw(); }));
+      $("#fTech").addEventListener("change", e => { state.tech = e.target.value; draw(); });
+      let t; $("#fQ").addEventListener("input", e => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value.trim(); draw(); }, 150); });
+      draw();
+    }};
+  },
+
+  product(id){
+    const p = byId[id];
+    if(!p) return PAGES.notfound();
+    const sim = [...PRODUCTS.filter(x => x.type===p.type && x.id!==p.id), ...PRODUCTS.filter(x => x.type!==p.type)].slice(0, 8);
+    const buyText = `Здравствуйте! Хочу купить ${p.name}. Подскажите цену и наличие.`;
+    return {title:`${p.name} — купить в Алматы | SKS PARTS`, crumbs:[["Каталог","#catalog"],[TYPES[p.type].name,`#catalog?type=${p.type}`],[p.name]], html:`
+    <div class="wrap"><div class="prod">
+      <div class="photo" style="margin-top:30px"><span class="soon">фото скоро</span>${icon(TYPES[p.type].icon,"")}<span class="wm">sks-parts</span></div>
+      <div>
+        <h1>${esc(p.name)}</h1>
+        <table class="spec">
+          <tr><th>Бренд</th><td>${esc(p.brand)}</td></tr>
+          <tr><th>Тип</th><td>${esc(TYPES[p.type].short)} насос</td></tr>
+          <tr><th>Применение</th><td>${esc(p.use)}</td></tr>
+          <tr><th>Цена</th><td class="pr">по запросу</td></tr>
+        </table>
+        <div class="buy">
+          <div class="wa-num">${icon("i-wa")}<div>+7 777 030 55 66<small>Отдел продаж, WhatsApp</small></div></div>
+          <a class="btn btn-wa" href="${wa(buyText)}" target="_blank" rel="noopener">Купить</a>
+        </div>
+        <button type="button" class="ask-ai" id="askAi">${icon("i-ai")}Спросить ИИ про этот насос</button>
+      </div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" id="t1" aria-selected="true" aria-controls="tp1">Описание</button>
+      <button role="tab" id="t2" aria-selected="false" aria-controls="tp2">Характеристика</button>
+    </div>
+    <div class="tabpanel" id="tp1" role="tabpanel" aria-labelledby="t1">
+      <p class="warn">! Внимание ! Цены на момент покупки могут отличаться от указанных на сайте. Актуальную цену и наличие уточняйте у менеджера в WhatsApp.</p>
+      <p>${esc(p.desc)}</p>
+      <h3>Применение</h3><p>${esc(p.use)}.</p>
+      <h3>Совместимость (пример)</h3>
+      <ul>${p.compat.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>
+      <p style="font-size:13.5px;color:var(--ink2)">Список приведён для примера. Точную совместимость подтверждает менеджер по шильдику насоса или модели техники.</p>
+      <h3>Как найти шильдик</h3>
+      <p>Шильдик — металлическая табличка на корпусе насоса с моделью и серийным номером. Сфотографируйте его и отправьте в WhatsApp — так подбор будет точным.</p>
+      <h3>Доставка</h3>
+      <p>По Алматы — самовывоз из бутика на Рыскулова, 72А или доставка. В города Казахстана — транспортными компаниями. Сроки и стоимость уточняйте у менеджера.</p>
+    </div>
+    <div class="tabpanel" id="tp2" role="tabpanel" aria-labelledby="t2" hidden>
+      <table class="spec">
+        <tr><th>Наименование</th><td class="mono">${esc(p.name)}</td></tr>
+        <tr><th>Бренд</th><td>${esc(p.brand)}</td></tr>
+        <tr><th>Тип</th><td>${esc(TYPES[p.type].short)} насос</td></tr>
+        <tr><th>Применение</th><td>${esc(p.use)}</td></tr>
+        <tr><th>Совместимость (пример)</th><td>${p.compat.map(esc).join(", ")}</td></tr>
+        <tr><th>Наличие</th><td>уточняйте в WhatsApp</td></tr>
+        <tr><th>Цена</th><td class="pr">по запросу</td></tr>
+      </table>
+    </div>
+    <div class="similar"><h2 class="h-sec" style="margin:0">Похожие товары</h2>
+      <div class="arrows"><button type="button" id="simL" aria-label="Назад">${icon("i-left")}</button><button type="button" id="simR" aria-label="Вперёд">${icon("i-right")}</button></div>
+    </div>
+    <div class="track" id="track">${sim.map(cardHTML).join("")}</div>
+    <div style="height:56px"></div>
+    </div>`, after(){
+      const tabs = [$("#t1"), $("#t2")], panels = [$("#tp1"), $("#tp2")];
+      tabs.forEach((t,i) => t.addEventListener("click", () => { tabs.forEach((x,j) => x.setAttribute("aria-selected", i===j)); panels.forEach((x,j) => x.hidden = i!==j); }));
+      const tr = $("#track"); const step = d => tr.scrollBy({left: d * (tr.firstElementChild.offsetWidth + 18), behavior: reduceMotion.matches ? "auto" : "smooth"});
+      $("#simL").addEventListener("click", () => step(-1)); $("#simR").addEventListener("click", () => step(1));
+      $("#askAi").addEventListener("click", () => Chat.open(`Расскажи про насос ${p.name}: на какую технику он подходит?`, p.id));
+    }};
+  },
+
+  services(){
+    const s = (ico, h, items, msg) => `<article>${icon(ico)}<h2>${h}</h2><ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul><a class="btn btn-wa" href="${wa(msg)}" target="_blank" rel="noopener">${icon("i-wa")}Узнать в WhatsApp</a></article>`;
+    return {title:"Услуги — запчасти, ремкомплекты, ремонт насосов | SKS PARTS", crumbs:[["Услуги"]], html:`
+    <div class="wrap"><h1 class="h-page">Услуги</h1><p class="lead">Не только продаём насосы — поможем восстановить ваш.</p></div>
+    <section class="sec" style="padding-top:6px"><div class="wrap">
+      <div class="svc">
+        ${s("i-gear","Запчасти",["Запчасти к аксиально-поршневым насосам","Запчасти к гидромоторам","Блоки цилиндров, поршни, распределители","Пилотные (шестерёнчатые) насосы"],"Здравствуйте! Нужны запчасти к насосу.")}
+        ${s("i-kit","Ремкомплекты",["Ремкомплекты уплотнений насосов","Ремкомплекты гидромоторов","Подбор по модели насоса или шильдику"],"Здравствуйте! Нужен ремкомплект для насоса.")}
+        ${s("i-wrench","Ремонт и диагностика",["Диагностика гидравлического насоса","Ремонт аксиально-поршневых насосов","Замена изношенных деталей","Проверка после ремонта"],"Здравствуйте! Нужен ремонт / диагностика насоса.")}
+      </div>
+    </div></section>
+    <section class="sec sec-gray"><div class="wrap">
+      <h2 class="h-sec" style="margin-bottom:20px">Как мы работаем</h2>
+      <div class="how">
+        <div><b>Пишете в WhatsApp</b><p>Марка и модель техники или фото шильдика насоса</p></div>
+        <div><b>Подбираем</b><p>Менеджер подтверждает совместимость, цену и сроки</p></div>
+        <div><b>Оплата</b><p>Условия оплаты обсуждаются с менеджером</p></div>
+        <div><b>Получаете</b><p>Самовывоз в Алматы или доставка по Казахстану</p></div>
+      </div>
+    </div></section>`};
+  },
+
+  contacts(){
+    const gis = "https://2gis.kz/almaty/search/" + encodeURIComponent("Рыскулова 72А");
+    return {title:"Контакты — SKS PARTS, Алматы", crumbs:[["Контакты"]], html:`
+    <div class="wrap"><h1 class="h-page">Контакты</h1><p class="lead">Связь — только через WhatsApp: пишите или звоните в WhatsApp.</p></div>
+    <section class="sec" style="padding-top:6px"><div class="wrap contacts">
+      <div class="cbox">
+        <div>${icon("i-pin")}<span><small>Адрес</small><b>Алматы, пр. Рыскулова, 72А</b><br>ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26</span></div>
+        <div class="wa">${icon("i-wa")}<span><small>Отдел продаж — WhatsApp</small><b><a href="${wa("Здравствуйте! Пишу с сайта SKS PARTS.")}" target="_blank" rel="noopener">+7 777 030 55 66</a></b></span></div>
+        <div>${icon("i-mail")}<span><small>Почта</small><b><a href="mailto:info@sksparts.kz">info@sksparts.kz</a></b></span></div>
+        <div>${icon("i-clock")}<span><small>Режим работы</small><b>Пн–Пт 9:00–18:00</b> (обед 13–14)<br><b>Сб 10:00–17:00</b>, Вс — выходной</span></div>
+        <div>${icon("i-truck")}<span><small>Доставка</small><b>В любой город Казахстана</b></span></div>
+      </div>
+      <div class="map">
+        <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="400" fill="#e8edf3"/>
+          <g fill="#dbe3ec"><rect x="30" y="30" width="150" height="110" rx="6"/><rect x="220" y="30" width="120" height="110" rx="6"/><rect x="380" y="30" width="190" height="110" rx="6"/><rect x="30" y="230" width="150" height="140" rx="6"/><rect x="380" y="230" width="190" height="140" rx="6"/></g>
+          <rect x="220" y="230" width="120" height="140" rx="6" fill="#cfe0f6"/>
+          <path d="M0 185h600" stroke="#fff" stroke-width="34"/><path d="M200 0v400M360 0v400" stroke="#fff" stroke-width="20"/>
+          <path d="M0 185h600" stroke="#f6d77a" stroke-width="4" stroke-dasharray="18 12"/>
+          <text x="20" y="178" font-family="Manrope,Arial" font-size="13" font-weight="700" fill="#7d8899">пр. Рыскулова</text>
+        </svg>
+        <div class="pin"><span>SKS PARTS · ТД «Аман-Авто»</span><i></i></div>
+        <a class="btn btn-blue btn-sm" href="${gis}" target="_blank" rel="noopener">${icon("i-pin")}Открыть в 2ГИС</a>
+      </div>
+    </div></section>`};
+  },
+
+  notfound(){
+    return {title:"Страница не найдена — SKS PARTS", crumbs:[["Страница не найдена"]], html:`
+    <div class="wrap" style="padding:60px 24px 80px"><h1 class="h-page">Страница не найдена</h1><p class="lead">Возможно, ссылка устарела.</p><a class="btn btn-blue" href="#catalog">Перейти в каталог</a></div>`};
+  }
+};
+
+/* ---------- Роутер ---------- */
+let currentPage = "";
+function route(){
+  const raw = decodeURIComponent(location.hash.slice(1)) || "home";
+  const [path, query=""] = raw.split("?");
+  const params = new URLSearchParams(query);
+  let key = path, view;
+  if(path.startsWith("p-")){ key = "catalog"; view = PAGES.product(path.slice(2)); }
+  else if(PAGES[path] && path!=="product" && path!=="notfound"){ view = PAGES[path](params); }
+  else { key = ""; view = PAGES.notfound(); }
+
+  document.title = view.title;
+  $("#crumbs").innerHTML = view.crumbs ? `<nav class="crumbs" aria-label="Строка пути"><div class="wrap"><a href="#home">Главная</a>${view.crumbs.map((c,i) => `<i>/</i>${c[1] && i<view.crumbs.length-1 ? `<a href="${c[1]}">${esc(c[0])}</a>` : `<span aria-current="page">${esc(c[0])}</span>`}`).join("")}</div></nav>` : "";
+  const main = $("#main");
+  main.innerHTML = `<div class="page">${view.html}</div>`;
+  $$("#links a").forEach(a => a.classList.toggle("on", a.dataset.p === key));
+  closeCats();
+  const samePage = currentPage === path && path === "pick";
+  if(!samePage) window.scrollTo({top:0, behavior:"auto"});
+  currentPage = path;
+  view.after && view.after();
+  Sparks.toggle(path === "home" || path === "");
+}
+window.addEventListener("hashchange", route);
+
+/* ---------- Подбор: результат ---------- */
+function pickResult(brand, model){
+  if(!brand) return `<p class="lead" style="margin:0">Начните с выбора марки техники.</p>`;
+  if(!model) return `<p class="lead" style="margin:0">Теперь выберите модель ${esc(brand)}.</p>`;
+  const list = PICK[brand][model].map(id => byId[id]);
+  return `<h3>${esc(brand)} ${esc(model)} — ${plural(list.length,"подходящий насос","подходящих насоса","подходящих насосов")}</h3><div class="grid">${list.map(cardHTML).join("")}</div>`;
+}
+
+/* ---------- Категории (меню) ---------- */
+const catBtn = $("#catBtn"), catMenu = $("#catMenu"), mCats = $("#mCats");
+(function buildCats(){
+  const c = catLinks();
+  const row = x => `<a href="${x.href}">${esc(x.name)}<em>${x.n}</em></a>`;
+  catMenu.innerHTML = `<div class="grp">Тип насоса</div>${c.t.map(row).join("")}<div class="grp">По технике</div>${c.h.map(row).join("")}
+    <div class="grp m-only">Разделы сайта</div>
+    ${[["#home","Главная"],["#about","О компании"],["#pick","Подбор по технике"],["#catalog","Весь каталог"],["#services","Услуги"],["#contacts","Контакты"]].map(([h,n])=>`<a class="m-only" href="${h}">${n}</a>`).join("")}`;
+  $("#footCats").innerHTML = c.all.map(x => `<li><a href="${x.href}">${esc(x.name)}</a></li>`).join("");
+})();
+function openCats(){ catMenu.style.setProperty("--mt", Math.max(0, $(".nav").getBoundingClientRect().bottom) + "px"); catMenu.classList.add("open"); catBtn.setAttribute("aria-expanded","true"); mCats.setAttribute("aria-expanded","true"); }
+function closeCats(){ catMenu.classList.remove("open"); catBtn.setAttribute("aria-expanded","false"); mCats.setAttribute("aria-expanded","false"); }
+const toggleCats = () => catMenu.classList.contains("open") ? closeCats() : openCats();
+catBtn.addEventListener("click", e => { e.stopPropagation(); toggleCats(); });
+mCats.addEventListener("click", e => { e.stopPropagation(); Chat.close(); toggleCats(); });
+catMenu.addEventListener("click", e => { if(e.target.closest("a")) closeCats(); });
+document.addEventListener("click", e => { if(!catMenu.contains(e.target)) closeCats(); });
+document.addEventListener("keydown", e => { if(e.key==="Escape"){ closeCats(); Chat.close(); } });
+
+/* ---------- Поиск, WhatsApp, правая панель ---------- */
+$$(".js-search").forEach(f => f.addEventListener("submit", e => {
+  e.preventDefault(); const q = f.q.value.trim();
+  location.hash = "#catalog" + (q ? "?q=" + encodeURIComponent(q) : "");
+  f.q.blur();
+}));
+$$(".js-wa").forEach(a => a.href = wa(a.dataset.wa));
+$$(".rail [data-act]").forEach(b => b.addEventListener("click", e => {
+  const act = b.dataset.act;
+  if(act==="top") window.scrollTo({top:0, behavior: reduceMotion.matches ? "auto" : "smooth"});
+  if(act==="search"){ window.scrollTo({top:0}); $("#q1").focus(); }
+  if(act==="cats"){ e.stopPropagation(); window.scrollTo({top:0}); openCats(); }
+}));
+$("#year").textContent = new Date().getFullYear();
+
+/* ---------- Искры на баннере ---------- */
+const Sparks = (() => {
+  let raf = 0, cv, ctx, parts = [], w = 0, h = 0, dpr = 1;
+  function size(){ const r = cv.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); w = r.width; h = r.height; cv.width = w*dpr; cv.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function spawn(){ const fromPump = Math.random() < .6; return {
+    x: fromPump ? w*(.55 + Math.random()*.4) : Math.random()*w, y: fromPump ? h*(.55 + Math.random()*.3) : h + 10,
+    vx: (Math.random()-.5)*.6, vy: -(.3 + Math.random()*1.1), life: 0, max: 90 + Math.random()*140, r: .6 + Math.random()*1.8 }; }
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    if(parts.length < 70) parts.push(spawn());
+    ctx.globalCompositeOperation = "lighter";
+    parts = parts.filter(p => {
+      p.life++; p.x += p.vx; p.y += p.vy; p.vx += (Math.random()-.5)*.04;
+      const a = Math.sin(Math.PI * p.life / p.max);
+      ctx.beginPath(); ctx.fillStyle = `rgba(67,160,255,${(a*.85).toFixed(3)})`; ctx.shadowColor = "#1677e6"; ctx.shadowBlur = 8;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+      return p.life < p.max && p.y > -10;
+    });
+    raf = requestAnimationFrame(tick);
+  }
+  function stop(){ cancelAnimationFrame(raf); raf = 0; parts = []; }
+  function toggle(on){
+    stop(); cv = $("#sparks");
+    if(!on || !cv || reduceMotion.matches) return;
+    ctx = cv.getContext("2d"); size(); tick();
+  }
+  addEventListener("resize", () => { if(raf && cv) size(); });
+  document.addEventListener("visibilitychange", () => { if(document.hidden) stop(); else if($("#sparks")) toggle(true); });
+  return {toggle};
+})();
+
+/* =====================================================================
+   ИИ-помощник
+   Демо: готовые ответы по таблице подбора. Боевой режим: AI_ENDPOINT.
+   Все тексты выводятся через textContent — HTML не интерпретируется.
+   ===================================================================== */
+const Chat = (() => {
+  const box = $("#chat"), fab = $("#fab"), msgs = $("#msgs"), form = $("#chatForm"), input = $("#chatIn"), mAi = $("#mAi");
+  const history = []; let sent = 0, busy = false, productCtx = null, greeted = false;
+  $("#chatMode").textContent = AI_ENDPOINT ? "подбор насосов · онлайн" : "подбор насосов · демо-режим";
+
+  function el(tag, cls, text){ const e = document.createElement(tag); if(cls) e.className = cls; if(text != null) e.textContent = text; return e; }
+  function waLink(question){
+    const a = el("a", "to-wa"); a.target = "_blank"; a.rel = "noopener";
+    a.href = wa(question ? `Здравствуйте! Вопрос с сайта: ${question}` : "Здравствуйте! Пишу с сайта SKS PARTS.");
+    a.insertAdjacentHTML("afterbegin", icon("i-wa")); a.append("Спросить менеджера в WhatsApp");
+    return a;
+  }
+  function add(role, text, links, question){
+    const m = el("div", "msg " + role, text);
+    if(role === "bot"){
+      if(links && links.length){ const l = el("div","lnk"); links.forEach(x => { const a = el("a", null, x.label); a.href = x.href; if(x.href.startsWith("http")){ a.target="_blank"; a.rel="noopener"; } l.append(a); }); m.append(l); }
+      m.append(waLink(question));
+    }
+    msgs.append(m); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function open(prefill, pid){
+    closeCats();
+    box.classList.add("open"); fab.setAttribute("aria-expanded","true"); mAi.setAttribute("aria-expanded","true");
+    if(!greeted){ greeted = true; add("bot", "Здравствуйте! Я ИИ-помощник SKS PARTS. Напишите марку и модель техники (например, Hitachi ZX200) или номер насоса — подскажу, что подходит. Цены и наличие уточняет менеджер в WhatsApp."); }
+    if(pid) productCtx = pid;
+    if(prefill){ input.value = prefill; }
+    input.focus();
+  }
+  function close(){ box.classList.remove("open"); fab.setAttribute("aria-expanded","false"); mAi.setAttribute("aria-expanded","false"); }
+  async function send(text){
+    text = text.trim().slice(0, 500); if(!text || busy) return;
+    if(sent >= CHAT_LIMIT){ add("bot", "Лимит сообщений в чате исчерпан. Напишите, пожалуйста, менеджеру в WhatsApp — он ответит на все вопросы.", null, text); return; }
+    sent++; add("me", text); input.value = ""; busy = true; form.querySelector("button").disabled = true;
+    history.push({role:"user", content:text});
+    const typing = el("div","msg bot typing"); typing.innerHTML = "<i></i><i></i><i></i>"; msgs.append(typing); msgs.scrollTop = msgs.scrollHeight;
+    let ans;
+    try{
+      if(AI_ENDPOINT){
+        const r = await fetch(AI_ENDPOINT, {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({messages: history.slice(-12), product: productCtx})});
+        if(!r.ok) throw new Error("HTTP " + r.status);
+        const j = await r.json(); ans = {text: String(j.reply || "").slice(0, 2000) || Demo.answer(text, productCtx).text};
+      } else {
+        await new Promise(r => setTimeout(r, 450 + Math.random()*500));
+        ans = Demo.answer(text, productCtx);
+      }
+    } catch(err){
+      ans = Demo.answer(text, productCtx);
+    }
+    typing.remove();
+    add("bot", ans.text, ans.links, text);
+    history.push({role:"assistant", content:ans.text});
+    busy = false; form.querySelector("button").disabled = false; input.focus();
+  }
+  fab.addEventListener("click", () => open());
+  mAi.addEventListener("click", e => { e.stopPropagation(); box.classList.contains("open") ? close() : open(); });
+  $("#chatClose").addEventListener("click", close);
+  form.addEventListener("submit", e => { e.preventDefault(); send(input.value); });
+  $$("#quick button").forEach(b => b.addEventListener("click", () => send(b.textContent)));
+  return {open, close};
+})();
+
+/* ---------- Готовые ответы (демо) ---------- */
+const Demo = (() => {
+  const ADDR = "Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26.";
+  const HOURS = "Пн–Пт 9:00–18:00 (обед 13–14), Сб 10:00–17:00, Вс — выходной.";
+  const KK = /[әғқңөұүһі]|сәлем|салем|қайда|бағасы|рахмет|жеткізу/i;
+  const T = {
+    ru:{
+      addr:`Мы находимся по адресу: ${ADDR}\nРежим работы: ${HOURS}`,
+      hours:`Режим работы: ${HOURS}`,
+      deliv:"Доставляем в любой город Казахстана транспортными компаниями. По Алматы — самовывоз из бутика или доставка. Сроки и стоимость доставки подскажет менеджер в WhatsApp.",
+      price:"Цены, наличие и сроки я не называю — их уточняет менеджер, потому что они часто меняются. Напишите в WhatsApp, указав модель насоса или техники.",
+      pii:"Пожалуйста, не отправляйте в чат паспортные, платёжные или другие личные данные — я их не принимаю. Оформление заказа — через менеджера в WhatsApp.",
+      plate:"Модель насоса указана на шильдике — металлической табличке на корпусе насоса (обычно сверху или сбоку). Сфотографируйте шильдик целиком, чтобы читались все цифры, и отправьте фото в WhatsApp — менеджер подберёт насос или аналог.",
+      svc:"Кроме продажи насосов мы делаем ремонт и диагностику, продаём запчасти к насосам и гидромоторам и ремкомплекты.",
+      hi:"Здравствуйте! Напишите марку и модель техники или номер насоса — я подскажу, что подходит.",
+      thanks:"Пожалуйста! Если появятся вопросы — пишите.",
+      unk:"Не совсем понял запрос. Напишите, пожалуйста, марку и модель техники (например, Komatsu PC200) или номер насоса с шильдика.",
+      found:(m,list)=>`На ${m} обычно ставят: ${list}.\nЭто пример — точную совместимость подтвердит менеджер по шильдику.`,
+      brand:(b,ms)=>`Какая у вас модель ${b}? В моей таблице есть: ${ms}. Если вашей модели нет — отправьте фото шильдика в WhatsApp.`,
+      nobrand:"Этой модели нет в моей таблице подбора. Отправьте фото шильдика насоса в WhatsApp — менеджер подберёт насос.",
+      tech:(n)=>`Для этой техники посмотрите раздел «${n}». Чтобы подобрать точно, напишите марку и модель техники.`
+    },
+    kk:{
+      addr:`Мекенжайымыз: Алматы, Рысқұлов даңғылы, 72А, «Аман-Авто» СО, сол қанат, 2 қабат, 26 бутик.\nЖұмыс уақыты: Дс–Жм 9:00–18:00 (түскі үзіліс 13–14), Сб 10:00–17:00, Жс — демалыс.`,
+      hours:"Жұмыс уақыты: Дс–Жм 9:00–18:00 (түскі үзіліс 13–14), Сб 10:00–17:00, Жс — демалыс.",
+      deliv:"Қазақстанның кез келген қаласына жеткіземіз. Мерзімі мен құнын менеджер WhatsApp арқылы айтады.",
+      price:"Баға, бар-жоғы және мерзімді мен айтпаймын — оларды менеджер нақтылайды. WhatsApp-қа сорғының немесе техниканың моделін жазыңыз.",
+      pii:"Чатқа паспорт, төлем немесе басқа жеке деректерді жібермеңіз — мен оларды қабылдамаймын. Тапсырыс менеджер арқылы WhatsApp-та рәсімделеді.",
+      plate:"Сорғының моделі шильдикте — корпустағы металл тақтайшада жазылған. Шильдикті суретке түсіріп, WhatsApp-қа жіберіңіз — менеджер сорғыны таңдап береді.",
+      svc:"Сорғыларды сатумен қатар жөндеу және диагностика жасаймыз, қосалқы бөлшектер мен жөндеу жинақтарын сатамыз.",
+      hi:"Сәлеметсіз бе! Техниканың маркасы мен моделін немесе сорғы нөмірін жазыңыз — қайсысы сәйкес келетінін айтамын.",
+      thanks:"Оқасы жоқ! Сұрақ болса, жазыңыз.",
+      unk:"Сұрағыңызды түсінбедім. Техниканың маркасы мен моделін (мысалы, Komatsu PC200) немесе шильдиктегі сорғы нөмірін жазыңыз.",
+      found:(m,list)=>`${m} үшін әдетте: ${list}.\nБұл мысал — нақты сәйкестікті менеджер шильдик бойынша растайды.`,
+      brand:(b,ms)=>`${b} моделіңіз қандай? Кестемде бар: ${ms}. Моделіңіз болмаса — шильдиктің суретін WhatsApp-қа жіберіңіз.`,
+      nobrand:"Бұл модель кестемде жоқ. Сорғы шильдигінің суретін WhatsApp-қа жіберіңіз — менеджер таңдап береді.",
+      tech:(n)=>`Бұл техника үшін «${n}» бөлімін қараңыз. Нақты таңдау үшін техниканың маркасы мен моделін жазыңыз.`
+    }
+  };
+  const has = (s, words) => words.some(w => s.includes(w));
+  const plink = p => ({label: p.name, href: "#p-" + p.id});
+
+  function answer(text, ctx){
+    const L = KK.test(text) ? T.kk : T.ru;
+    const s = " " + text.toLowerCase().replace(/ё/g,"е") + " ";
+    const n = norm(text);
+
+    if(/\d{9,}/.test(text.replace(/[\s-]/g,"")) || has(s, ["паспорт","иин ","cvv","номер карты","карта ","card","төлқұжат"])) return {text:L.pii};
+    if(has(s, ["цен","стоит","стоимост","почем","наличи","срок","скольк","баға","бағасы","қанша"])) return {text:L.price};
+    if(has(s, ["где вы","адрес","находит","как доехать","2гис","қайда","мекенжай"])) return {text:L.addr, links:[{label:"Страница контактов", href:"#contacts"}]};
+    if(has(s, ["режим","часы работы","время работы","во сколько","когда работ","выходн","открыт","уақыт"])) return {text:L.hours};
+    if(has(s, ["доставк","достав","отправ","жеткіз","астан","шымкент","караганд","актобе","атырау","костанай","павлодар"])) return {text:L.deliv};
+    if(has(s, ["шильдик","табличк","узнать модель","как понять","какой у меня насос","не знаю модель"])) return {text:L.plate};
+    if(has(s, ["ремонт","диагност","ремкомплект","запчаст","уплотн","жөнде"])) return {text:L.svc, links:[{label:"Услуги", href:"#services"}]};
+
+    // Модель техники из таблицы подбора
+    for(const [brand, models] of Object.entries(PICK)){
+      for(const [model, ids] of Object.entries(models)){
+        // «EX300/330» → ex300, ex330; чисто цифровые модели («320», «580») — только вместе с маркой
+        const variants = model.split("/").map((m,i,a) => i===0 ? m : a[0].replace(/\d+$/, "") + m).map(norm);
+        const brandSaid = has(s, BRAND_ALIASES[brand]);
+        if(variants.some(v => /^\d+$/.test(v) ? brandSaid && new RegExp(`(^|\\D)${v}(\\D|$)`).test(s) : n.includes(v))){
+          const list = ids.map(id => byId[id]);
+          return {text:L.found(`${brand} ${model}`, list.map(p=>p.name).join(", ")), links:[...list.map(plink), {label:"Подбор по технике", href:`#pick?brand=${encodeURIComponent(brand)}&model=${encodeURIComponent(model)}`}]};
+        }
+      }
+    }
+    // Номер насоса
+    const prods = PRODUCTS.filter(p => p.keys.some(k => k.length >= 3 && n.includes(norm(k))));
+    if(prods.length){
+      const p = prods[0];
+      return {text:`${p.name} — ${TYPES[p.type].short.toLowerCase()} насос. Применение: ${p.use}. Пример техники: ${p.compat.join(", ")}.\nСовместимость с вашей машиной подтвердит менеджер.`, links:prods.slice(0,3).map(plink)};
+    }
+    // Только марка
+    for(const [brand, al] of Object.entries(BRAND_ALIASES)){
+      if(has(s, al)) return {text:L.brand(brand, Object.keys(PICK[brand]).join(", ")), links:[{label:`Подбор: ${brand}`, href:`#pick?brand=${encodeURIComponent(brand)}`}]};
+    }
+    // Тип техники
+    const techMap = [["экскаватор","excavator"],["3в1","backhoe"],["3 в 1","backhoe"],["погрузчик","backhoe"],["кран","crane"],["кму","crane"],["манипулятор","crane"],["мусоровоз","crane"],["автовышк","lift"],["вышк","lift"],["каток","road"],["катк","road"],["фрез","road"],["комбайн","road"]];
+    const tm = techMap.find(([w]) => s.includes(w));
+    if(tm) return {text:L.tech(TECH[tm[1]].name), links:[{label:TECH[tm[1]].name, href:`#catalog?tech=${tm[1]}`}]};
+    // Контекст товара («Спросить ИИ» на странице товара)
+    if(ctx && byId[ctx] && has(s, ["этот","этого","про насос","подходит","расскажи"])){
+      const p = byId[ctx];
+      return {text:`${p.name} — ${TYPES[p.type].short.toLowerCase()} насос. ${p.desc} Применение: ${p.use}. Пример техники: ${p.compat.join(", ")}.\nТочную совместимость с вашей машиной подтвердит менеджер.`};
+    }
+    if(has(s, ["привет","здравств","добрый","салам","hello","hi "])) return {text:L.hi};
+    if(has(s, ["спасибо","рахмет","благодар"])) return {text:L.thanks};
+    if(has(s, ["модел","техник","машин"])) return {text:L.nobrand};
+    return {text:L.unk};
+  }
+  return {answer};
+})();
+
+route();
+</script>
+</body>
+</html>

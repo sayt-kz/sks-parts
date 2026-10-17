@@ -1,0 +1,18 @@
+name = "sks-parts-ai"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Сайты, с которых разрешены запросы (через запятую)
+ALLOWED_ORIGINS = "https://sksparts.kz,https://www.sksparts.kz,https://sayt-kz.github.io"
+MAX_MSG_PER_HOUR = "20"
+MONTHLY_LIMIT_USD = "5"
+
+# Создать: npx wrangler kv namespace create SKS_KV — и вставить id сюда
+[[kv_namespaces]]
+binding = "SKS_KV"
+id = "PASTE_KV_NAMESPACE_ID"
+
+# Ключ API — только секретом, не в этом файле:
+#   npx wrangler secret put ANTHROPIC_API_KEY
