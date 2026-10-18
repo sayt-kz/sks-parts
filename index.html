@@ -8,7 +8,7 @@
 <title>SKS PARTS — гидравлические насосы для спецтехники в Алматы</title>
 <meta name="description" content="SKS PARTS — гидравлические насосы, запчасти, ремкомплекты, ремонт и диагностика для спецтехники. Дилер Boxin Hydraulic в Казахстане. Доставка по всему Казахстану.">
 <meta name="theme-color" content="#1d2229">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305080f'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%231677e6' stroke-width='6' stroke-dasharray='6 4'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%2343a0ff'/%3E%3C/svg%3E">
+<link rel="icon" type="image/jpeg" href="logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
@@ -56,12 +56,15 @@ h1,h2,h3{font-family:var(--f-head);font-weight:400;line-height:1.15;margin:0}
 .top{background:#fff;border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:28px;height:92px}
 .logo{display:flex;align-items:center;gap:12px;flex:none}
-.logo svg{width:52px;height:52px}
+.logo img{width:72px;height:72px;border-radius:12px;box-shadow:0 4px 14px rgba(5,8,15,.25)}
 .logo b{display:block;font:400 22px/1 var(--f-head);letter-spacing:.5px}
 .logo b span{color:var(--blue)}
 .logo small{display:block;font-size:11px;color:var(--ink2);letter-spacing:.4px;margin-top:4px;text-transform:uppercase}
 .badges{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink2)}
-.badges span{display:flex;align-items:center;gap:8px}
+.badges span,.badges a{display:flex;align-items:center;gap:8px}
+.badges a{color:var(--blue);font-weight:700}
+.badges a:hover{text-decoration:underline}
+footer .gis-f{display:inline-block;margin-top:6px;color:var(--blue-l);font-weight:700}
 .badges .ico{width:18px;height:18px;color:var(--blue)}
 .search{flex:1;display:flex;min-width:180px;max-width:420px;height:44px;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;transition:border-color .2s}
 .search:focus-within{border-color:var(--blue)}
@@ -173,6 +176,10 @@ main{min-height:60vh}
 .strip p{color:#aeb9c8;margin:0}
 .strip .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end;position:relative;z-index:1}
 
+.find{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center}
+.find>.ico{width:52px;height:52px;color:var(--blue);background:#e8f1fc;border-radius:50%;padding:12px}
+.find p{margin:6px 0 0;color:var(--ink2)}
+
 /* ---------- Каталог ---------- */
 .filters{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:22px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -199,12 +206,11 @@ main{min-height:60vh}
 .empty b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
 
 /* Фото-заглушка */
-.photo{position:relative;background:linear-gradient(180deg,#f7f9fc,#e9eef5);aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
-.photo::before{content:"";position:absolute;inset:-40%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90'%3E%3Ctext x='0' y='50' font-family='Arial' font-size='15' font-weight='700' fill='%231d2229' fill-opacity='.06' transform='rotate(-22 90 45)'%3Esks-parts%3C/text%3E%3C/svg%3E");pointer-events:none}
-.photo svg{width:78%;height:auto;aspect-ratio:420/260;position:relative;transition:transform .4s}
-.card:hover .photo svg{transform:scale(1.05)}
-.photo .soon{position:absolute;left:10px;top:10px;background:rgba(29,34,41,.82);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;letter-spacing:.3px}
-.photo .wm{position:absolute;right:10px;bottom:8px;font:700 11px var(--f-mono);color:rgba(29,34,41,.32)}
+.photo{position:relative;background:#05080f;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .photo img{transform:scale(1.05)}
+.photo .soon{position:absolute;left:10px;top:10px;z-index:1;background:rgba(5,8,15,.72);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;letter-spacing:.3px}
+.photo .wm{position:absolute;right:10px;bottom:8px;font:700 11px var(--f-mono);color:rgba(255,255,255,.45)}
 
 /* ---------- Товар ---------- */
 .prod{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
@@ -371,7 +377,7 @@ footer .wa-f .ico{color:var(--wa)}
 @media (max-width:860px){
   .wrap{padding:0 16px}
   .top .wrap{height:66px;gap:12px;justify-content:space-between}
-  .logo svg{width:42px;height:42px}
+  .logo img{width:50px;height:50px;border-radius:10px}
   .logo b{font-size:19px}
   .top .search,.top-wa{display:none}
   .top-wa-m{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--wa);color:#fff}
@@ -397,6 +403,7 @@ footer .wa-f .ico{color:var(--wa)}
   .strip{grid-template-columns:1fr;padding:24px}
   .strip .btns{justify-content:stretch}
   .strip .btns .btn{flex:1 1 100%}
+  .find{grid-template-columns:1fr}
   .sec{padding:40px 0}
   .grid{grid-template-columns:1fr}
   .filters{flex-direction:column;align-items:stretch}
@@ -542,12 +549,13 @@ footer .wa-f .ico{color:var(--wa)}
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#home" aria-label="SKS PARTS — на главную">
-      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <img src="logo.jpg" alt="Логотип SKS PARTS" width="72" height="72">
       <div><b>SKS <span>PARTS</span></b><small>Гидравлика для спецтехники</small></div>
     </a>
     <div class="badges">
       <span><svg class="ico"><use href="#i-truck"/></svg>Доставка по всему Казахстану</span>
       <span><svg class="ico"><use href="#i-shield"/></svg>Работаем с 2018 года</span>
+      <a class="js-gis" target="_blank" rel="noopener"><svg class="ico"><use href="#i-pin"/></svg>Рыскулова, 72А — на карте 2ГИС</a>
     </div>
     <form class="search js-search" role="search">
       <label class="sr" for="q1">Поиск по каталогу</label>
@@ -592,7 +600,7 @@ footer .wa-f .ico{color:var(--wa)}
   <div class="wrap">
     <div>
       <h4>Офис</h4>
-      <p><small>Адрес</small>Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26</p>
+      <p><small>Адрес</small>Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26<br><a class="gis-f js-gis" target="_blank" rel="noopener">Открыть в 2ГИС →</a></p>
       <p><small>Отдел продаж</small><a class="wa-f js-wa" data-wa="Здравствуйте! Пишу с сайта SKS PARTS." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>+7 777 030 55 66</a></p>
       <p><small>Почта</small><a href="mailto:info@sksparts.kz">info@sksparts.kz</a></p>
       <p><small>Режим работы</small>Пн–Пт 9:00–18:00 (обед 13–14)<br>Сб 10:00–17:00, Вс — выходной</p>
@@ -659,6 +667,7 @@ footer .wa-f .ico{color:var(--wa)}
    ===================================================================== */
 const AI_ENDPOINT = "";
 const WA_NUMBER = "77770305566";
+const GIS_URL = "https://2gis.kz/almaty/geo/9430047374997389"; // пр. Рыскулова, 72А в 2ГИС
 const CHAT_LIMIT = 30; // сообщений за сессию
 
 /* ---------- Данные (демо — финальный каталог даёт клиент) ---------- */
@@ -739,7 +748,7 @@ function searchProducts(q){
 function cardHTML(p){
   return `<article class="card">
     <a class="photo" href="#p-${p.id}" aria-label="${esc(p.name)}">
-      <span class="soon">фото скоро</span>${icon(TYPES[p.type].icon,"")}<span class="wm">sks-parts</span>
+      <img src="pump.jpg" alt="${esc(p.name)}" loading="lazy" width="852" height="600"><span class="soon">фото для примера</span><span class="wm">sks-parts</span>
     </a>
     <div class="body">
       <span class="type">${esc(TYPES[p.type].short)}</span>
@@ -810,6 +819,13 @@ const PAGES = {
             <a class="btn btn-line" href="#pick">Подбор по технике</a>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="sec">
+      <div class="wrap find">
+        ${icon("i-pin")}
+        <div><h2 class="h-sec">Как нас найти</h2><p>Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26<br>Пн–Пт 9:00–18:00 (обед 13–14), Сб 10:00–17:00</p></div>
+        <a class="btn btn-blue" href="${GIS_URL}" target="_blank" rel="noopener">${icon("i-pin")}Открыть в 2ГИС</a>
       </div>
     </section>`};
   },
@@ -913,7 +929,7 @@ const PAGES = {
     const buyText = `Здравствуйте! Хочу купить ${p.name}. Подскажите цену и наличие.`;
     return {title:`${p.name} — купить в Алматы | SKS PARTS`, crumbs:[["Каталог","#catalog"],[TYPES[p.type].name,`#catalog?type=${p.type}`],[p.name]], html:`
     <div class="wrap"><div class="prod">
-      <div class="photo" style="margin-top:30px"><span class="soon">фото скоро</span>${icon(TYPES[p.type].icon,"")}<span class="wm">sks-parts</span></div>
+      <div class="photo" style="margin-top:30px"><img src="pump.jpg" alt="${esc(p.name)}" width="852" height="600"><span class="soon">фото для примера</span><span class="wm">sks-parts</span></div>
       <div>
         <h1>${esc(p.name)}</h1>
         <table class="spec">
@@ -993,7 +1009,6 @@ const PAGES = {
   },
 
   contacts(){
-    const gis = "https://2gis.kz/almaty/search/" + encodeURIComponent("Рыскулова 72А");
     return {title:"Контакты — SKS PARTS, Алматы", crumbs:[["Контакты"]], html:`
     <div class="wrap"><h1 class="h-page">Контакты</h1><p class="lead">Связь — только через WhatsApp: пишите или звоните в WhatsApp.</p></div>
     <section class="sec" style="padding-top:6px"><div class="wrap contacts">
@@ -1014,7 +1029,7 @@ const PAGES = {
           <text x="20" y="178" font-family="Manrope,Arial" font-size="13" font-weight="700" fill="#7d8899">пр. Рыскулова</text>
         </svg>
         <div class="pin"><span>SKS PARTS · ТД «Аман-Авто»</span><i></i></div>
-        <a class="btn btn-blue btn-sm" href="${gis}" target="_blank" rel="noopener">${icon("i-pin")}Открыть в 2ГИС</a>
+        <a class="btn btn-blue btn-sm" href="${GIS_URL}" target="_blank" rel="noopener">${icon("i-pin")}Открыть в 2ГИС</a>
       </div>
     </div></section>`};
   },
@@ -1084,6 +1099,7 @@ $$(".js-search").forEach(f => f.addEventListener("submit", e => {
   f.q.blur();
 }));
 $$(".js-wa").forEach(a => a.href = wa(a.dataset.wa));
+$$(".js-gis").forEach(a => a.href = GIS_URL);
 $$(".rail [data-act]").forEach(b => b.addEventListener("click", e => {
   const act = b.dataset.act;
   if(act==="top") window.scrollTo({top:0, behavior: reduceMotion.matches ? "auto" : "smooth"});
@@ -1238,7 +1254,7 @@ const Demo = (() => {
 
     if(/\d{9,}/.test(text.replace(/[\s-]/g,"")) || has(s, ["паспорт","иин ","cvv","номер карты","карта ","card","төлқұжат"])) return {text:L.pii};
     if(has(s, ["цен","стоит","стоимост","почем","наличи","срок","скольк","баға","бағасы","қанша"])) return {text:L.price};
-    if(has(s, ["где вы","адрес","находит","как доехать","2гис","қайда","мекенжай"])) return {text:L.addr, links:[{label:"Страница контактов", href:"#contacts"}]};
+    if(has(s, ["где вы","адрес","находит","как доехать","2гис","қайда","мекенжай"])) return {text:L.addr, links:[{label:"Открыть на карте 2ГИС", href:GIS_URL}, {label:"Страница контактов", href:"#contacts"}]};
     if(has(s, ["режим","часы работы","время работы","во сколько","когда работ","выходн","открыт","уақыт"])) return {text:L.hours};
     if(has(s, ["доставк","достав","отправ","жеткіз","астан","шымкент","караганд","актобе","атырау","костанай","павлодар"])) return {text:L.deliv};
     if(has(s, ["шильдик","табличк","узнать модель","как понять","какой у меня насос","не знаю модель"])) return {text:L.plate};
