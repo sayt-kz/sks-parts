@@ -206,8 +206,10 @@ main{min-height:60vh}
 .empty b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
 
 /* Фото-заглушка */
-.photo{position:relative;background:#05080f;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.photo{position:relative;background:#fff;border-bottom:1px solid var(--line);aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:transform .5s}
+.photo.dark{background:#05080f}
+.photo.dark img{object-fit:cover}
 .card:hover .photo img{transform:scale(1.05)}
 .photo .soon{position:absolute;left:10px;top:10px;z-index:1;background:rgba(5,8,15,.72);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px;letter-spacing:.3px}
 .photo .wm{position:absolute;right:10px;bottom:8px;font:700 11px var(--f-mono);color:rgba(255,255,255,.45)}
@@ -705,6 +707,14 @@ const PRODUCTS = [
   P("gear-kmu","Шестерёнчатый насос для мусоровозов и КМУ","Hattat Hema","gear",["crane"],"Мусоровозы, КМУ, самосвалы",["Мусоровозы","Краны-манипуляторы (КМУ)","Самосвалы (подъём кузова)"],"Шестерёнчатый насос для навесного оборудования грузовиков (через коробку отбора мощности).",["мусоровоз","кму"])
 ];
 const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+/* Фото товаров — со страницы SKS PARTS на Satu (sks-parts.satu.kz). note — подпись, если фото не точной модели */
+const PHOTOS = {k3v63dt:{}, k3v112dt:{}, k3v140dt:{}, k5v140dtp:{}, k5v200dth:{}, hpv102:{}, hpv95:{}, nachi:{}, uchida:{}, a10vso:{}, a4vg:{},
+  a8vo:{}, a2fo:{}, sd90r:{}, lift:{note:"фото похожего насоса"}, "gear-3in1":{}, "gear-kmu":{}};
+function photoHTML(p, lazy=true){
+  const ph = PHOTOS[p.id];
+  const note = ph ? ph.note : "фото для примера";
+  return `<img src="${ph ? "img/" + p.id + ".jpg" : "pump.jpg"}" alt="${esc(p.name)}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${note}</span>` : "");
+}
 
 /* Таблица «машина → насос» — ПРИМЕР по открытым данным */
 const PICK = {
@@ -747,8 +757,8 @@ function searchProducts(q){
 /* ---------- Карточка товара ---------- */
 function cardHTML(p){
   return `<article class="card">
-    <a class="photo" href="#p-${p.id}" aria-label="${esc(p.name)}">
-      <img src="pump.jpg" alt="${esc(p.name)}" loading="lazy" width="852" height="600"><span class="soon">фото для примера</span><span class="wm">sks-parts</span>
+    <a class="photo${PHOTOS[p.id] ? "" : " dark"}" href="#p-${p.id}" aria-label="${esc(p.name)}">
+      ${photoHTML(p)}
     </a>
     <div class="body">
       <span class="type">${esc(TYPES[p.type].short)}</span>
@@ -929,7 +939,7 @@ const PAGES = {
     const buyText = `Здравствуйте! Хочу купить ${p.name}. Подскажите цену и наличие.`;
     return {title:`${p.name} — купить в Алматы | SKS PARTS`, crumbs:[["Каталог","#catalog"],[TYPES[p.type].name,`#catalog?type=${p.type}`],[p.name]], html:`
     <div class="wrap"><div class="prod">
-      <div class="photo" style="margin-top:30px"><img src="pump.jpg" alt="${esc(p.name)}" width="852" height="600"><span class="soon">фото для примера</span><span class="wm">sks-parts</span></div>
+      <div class="photo${PHOTOS[p.id] ? "" : " dark"}" style="margin-top:30px">${photoHTML(p, false)}</div>
       <div>
         <h1>${esc(p.name)}</h1>
         <table class="spec">
