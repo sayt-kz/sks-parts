@@ -149,12 +149,19 @@ main{min-height:60vh}
 .hero-stage{position:relative;aspect-ratio:420/300;width:100%;max-width:620px;justify-self:center}
 .hero-glow{position:absolute;left:8%;right:8%;bottom:4%;height:40%;background:radial-gradient(ellipse at center,rgba(22,119,230,.55),rgba(22,119,230,0) 70%);filter:blur(10px);animation:glow 4s ease-in-out infinite alternate}
 @keyframes glow{from{opacity:.55}to{opacity:1}}
-.hero-pump{position:absolute;inset:0;animation:reveal 2.6s cubic-bezier(.2,.6,.2,1) both}
-.hero-pump svg{width:100%;height:100%;overflow:visible;animation:dolly 22s ease-in-out 2.6s infinite alternate;filter:drop-shadow(0 0 22px rgba(22,119,230,.35))}
-@keyframes reveal{from{opacity:0;filter:brightness(0) blur(6px);transform:scale(.94)}60%{opacity:1}to{opacity:1;filter:brightness(1) blur(0);transform:none}}
-@keyframes dolly{from{transform:scale(1) translateX(0)}to{transform:scale(1.07) translateX(-2%)}}
-.glint{animation:glint 6s ease-in-out 2.4s infinite}
-@keyframes glint{0%{transform:translateX(-160px)}45%,100%{transform:translateX(520px)}}
+/* Фото насоса: проявление из темноты, медленный наезд камеры, блик по металлу */
+.hero-photo{position:absolute;inset:0;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 52%,transparent 100%);mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 52%,transparent 100%);animation:reveal 2.8s cubic-bezier(.2,.6,.2,1) both}
+.hero-photo img{width:100%;height:100%;object-fit:cover;transform-origin:62% 55%;animation:dolly 20s ease-in-out 2.8s infinite alternate}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(160,210,255,.55) 50%,transparent 58%);background-size:300% 100%;background-position:120% 0;mix-blend-mode:overlay;animation:glint 7s ease-in-out 2.6s infinite}
+@keyframes reveal{from{opacity:0;filter:brightness(0) blur(8px);transform:scale(.92)}55%{opacity:1}to{opacity:1;filter:brightness(1) blur(0);transform:none}}
+@keyframes dolly{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.14) translate(-2.5%,-1.5%)}}
+@keyframes glint{0%{background-position:120% 0}40%,100%{background-position:-20% 0}}
+/* Вращающиеся кольца и сканер за насосом */
+.orbit{position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;translate:-50% -50%}
+.orbit.o1{width:96%;aspect-ratio:1;border:2px dashed rgba(67,160,255,.28);animation:spin 40s linear infinite}
+.orbit.o2{width:78%;aspect-ratio:1;border:1px solid rgba(67,160,255,.18);box-shadow:0 0 40px rgba(22,119,230,.18) inset;animation:spin 26s linear infinite reverse}
+.scan{position:absolute;left:50%;top:50%;width:96%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:conic-gradient(from 0deg,rgba(67,160,255,.35),rgba(67,160,255,0) 18%,transparent);-webkit-mask-image:radial-gradient(circle,transparent 60%,#000 61%,#000 70%,transparent 71%);mask-image:radial-gradient(circle,transparent 60%,#000 61%,#000 70%,transparent 71%);animation:spin 6s linear infinite}
+@keyframes spin{to{rotate:360deg}}
 
 /* ---------- Преимущества и плитки ---------- */
 .adv{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:-46px;position:relative;z-index:3}
@@ -796,12 +803,8 @@ const PAGES = {
         </div>
         <div class="hero-stage" aria-hidden="true">
           <div class="hero-glow"></div>
-          <div class="hero-pump">
-            <svg viewBox="0 0 420 260">
-              <use href="#pump-axial"/>
-              <g mask="url(#pumpMask)"><rect class="glint" x="0" y="0" width="120" height="260" fill="url(#gGlint)" transform="translate(-160 0)" style="mix-blend-mode:screen"/></g>
-            </svg>
-          </div>
+          <span class="orbit o1"></span><span class="orbit o2"></span><span class="scan"></span>
+          <div class="hero-photo"><img src="pump.jpg" alt="" width="852" height="600"></div>
         </div>
       </div>
     </section>
