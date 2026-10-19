@@ -6,7 +6,7 @@
 <!-- ДЕМО: закрыто от поиска. На финальном сайте (sksparts.kz) убрать эту строку. -->
 <meta name="robots" content="noindex, nofollow">
 <title>SKS PARTS — гидравлические насосы для спецтехники в Алматы</title>
-<meta name="description" content="SKS PARTS — гидравлические насосы, запчасти, ремкомплекты, ремонт и диагностика для спецтехники. Дилер Boxin Hydraulic в Казахстане. Доставка по всему Казахстану.">
+<meta name="description" content="SKS PARTS — гидравлические насосы, запчасти, ремкомплекты, ремонт и диагностика для спецтехники. Дилер заводов SKS HYDRAULICS, Boxin (Китай) и HEMA (Турция). Доставка по всему Казахстану.">
 <meta name="theme-color" content="#1d2229">
 <link rel="icon" type="image/jpeg" href="logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -688,7 +688,7 @@ const TYPES = {
 const TECH = {
   excavator:{name:"Для экскаваторов",                 icon:"pump-axial"},
   backhoe:  {name:"Для тракторов 3в1",                icon:"pump-gear"},
-  crane:    {name:"Для кранов, КМУ и мусоровозов",    icon:"pump-gear"},
+  crane:    {name:"Для КМУ, самосвалов и мусоровозов", icon:"pump-gear"},
   lift:     {name:"Для автовышек",                    icon:"pump-plunger"},
   road:     {name:"Для катков, фрез и комбайнов",     icon:"pump-plunger"}
 };
@@ -708,37 +708,68 @@ const PRODUCTS = [
   P("a4vg","Rexroth A4VG","Rexroth","axial",["road"],"Закрытый контур: катки, фрезы, комбайны",["Катки Bomag, Hamm","Дорожные фрезы Wirtgen","Зерноуборочные комбайны"],"Насос закрытого контура для гидростатических трансмиссий хода.",["a4vg"]),
   P("a8vo","Rexroth A8VO","Rexroth","axial",["excavator"],"Сдвоенный насос для экскаваторов",["CAT E200B","CAT 320B","Liebherr R900"],"Сдвоенный насос с наклонным блоком для экскаваторов старшего поколения.",["a8vo","a8v"]),
   P("a2fo","Rexroth A2FO / A7VO","Rexroth","axial",["crane","road"],"Краны, КМУ, бетоносмесители",["Автокраны","Краны-манипуляторы (КМУ)","Бетоносмесители"],"Нерегулируемый (A2FO) и регулируемый (A7VO) насосы с наклонным блоком.",["a2fo","a7vo","a2f","a7v"]),
+  // Нерегулируемые аксиально-поршневые — завод SKS HYDRAULICS
+  P("sks-a17fo","SKS HYDRAULICS A17FO (34–107)","SKS HYDRAULICS","axial",["crane"],"Грузовики с коробкой отбора мощности: самосвалы, КМУ, мусоровозы",["Самосвалы","Краны-манипуляторы (КМУ)","Мусоровозы","Лесовозы"],"Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём — от 34 до 107 см³/об. Ставится на коробку отбора мощности грузовика.",["a17fo","a17","sks hydraulics"]),
+  // Поршневые — завод Boxin
+  P("boxin-p7-63","Boxin P7-63","Boxin Hydraulic","axial",["crane"],"Гидравлика грузовиков и навесного оборудования",["Самосвалы","КМУ","Мусоровозы"],"Аксиально-поршневой насос с рабочим объёмом 63 см³/об.",["p7-63","p7"]),
+  P("boxin-p9-80","Boxin P9-80SK","Boxin Hydraulic","axial",["crane"],"Гидравлика грузовиков и навесного оборудования",["Самосвалы","КМУ","Мусоровозы"],"Аксиально-поршневой насос: 80 см³/об, давление до 25 МПа (3625 psi).",["p9-80","p9"]),
+  P("boxin-lb63","Boxin LB-63","Boxin Hydraulic","axial",["crane"],"Коробки отбора мощности грузовиков",["Самосвалы","КМУ","Мусоровозы","Лесовозы"],"Аксиально-поршневой насос с наклонным блоком: 63 см³/об, давление до 30 МПа.",["lb-63","lb63","lb"]),
+  P("boxin-b6-50","Boxin B6-50","Boxin Hydraulic","axial",["crane"],"Гидравлика грузовиков и спецтехники",["КМУ","Мусоровозы","Спецтехника"],"Аксиально-поршневой насос с рабочим объёмом 50 см³/об.",["b6-50","b6"]),
+  // Плунжерные — завод Boxin
+  P("xpi-32l","Boxin XPI-32L","Boxin Hydraulic","plunger",["lift","crane"],"Автовышки, краны, КМУ",["Автовышки","Краны-манипуляторы (КМУ)","Самосвалы"],"Регулируемый плунжерный насос: 32 см³/об, давление до 38 МПа (5511 psi).",["xpi-32","xpi32","xpi"]),
+  P("xpi-40l","Boxin XPI-40L","Boxin Hydraulic","plunger",["lift","crane"],"Автовышки, краны, КМУ",["Автовышки","Краны-манипуляторы (КМУ)","Самосвалы"],"Плунжерный насос высокого давления: 40 см³/об, до 38 МПа.",["xpi-40","xpi40","xpi"]),
   P("sd90r","Sauer Danfoss 90R","Sauer Danfoss","plunger",["road"],"Катки, фрезы, комбайны (закрытый контур)",["Дорожные катки","Дорожные фрезы","Комбайны"],"Насос серии 90 для гидростатического привода хода.",["90r","sauer","danfoss"]),
-  P("lift","Плунжерный насос для автовышек","Boxin Hydraulic","plunger",["lift"],"Автовышки и подъёмники",["Автовышки на шасси КамАЗ, ГАЗ","Ножничные подъёмники"],"Плунжерный насос для гидравлики подъёма и поворота стрелы автовышек.",["автовышк"]),
-  P("gear-3in1","Шестерёнчатый насос для тракторов 3в1","Boxin Hydraulic","gear",["backhoe"],"Экскаваторы-погрузчики (3в1)",["CAT 428/432","Case 580","Hidromek 102","JCB 3CX"],"Шестерёнчатый насос для гидросистемы экскаваторов-погрузчиков.",["3в1","3 в 1"]),
-  P("gear-kmu","Шестерёнчатый насос для мусоровозов и КМУ","Hattat Hema","gear",["crane"],"Мусоровозы, КМУ, самосвалы",["Мусоровозы","Краны-манипуляторы (КМУ)","Самосвалы (подъём кузова)"],"Шестерёнчатый насос для навесного оборудования грузовиков (через коробку отбора мощности).",["мусоровоз","кму"])
+  // Шестерёнчатые для тракторов 3в1 — завод HEMA (HATTAT), Турция
+  P("hema-jcb","Шестерёнчатый насос HEMA для JCB 3CX / 4CX","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики JCB",["JCB 3CX","JCB 4CX"],"Основной шестерёнчатый насос гидросистемы экскаватора-погрузчика. Производство HEMA, Турция. Подбираем по номеру оригинального насоса.",["jcb","3cx","4cx","3в1","3 в 1"]),
+  P("hema-cat","Шестерёнчатый насос HEMA для CAT 428 / 432","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики CAT",["CAT 428","CAT 432","CAT 434"],"Шестерёнчатый насос для экскаватора-погрузчика CAT. Производство HEMA, Турция.",["428","432","434","3в1","3 в 1"]),
+  P("hema-hidromek","Шестерёнчатый насос HEMA для Hidromek 102","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики Hidromek",["Hidromek 102B","Hidromek 102S"],"Шестерёнчатый насос для экскаватора-погрузчика Hidromek. Производство HEMA, Турция.",["hidromek","хидромек","3в1","3 в 1"]),
+  P("hema-case","Шестерёнчатый насос HEMA для Case 580 / 695","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики Case",["Case 580","Case 695"],"Шестерёнчатый насос для экскаватора-погрузчика Case. Производство HEMA, Турция.",["case","кейс","580","695","3в1","3 в 1"]),
+  // Шестерёнчатые — завод Boxin
+  P("gear-cbhst1-80","Boxin CBHST1-80","Boxin Hydraulic","gear",["crane"],"Самосвалы, КМУ, мусоровозы",["Самосвалы (подъём кузова)","КМУ","Мусоровозы"],"Чугунный шестерёнчатый насос для коробки отбора мощности: 80 см³/об, 20 МПа.",["cbhst1-80","cbhst","cbhst1"]),
+  P("gear-cbhst1-110","Boxin CBHST1-110","Boxin Hydraulic","gear",["crane"],"Самосвалы, КМУ, мусоровозы",["Самосвалы (подъём кузова)","КМУ","Мусоровозы"],"Чугунный шестерёнчатый насос для коробки отбора мощности: 110 см³/об, 20 МПа.",["cbhst1-110","cbhst","cbhst1"]),
+  P("gear-cbhs3100","Boxin CBHS3100","Boxin Hydraulic","gear",["crane"],"Самосвалы, КМУ, мусоровозы",["Самосвалы","КМУ","Мусоровозы"],"Шестерёнчатый насос: 100 см³/об, 20 МПа (2900 psi).",["cbhs3100","cbhs"]),
+  P("gear-cbhw-uni80","Boxin CBHW-UNI-80","Boxin Hydraulic","gear",["crane"],"Самосвалы, КМУ (фланец UNI)",["Самосвалы","КМУ","Мусоровозы"],"Чугунный шестерёнчатый насос с фланцем UNI: 80 см³/об, 22 МПа.",["cbhw-uni-80","cbhw","uni"]),
+  P("gear-cbhw-iso63","Boxin CBHW-ISO-63","Boxin Hydraulic","gear",["crane"],"Самосвалы, КМУ (фланец ISO)",["Самосвалы","КМУ","Мусоровозы"],"Чугунный шестерёнчатый насос с фланцем ISO: 63 см³/об.",["cbhw-iso-63","cbhw","iso"]),
+  P("gear-bf82a","Boxin BF82A","Boxin Hydraulic","gear",["crane"],"Гидравлика грузовиков",["Самосвалы","КМУ"],"Шестерёнчатый насос: 80 см³/об, 20 МПа (2900 psi).",["bf82a","bf82","bf"]),
+  P("gear-cbhx1032","Boxin CBHX1032-ISO","Boxin Hydraulic","gear",["crane"],"Компактная гидравлика, навесное оборудование",["Навесное оборудование","Спецтехника"],"Компактный шестерёнчатый насос с фланцем ISO: 32 см³/об, 19 МПа.",["cbhx1032","cbhx"]),
+  P("gear-cbn-f550","Boxin CBN-F550","Boxin Hydraulic","gear",["road"],"Погрузчики, сельхозтехника",["Фронтальные погрузчики","Сельхозтехника"],"Шестерёнчатый насос серии CBN: 50 см³/об, 20 МПа.",["cbn-f550","cbn-f540","cbn"]),
+  P("gear-nsh32","Boxin НШ-32М","Boxin Hydraulic","gear",["road"],"Тракторы и сельхозтехника",["Тракторы МТЗ","Сельхозтехника"],"Шестерёнчатый насос типа НШ-32: 32 см³/об, 16 МПа.",["нш32","нш-32","nsh32","нш"]),
+  P("gear-nsh10","Boxin НШ-10М","Boxin Hydraulic","gear",["road"],"Тракторы и сельхозтехника",["Тракторы","Сельхозтехника"],"Шестерёнчатый насос типа НШ-10: 10 см³/об, 16 МПа.",["нш10","нш-10","nsh10","нш"])
 ];
 const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
-/* Фото товаров — со страницы SKS PARTS на Satu (sks-parts.satu.kz). note — подпись, если фото не точной модели */
+/* Фото товаров: насосы для экскаваторов — со страницы SKS PARTS на Satu (sks-parts.satu.kz),
+   Boxin — с витрины завода (bxhs888.en.made-in-china.com), HEMA — с сайта HEMA USA (hema-usa.com).
+   src — файл, если он не совпадает с кодом товара; note — подпись, если фото не точной модели */
 const PHOTOS = {k3v63dt:{}, k3v112dt:{}, k3v140dt:{}, k5v140dtp:{}, k5v200dth:{}, hpv102:{}, hpv95:{}, nachi:{}, uchida:{}, a10vso:{}, a4vg:{},
-  a8vo:{}, a2fo:{}, sd90r:{}, lift:{note:"фото похожего насоса"}, "gear-3in1":{}, "gear-kmu":{}};
+  a8vo:{}, a2fo:{}, sd90r:{}, "sks-a17fo":{src:"a2fo", note:"фото похожего насоса"},
+  "boxin-p7-63":{}, "boxin-p9-80":{}, "boxin-lb63":{}, "boxin-b6-50":{}, "xpi-32l":{}, "xpi-40l":{},
+  "hema-jcb":{src:"hema-1"}, "hema-cat":{src:"hema-2"}, "hema-hidromek":{src:"hema-3"}, "hema-case":{src:"hema-1"},
+  "gear-cbhst1-80":{}, "gear-cbhst1-110":{}, "gear-cbhs3100":{}, "gear-cbhw-uni80":{}, "gear-cbhw-iso63":{}, "gear-bf82a":{},
+  "gear-cbhx1032":{}, "gear-cbn-f550":{}, "gear-nsh32":{}, "gear-nsh10":{}};
 function photoHTML(p, lazy=true){
   const ph = PHOTOS[p.id];
   const note = ph ? ph.note : "фото для примера";
-  return `<img src="${ph ? "img/" + p.id + ".jpg" : "pump.jpg"}" alt="${esc(p.name)}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${note}</span>` : "");
+  return `<img src="${ph ? "img/" + (ph.src || p.id) + ".jpg" : "pump.jpg"}" alt="${esc(p.name)}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${note}</span>` : "");
 }
 
 /* Таблица «машина → насос» — ПРИМЕР по открытым данным */
 const PICK = {
   "Komatsu":    {"PC200":["hpv95"], "PC300":["hpv95"]},
   "Hitachi":    {"EX200":["hpv102"], "ZX200":["hpv102"], "EX300/330":["hpv102"], "ZX55":["nachi"]},
-  "CAT":        {"E200B":["a8vo"], "320":["k3v112dt","a8vo"], "428/432":["a10vso","gear-3in1"]},
+  "CAT":        {"E200B":["a8vo"], "320":["k3v112dt","a8vo"], "428/432":["hema-cat","a10vso"]},
   "Hyundai":    {"R210LC-7":["k3v112dt"], "R170W-7":["k3v63dt"]},
   "Volvo":      {"EC180":["k7v63dtp"]},
   "New Holland":{"E215B":["k3v112dt"]},
   "SANY":       {"SY335":["k5v200dth"]},
-  "Case":       {"CX290B":["k3v140dt"], "580":["gear-3in1","a10vso"]},
-  "Hidromek":   {"102":["gear-3in1","a10vso"]}
+  "Case":       {"CX290B":["k3v140dt"], "580":["hema-case","a10vso"], "695":["hema-case"]},
+  "Hidromek":   {"102":["hema-hidromek","a10vso"]},
+  "JCB":        {"3CX":["hema-jcb","a10vso"], "4CX":["hema-jcb"]}
 };
 const BRAND_ALIASES = {
   "Komatsu":["komatsu","коматсу","комацу"], "Hitachi":["hitachi","хитачи","хитачы"], "CAT":["cat","caterpillar","катерпиллер","катерпилар","кат "],
   "Hyundai":["hyundai","хендай","хундай","хюндай","хёндай"], "Volvo":["volvo","вольво"], "New Holland":["new holland","newholland","нью холланд","ньюхолланд"],
-  "SANY":["sany","сани","сany"], "Case":["case","кейс"], "Hidromek":["hidromek","хидромек","гидромек"]
+  "SANY":["sany","сани","сany"], "Case":["case","кейс"], "Hidromek":["hidromek","хидромек","гидромек"],
+  "JCB":["jcb","джисиби","жсб"]
 };
 
 /* ---------- Утилиты ---------- */
@@ -791,7 +822,7 @@ const PAGES = {
       <canvas id="sparks" aria-hidden="true"></canvas>
       <div class="wrap">
         <div>
-          <span class="eyebrow">Дилер Boxin Hydraulic в Казахстане</span>
+          <span class="eyebrow">Дилер завода SKS HYDRAULICS в Казахстане</span>
           <h1>Гидравлические насосы <span>для спецтехники</span></h1>
           <p>Аксиально-поршневые, шестерёнчатые и плунжерные насосы, запчасти, ремкомплекты, ремонт и диагностика. Подберём насос по марке техники или по шильдику.</p>
           <div class="hero-cta">
@@ -810,7 +841,7 @@ const PAGES = {
     </section>
     <div class="wrap">
       <div class="adv">
-        <div>${icon("i-factory")}<b>Прямые поставки</b><p>Дилер завода Boxin Hydraulic, работаем с турецким заводом Hattat Hema</p></div>
+        <div>${icon("i-factory")}<b>Прямые поставки</b><p>Дилер завода SKS HYDRAULICS, работаем с заводами Boxin (Китай) и HEMA (Турция)</p></div>
         <div>${icon("i-shield")}<b>С 2018 года</b><p>Опыт подбора насосов для экскаваторов, кранов, катков и 3в1</p></div>
         <div>${icon("i-truck")}<b>Доставка по Казахстану</b><p>Отправляем в любой город — Астана, Шымкент, Костанай и другие</p></div>
         <div>${icon("i-wrench")}<b>Ремонт и диагностика</b><p>Ремкомплекты, запчасти к насосам и гидромоторам</p></div>
@@ -849,18 +880,19 @@ const PAGES = {
     <section class="sec" style="padding-top:20px"><div class="wrap two">
       <div class="prose">
         <p><b>SKS PARTS</b> (юридическое лицо — SKS HYDRAULIC) работает в Алматы с 2018 года. Мы занимаемся гидравлическим оборудованием для спецтехники: продаём насосы, запчасти к насосам и гидромоторам, ремкомплекты, выполняем ремонт и диагностику.</p>
-        <p>Мы — дилер китайского завода <b>Boxin Hydraulic</b> по Казахстану и работаем с турецким заводом <b>Hattat Hema</b>. Поставляем аксиально-поршневые, шестерёнчатые и плунжерные насосы для экскаваторов, тракторов 3в1, кранов, КМУ, автовышек, катков, дорожных фрез, мусоровозов и комбайнов.</p>
+        <p>Мы — дилер завода <b>SKS HYDRAULICS</b> и сотрудничаем ещё с двумя заводами: китайским <b>Boxinhuasheng (Boxin)</b> и турецким <b>HEMA (HATTAT)</b>. Поставляем аксиально-поршневые, шестерёнчатые и плунжерные насосы для экскаваторов, тракторов 3в1, кранов, КМУ, автовышек, катков, дорожных фрез, мусоровозов и комбайнов.</p>
         <p>Подбираем насос по марке и модели техники или по шильдику. Отправляем в любой город Казахстана.</p>
         <p><a class="btn btn-wa" href="${wa("Здравствуйте! Хочу проконсультироваться по насосу.")}" target="_blank" rel="noopener">${icon("i-wa")}Написать в WhatsApp</a></p>
       </div>
       <div class="factory">
-        <div><b>Boxin Hydraulic</b><small>Qingzhou Boxinhuasheng Hydraulic Technology Co., Ltd., Шаньдун, Китай</small><p>SKS PARTS — дилер завода по Казахстану. Аксиально-поршневые и плунжерные насосы, запчасти и ремкомплекты.</p></div>
-        <div><b>Hattat Hema</b><small>Турция</small><p>Шестерёнчатые насосы и гидравлика для коммунальной и грузовой техники.</p></div>
+        <div><b>SKS HYDRAULICS</b><small>Китай</small><p>SKS PARTS — дилер завода. Нерегулируемые аксиально-поршневые насосы серии A17FO с рабочим объёмом от 34 до 107 см³.</p></div>
+        <div><b>Boxin Hydraulic</b><small>Qingzhou Boxinhuasheng Hydraulic Technology Co., Ltd., Шаньдун, Китай</small><p>Шестерёнчатые, поршневые и плунжерные насосы.</p></div>
+        <div><b>HEMA (HATTAT)</b><small>Турция</small><p>Шестерёнчатые насосы для экскаваторов-погрузчиков (тракторов 3в1).</p></div>
       </div>
     </div></section>
     <section class="sec sec-gray"><div class="wrap lists">
-      <div><h3>Насосы</h3><div class="tags mono">${["Kawasaki K3V","Kawasaki K5V","Kawasaki K7V","Rexroth","Sauer Danfoss","Nachi","Uchida","KYB"].map(t=>`<span>${t}</span>`).join("")}</div></div>
-      <div><h3>Техника</h3><div class="tags">${["Komatsu","Hitachi","CAT","Hyundai","Volvo","Case","New Holland","SANY","Hidromek"].map(t=>`<span>${t}</span>`).join("")}</div></div>
+      <div><h3>Насосы</h3><div class="tags mono">${["SKS HYDRAULICS A17FO","Boxin","HEMA","Kawasaki K3V","Kawasaki K5V","Kawasaki K7V","Rexroth","Sauer Danfoss","Nachi","Uchida","KYB"].map(t=>`<span>${t}</span>`).join("")}</div></div>
+      <div><h3>Техника</h3><div class="tags">${["Komatsu","Hitachi","CAT","Hyundai","Volvo","Case","New Holland","SANY","Hidromek","JCB"].map(t=>`<span>${t}</span>`).join("")}</div></div>
       <div><h3>Виды техники</h3><div class="tags">${["Экскаваторы","Тракторы 3в1","Краны","КМУ","Автовышки","Катки","Дорожные фрезы","Мусоровозы","Комбайны"].map(t=>`<span>${t}</span>`).join("")}</div></div>
     </div></section>`};
   },
@@ -917,7 +949,7 @@ const PAGES = {
         <span class="found" id="found"></span>
       </div>
       <div class="grid" id="grid"></div>
-      <div class="note" style="margin-top:24px">${icon("i-info")}<span>Демо-каталог: список моделей примерный, фото — заглушки. Финальный каталог, описания и фотографии предоставит SKS PARTS.</span></div>
+      <div class="note" style="margin-top:24px">${icon("i-info")}<span>Здесь показана часть ассортимента. Нет нужной модели — напишите в WhatsApp, подберём насос или аналог.</span></div>
     </div></section>`, after(){
       const state = {type, tech, q};
       const draw = () => {
@@ -1296,7 +1328,7 @@ const Demo = (() => {
       if(has(s, al)) return {text:L.brand(brand, Object.keys(PICK[brand]).join(", ")), links:[{label:`Подбор: ${brand}`, href:`#pick?brand=${encodeURIComponent(brand)}`}]};
     }
     // Тип техники
-    const techMap = [["экскаватор","excavator"],["3в1","backhoe"],["3 в 1","backhoe"],["погрузчик","backhoe"],["кран","crane"],["кму","crane"],["манипулятор","crane"],["мусоровоз","crane"],["автовышк","lift"],["вышк","lift"],["каток","road"],["катк","road"],["фрез","road"],["комбайн","road"]];
+    const techMap = [["экскаватор","excavator"],["3в1","backhoe"],["3 в 1","backhoe"],["погрузчик","backhoe"],["кран","crane"],["кму","crane"],["манипулятор","crane"],["мусоровоз","crane"],["самосвал","crane"],["грузовик","crane"],["отбора мощности","crane"],[" ком ","crane"],["лесовоз","crane"],["автовышк","lift"],["вышк","lift"],["каток","road"],["катк","road"],["фрез","road"],["комбайн","road"]];
     const tm = techMap.find(([w]) => s.includes(w));
     if(tm) return {text:L.tech(TECH[tm[1]].name), links:[{label:TECH[tm[1]].name, href:`#catalog?tech=${tm[1]}`}]};
     // Контекст товара («Спросить ИИ» на странице товара)
