@@ -104,24 +104,39 @@ table.cross td:last-child{width:40px}
 <!-- Вход -->
 <section class="login" id="login">
   <h1>Админка SKS PARTS</h1>
-  <p>Товары, фото и подбор по технике. Изменения сохраняются в репозиторий сайта на GitHub и появляются на сайте через 1–5 минут.</p>
+  <p>Товары, фото и подбор по технике. Изменения появляются на сайте через 1–5 минут после сохранения.</p>
   <form id="loginForm" autocomplete="off">
-    <label class="f"><span>Репозиторий сайта</span><input type="text" id="repo" value="sayt-kz/sks-parts"></label>
-    <label class="f"><span>Ветка</span><input type="text" id="branch" value="main"></label>
-    <label class="f"><span>Ключ доступа GitHub (token)</span><input type="password" id="token" placeholder="github_pat_…"></label>
+    <label class="f"><span>Пароль</span><input type="password" id="password" autocomplete="current-password"></label>
     <label style="display:flex;gap:8px;align-items:center;margin-bottom:14px"><input type="checkbox" id="remember"> Запомнить на этом устройстве</label>
     <button class="btn primary" type="submit" style="width:100%">Войти</button>
     <div class="err" id="loginErr"></div>
+  </form>
+  <p style="margin:18px 0 0;font-size:13px"><a href="#setup" id="toSetup" style="color:var(--muted)">Настройка доступа (для владельца сайта)</a></p>
+</section>
+
+<!-- Настройка доступа: владелец задаёт ключ GitHub и пароль -->
+<section class="login hidden" id="setup">
+  <h1>Настройка доступа</h1>
+  <p>Для владельца сайта. Ключ GitHub шифруется паролем и хранится на сайте только в зашифрованном виде. Тем, кто работает в админке, нужен только пароль.</p>
+  <form id="setupForm" autocomplete="off">
+    <label class="f"><span>Репозиторий сайта</span><input type="text" id="repo" value="sayt-kz/sks-parts"></label>
+    <label class="f"><span>Ветка</span><input type="text" id="branch" value="main"></label>
+    <label class="f"><span>Ключ доступа GitHub (token)</span><input type="password" id="token" placeholder="github_pat_…" autocomplete="off"></label>
+    <label class="f"><span>Новый пароль для входа</span><input type="password" id="newPass" autocomplete="new-password"><div class="hint">Не короче 10 символов. Надёжно и легко запомнить: 3–4 слова, например «синий-насос-алматы-2026».</div></label>
+    <label class="f"><span>Пароль ещё раз</span><input type="password" id="newPass2" autocomplete="new-password"></label>
+    <button class="btn primary" type="submit" style="width:100%">Сохранить пароль и войти</button>
+    <div class="err" id="setupErr"></div>
   </form>
   <details>
     <summary>Где взять ключ доступа</summary>
     <ol>
       <li>GitHub → Settings → Developer settings → Personal access tokens → <b>Fine-grained tokens</b> → Generate new token.</li>
-      <li>Repository access: <b>Only select repositories</b> → репозиторий сайта.</li>
+      <li>Resource owner — владелец репозитория; Repository access: <b>Only select repositories</b> → репозиторий сайта.</li>
       <li>Permissions → Repository → <b>Contents: Read and write</b>.</li>
-      <li>Скопируйте ключ и вставьте сюда. Ключ хранится только в этом браузере.</li>
+      <li>Скопируйте ключ и вставьте сюда.</li>
     </ol>
   </details>
+  <p style="margin:18px 0 0;font-size:13px"><a href="#" id="toLogin" style="color:var(--muted)">← Вход по паролю</a></p>
 </section>
 
 <!-- Приложение -->
@@ -131,7 +146,7 @@ table.cross td:last-child{width:40px}
     <nav class="tabs" role="tablist">
       <button type="button" data-tab="products" aria-selected="true">Товары</button>
       <button type="button" data-tab="pick" aria-selected="false">Подбор по технике</button>
-      <button type="button" data-tab="backup" aria-selected="false">Резервная копия</button>
+      <button type="button" data-tab="backup" aria-selected="false">Настройки</button>
     </nav>
     <span class="status" id="status"></span>
     <button class="btn primary" type="button" id="saveBtn" disabled>Сохранить на сайт</button>
@@ -169,6 +184,19 @@ table.cross td:last-child{width:40px}
         <label class="btn" style="cursor:pointer">Загрузить из файла<input type="file" id="importFile" accept="application/json,.json" hidden></label>
       </div>
     </div>
+    <div class="box">
+      <h2>Сменить пароль</h2>
+      <p>Старый пароль перестанет работать через 1–5 минут, когда сайт обновится. Если нужно закрыть доступ полностью (например, ключ мог попасть к посторонним), создайте в GitHub новый ключ, вставьте его ниже, а старый удалите в GitHub.</p>
+      <form id="cpForm" autocomplete="off">
+        <div class="grid2">
+          <label class="f"><span>Новый пароль</span><input type="password" id="cpPass" autocomplete="new-password"></label>
+          <label class="f"><span>Новый пароль ещё раз</span><input type="password" id="cpPass2" autocomplete="new-password"></label>
+        </div>
+        <label class="f"><span>Новый ключ GitHub (необязательно)</span><input type="password" id="cpToken" placeholder="оставьте пустым, чтобы оставить текущий ключ" autocomplete="off"></label>
+        <button class="btn primary" type="submit">Сменить пароль</button>
+        <div class="err" id="cpErr" style="color:var(--red);font-weight:700;margin-top:8px"></div>
+      </form>
+    </div>
   </section>
 </div>
 
@@ -176,7 +204,7 @@ table.cross td:last-child{width:40px}
 "use strict";
 /* Админка каталога SKS PARTS.
    Данные — data/catalog.json в репозитории GitHub; фото — папка img/.
-   Чтение и запись — через GitHub REST API (contents) ключом доступа администратора.
+   Чтение и запись — через GitHub REST API (contents). Ключ доступа хранится на сайте зашифрованным паролем (см. «Доступ по паролю»).
    Ключ хранится только в этом браузере (sessionStorage или localStorage) и уходит только на api.github.com. */
 const API = "https://api.github.com";
 const CATALOG_PATH = "data/catalog.json";
@@ -216,6 +244,41 @@ async function loadCatalog() {
   S.catalog.brandAliases = S.catalog.brandAliases || {};
 }
 
+/* ---------- Доступ по паролю ----------
+   Владелец один раз задаёт ключ GitHub и пароль («Настройка доступа»). Ключ шифруется паролем
+   (PBKDF2-SHA256, 600 000 итераций → AES-GCM 256) и лежит на сайте в data/admin-access.json.
+   Для входа нужен только пароль: ключ расшифровывается в браузере и уходит только на api.github.com. */
+const ACCESS_PATH = "data/admin-access.json";
+const KDF_ITER = 600000;
+const bytesFromB64 = b => Uint8Array.from(atob(b), c => c.charCodeAt(0));
+async function passKey(password, salt, iter) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: iter, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+}
+async function sealAccess(password, data) {
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await passKey(password, salt, KDF_ITER), new TextEncoder().encode(JSON.stringify(data)));
+  return { v: 1, kdf: "PBKDF2-SHA256", iter: KDF_ITER, salt: b64FromBytes(salt), iv: b64FromBytes(iv), ct: b64FromBytes(new Uint8Array(ct)), updated: new Date().toISOString().slice(0, 10) };
+}
+async function openAccess(password, a) {
+  const key = await passKey(password, bytesFromB64(a.salt), a.iter || KDF_ITER);
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: bytesFromB64(a.iv) }, key, bytesFromB64(a.ct)); // неверный пароль → ошибка
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+function checkNewPassword(p1, p2) {
+  if (p1.length < 10) return "Пароль должен быть не короче 10 символов.";
+  if (p1 !== p2) return "Пароли не совпадают.";
+  return "";
+}
+// Записывает зашифрованный ключ в репозиторий (поверх старого, если он есть)
+async function saveAccess(password, data) {
+  let sha;
+  try { sha = (await gh(`/repos/${S.repo}/contents/${ACCESS_PATH}?ref=${encodeURIComponent(S.branch)}`)).sha; } catch (e) { if (e.status !== 404) throw e; }
+  const body = { message: "Админка: обновлён доступ по паролю", content: b64FromText(JSON.stringify(await sealAccess(password, data), null, 1)), branch: S.branch };
+  if (sha) body.sha = sha;
+  await gh(`/repos/${S.repo}/contents/${ACCESS_PATH}`, { method: "PUT", body: JSON.stringify(body) });
+}
+
 /* ---------- Вход ---------- */
 function siteUrl() { const [o, n] = S.repo.split("/"); return `https://${o}.github.io/${n}/`; }
 async function login(repo, branch, token, remember) {
@@ -225,29 +288,74 @@ async function login(repo, branch, token, remember) {
   await loadCatalog();
   const store = remember ? localStorage : sessionStorage;
   try { (remember ? sessionStorage : localStorage).removeItem("sks-admin"); store.setItem("sks-admin", JSON.stringify({ repo: S.repo, branch: S.branch, token: S.token })); } catch {}
-  $("#login").classList.add("hidden"); $("#app").classList.remove("hidden");
+  $("#login").classList.add("hidden"); $("#setup").classList.add("hidden"); $("#app").classList.remove("hidden");
   $("#siteLink").href = siteUrl();
   renderAll();
 }
+const ghError = err => err.status === 401 ? "Ключ GitHub не подходит или устарел — владельцу нужно обновить доступ («Настройка доступа»)."
+  : err.status === 404 ? "Репозиторий или файл каталога не найден (или у ключа нет к нему доступа)." : "Ошибка: " + err.message;
+
 $("#loginForm").addEventListener("submit", async e => {
-  e.preventDefault(); $("#loginErr").textContent = "Проверяю ключ…";
-  try { await login($("#repo").value, $("#branch").value, $("#token").value, $("#remember").checked); $("#loginErr").textContent = ""; }
-  catch (err) { $("#loginErr").textContent = (err.status === 401 ? "Ключ не подходит или устарел." : err.status === 404 ? "Репозиторий или файл каталога не найден (или у ключа нет к нему доступа)." : "Ошибка: " + err.message); }
+  e.preventDefault(); const err = $("#loginErr"); err.textContent = "Проверяю пароль…";
+  let access;
+  try { const r = await fetch(ACCESS_PATH + "?v=" + Date.now(), { cache: "no-store" }); if (!r.ok) throw new Error(r.status); access = await r.json(); }
+  catch { err.textContent = "Вход по паролю ещё не настроен. Владельцу сайта: «Настройка доступа» внизу."; return; }
+  let data;
+  try { data = await openAccess($("#password").value, access); }
+  catch { err.textContent = "Неверный пароль."; return; }
+  try { await login(data.repo, data.branch, data.token, $("#remember").checked); err.textContent = ""; $("#password").value = ""; }
+  catch (e2) { err.textContent = ghError(e2); }
 });
+
+const showSetup = on => { $("#login").classList.toggle("hidden", on); $("#setup").classList.toggle("hidden", !on); };
+$("#toSetup").addEventListener("click", e => { e.preventDefault(); showSetup(true); });
+$("#toLogin").addEventListener("click", e => { e.preventDefault(); showSetup(false); });
+if (location.hash === "#setup") showSetup(true);
+
+$("#setupForm").addEventListener("submit", async e => {
+  e.preventDefault(); const err = $("#setupErr");
+  const bad = checkNewPassword($("#newPass").value, $("#newPass2").value); if (bad) { err.textContent = bad; return; }
+  err.textContent = "Проверяю ключ…";
+  try {
+    await login($("#repo").value, $("#branch").value, $("#token").value, false);
+    err.textContent = "Шифрую и сохраняю…";
+    await saveAccess($("#newPass").value, { repo: S.repo, branch: S.branch, token: S.token });
+    $("#token").value = $("#newPass").value = $("#newPass2").value = ""; err.textContent = "";
+    toast("Пароль сохранён. Вход по паролю заработает на сайте через 1–5 минут.");
+  } catch (e2) { $("#app").classList.add("hidden"); showSetup(true); err.textContent = ghError(e2); }
+});
+
 $("#logoutBtn").addEventListener("click", () => {
   if (S.dirty.size && !confirmInline($("#logoutBtn"), "Выйти без сохранения?")) return;
   try { localStorage.removeItem("sks-admin"); sessionStorage.removeItem("sks-admin"); } catch {}
-  location.reload();
+  location.hash = ""; location.reload();
 });
 (function autoLogin() {
   let saved = null; try { saved = JSON.parse(sessionStorage.getItem("sks-admin") || localStorage.getItem("sks-admin") || "null"); } catch {}
   if (!saved) return;
-  $("#repo").value = saved.repo; $("#branch").value = saved.branch;
   login(saved.repo, saved.branch, saved.token, !!localStorage.getItem("sks-admin")).catch(() => {
     try { localStorage.removeItem("sks-admin"); sessionStorage.removeItem("sks-admin"); } catch {}
-    $("#loginErr").textContent = "Сохранённый ключ не подошёл — войдите заново.";
+    $("#app").classList.add("hidden"); showSetup(false);
+    $("#loginErr").textContent = "Нужно войти заново.";
   });
 })();
+
+// Смена пароля (вкладка «Настройки»); при желании — заодно новый ключ GitHub
+$("#cpForm").addEventListener("submit", e => { e.preventDefault(); changePassword(); });
+async function changePassword() {
+  const err = $("#cpErr");
+  const bad = checkNewPassword($("#cpPass").value, $("#cpPass2").value); if (bad) { err.textContent = bad; return; }
+  const newToken = $("#cpToken").value.trim();
+  err.textContent = "Сохраняю…";
+  const oldToken = S.token;
+  try {
+    if (newToken) { S.token = newToken; const info = await gh(`/repos/${S.repo}`); if (info.permissions && !info.permissions.push) throw new Error("у нового ключа нет права записи"); }
+    await saveAccess($("#cpPass").value, { repo: S.repo, branch: S.branch, token: S.token });
+    try { const st = localStorage.getItem("sks-admin") ? localStorage : sessionStorage; st.setItem("sks-admin", JSON.stringify({ repo: S.repo, branch: S.branch, token: S.token })); } catch {}
+    $("#cpPass").value = $("#cpPass2").value = $("#cpToken").value = ""; err.textContent = "";
+    toast("Пароль изменён. Новый пароль заработает на сайте через 1–5 минут.");
+  } catch (e) { S.token = oldToken; err.textContent = ghError(e); }
+}
 
 /* Кнопка-подтверждение без системных окон: первый клик меняет текст, второй — выполняет */
 function confirmInline(btn, text) {
