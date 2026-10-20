@@ -8,6 +8,8 @@ compatibility_flags = ["nodejs_compat"]
 ALLOWED_ORIGINS = "https://sksparts.kz,https://www.sksparts.kz,https://sayt-kz.github.io"
 MAX_MSG_PER_HOUR = "20"
 MONTHLY_LIMIT_USD = "5"
+# Откуда ИИ берёт актуальный каталог (его правит админка)
+CATALOG_URL = "https://sayt-kz.github.io/sks-parts/data/catalog.json"
 
 # Создать: npx wrangler kv namespace create SKS_KV — и вставить id сюда
 [[kv_namespaces]]

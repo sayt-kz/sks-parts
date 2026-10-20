@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Админка — SKS PARTS</title>
+<link rel="icon" type="image/jpeg" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1677e6;--blue-d:#0f5fbd;--bg:#f2f5f9;--line:#dfe5ee;--ink:#1b2430;--ink2:#5b6676;--muted:#8a95a5;--dark:#1d2229;--red:#d92d20;--green:#17994a;--warn:#fff8e6;--r:10px;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 14.5px/1.5 "Manrope",system-ui,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;padding:0 14px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:700;white-space:nowrap}
+.btn:hover{border-color:var(--blue);color:var(--blue)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.primary:hover{background:var(--blue-d);color:#fff}
+.btn.primary:disabled{opacity:.5;cursor:default}
+.btn.danger{color:var(--red)}
+.btn.danger:hover{border-color:var(--red);background:#fdecea}
+.btn.sm{height:32px;padding:0 10px;font-size:13px}
+input[type=text],input[type=password],select,textarea{width:100%;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;outline:0}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:80px;resize:vertical}
+.mono{font-family:var(--mono);font-size:13px}
+label.f{display:block;margin-bottom:12px}
+label.f>span{display:block;font-size:12.5px;font-weight:800;color:var(--ink2);margin-bottom:4px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+/* Вход */
+.login{max-width:440px;margin:8vh auto;background:#fff;border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(16,32,60,.1)}
+.login h1{font-size:22px;margin:0 0 4px}
+.login p{color:var(--ink2);margin:0 0 18px}
+.login .err{color:var(--red);font-weight:700;margin-top:10px;white-space:pre-line}
+.login details{margin-top:16px;font-size:13.5px;color:var(--ink2)}
+.login details ol{padding-left:18px;margin:8px 0}
+
+/* Шапка */
+.top{position:sticky;top:0;z-index:20;background:var(--dark);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 16px;flex-wrap:wrap}
+.top b{font-size:16px;margin-right:6px}
+.tabs{display:flex;gap:4px;margin-right:auto}
+.tabs button{background:none;border:0;color:#b9c3d0;font-weight:800;padding:8px 12px;border-radius:8px}
+.tabs button[aria-selected=true]{background:#2c333d;color:#fff}
+.top .btn{height:34px;color:var(--ink)}
+.top .btn.primary{color:#fff}
+a.btn{text-decoration:none;color:var(--ink)}
+.status{font-size:13px;color:#b9c3d0}
+.status.ok{color:#7ee2a3}.status.bad{color:#ff9b93}
+
+/* Товары */
+.wrap{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-width:1400px;margin:0 auto}
+.panel{background:#fff;border-radius:var(--r);border:1px solid var(--line)}
+.list-h{padding:12px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.list{max-height:calc(100vh - 230px);overflow:auto}
+.item{display:flex;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid #eef2f7;cursor:pointer}
+.item:hover{background:#f7f9fc}
+.item.on{background:#e8f1fc}
+.item img,.item .noimg{width:44px;height:44px;object-fit:contain;border-radius:6px;background:#f2f5f9;flex:none}
+.item b{display:block;font-size:13.5px;line-height:1.3}
+.item small{color:var(--muted);font-size:12px}
+.item .dot{width:8px;height:8px;border-radius:50%;background:#f0a000;flex:none;margin-left:auto}
+.ed{padding:18px}
+.ed h2{margin:0 0 14px;font-size:19px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.checks{display:flex;flex-wrap:wrap;gap:6px 14px}
+.checks label{display:flex;align-items:center;gap:6px;font-weight:600}
+.photo{display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:start;background:#f7f9fc;border:1px dashed var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px}
+.photo .pv{width:200px;height:150px;background:#fff;border-radius:8px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line)}
+.photo .pv img{max-width:100%;max-height:100%;object-fit:contain}
+.photo .pv span{color:var(--muted);font-size:13px}
+table.cross{width:100%;border-collapse:collapse;margin-bottom:8px}
+table.cross th{font-size:12px;text-align:left;color:var(--ink2);padding:4px}
+table.cross td{padding:3px;vertical-align:top}
+table.cross td:last-child{width:40px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+
+/* Подбор */
+.pick{padding:16px;max-width:1100px;margin:0 auto}
+.brand{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.brand-h{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.brand-h input{max-width:240px;font-weight:800}
+.model{display:grid;grid-template-columns:180px 1fr auto;gap:8px;align-items:start;padding:8px 0;border-top:1px solid #eef2f7}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#e8f1fc;color:var(--blue-d);border-radius:20px;padding:3px 6px 3px 10px;font-size:12.5px;font-weight:700}
+.chip button{border:0;background:none;color:inherit;font-weight:800;padding:0 4px}
+.chips select{width:auto;max-width:260px;height:30px;padding:2px 6px;font-size:12.5px}
+
+.box{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;max-width:760px;margin:16px auto}
+.box h2{margin:0 0 8px;font-size:18px}
+.box p{color:var(--ink2)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--dark);color:#fff;padding:12px 18px;border-radius:10px;font-weight:700;z-index:50;max-width:90vw;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.toast.bad{background:var(--red)}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}.list{max-height:320px}.grid2,.photo{grid-template-columns:1fr}.model{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- Вход -->
+<section class="login" id="login">
+  <h1>Админка SKS PARTS</h1>
+  <p>Товары, фото и подбор по технике. Изменения сохраняются в репозиторий сайта на GitHub и появляются на сайте через 1–5 минут.</p>
+  <form id="loginForm" autocomplete="off">
+    <label class="f"><span>Репозиторий сайта</span><input type="text" id="repo" value="sayt-kz/sks-parts"></label>
+    <label class="f"><span>Ветка</span><input type="text" id="branch" value="main"></label>
+    <label class="f"><span>Ключ доступа GitHub (token)</span><input type="password" id="token" placeholder="github_pat_…"></label>
+    <label style="display:flex;gap:8px;align-items:center;margin-bottom:14px"><input type="checkbox" id="remember"> Запомнить на этом устройстве</label>
+    <button class="btn primary" type="submit" style="width:100%">Войти</button>
+    <div class="err" id="loginErr"></div>
+  </form>
+  <details>
+    <summary>Где взять ключ доступа</summary>
+    <ol>
+      <li>GitHub → Settings → Developer settings → Personal access tokens → <b>Fine-grained tokens</b> → Generate new token.</li>
+      <li>Repository access: <b>Only select repositories</b> → репозиторий сайта.</li>
+      <li>Permissions → Repository → <b>Contents: Read and write</b>.</li>
+      <li>Скопируйте ключ и вставьте сюда. Ключ хранится только в этом браузере.</li>
+    </ol>
+  </details>
+</section>
+
+<!-- Приложение -->
+<div id="app" class="hidden">
+  <header class="top">
+    <b>SKS PARTS · Админка</b>
+    <nav class="tabs" role="tablist">
+      <button type="button" data-tab="products" aria-selected="true">Товары</button>
+      <button type="button" data-tab="pick" aria-selected="false">Подбор по технике</button>
+      <button type="button" data-tab="backup" aria-selected="false">Резервная копия</button>
+    </nav>
+    <span class="status" id="status"></span>
+    <button class="btn primary" type="button" id="saveBtn" disabled>Сохранить на сайт</button>
+    <a class="btn" id="siteLink" target="_blank" rel="noopener">Открыть сайт</a>
+    <button class="btn" type="button" id="logoutBtn">Выйти</button>
+  </header>
+
+  <section id="tab-products" class="wrap">
+    <aside class="panel">
+      <div class="list-h">
+        <input type="text" id="q" placeholder="Поиск: название, код, номер…">
+        <select id="fType"><option value="">Все типы</option></select>
+        <button class="btn primary" type="button" id="addBtn">+ Новый товар</button>
+      </div>
+      <div class="list" id="list"></div>
+    </aside>
+    <section class="panel ed" id="editor"><div class="empty">Выберите товар слева или добавьте новый.</div></section>
+  </section>
+
+  <section id="tab-pick" class="pick hidden">
+    <div class="box" style="max-width:none;margin:0 0 14px">
+      <h2>Подбор по технике</h2>
+      <p style="margin:0">Марка → модель техники → какие насосы на неё подходят. Эта таблица используется на странице «Подбор» и в ИИ-помощнике. «Синонимы» — как клиенты пишут марку (через запятую), например: хендай, хюндай.</p>
+    </div>
+    <div id="pickList"></div>
+    <button class="btn primary" type="button" id="addBrand">+ Марка техники</button>
+  </section>
+
+  <section id="tab-backup" class="hidden">
+    <div class="box">
+      <h2>Резервная копия каталога</h2>
+      <p>Скачайте файл каталога перед большими изменениями. Если что-то пойдёт не так, его можно загрузить обратно и сохранить на сайт.</p>
+      <div class="actions" style="border:0;padding:0">
+        <button class="btn" type="button" id="exportBtn">Скачать catalog.json</button>
+        <label class="btn" style="cursor:pointer">Загрузить из файла<input type="file" id="importFile" accept="application/json,.json" hidden></label>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+"use strict";
+/* Админка каталога SKS PARTS.
+   Данные — data/catalog.json в репозитории GitHub; фото — папка img/.
+   Чтение и запись — через GitHub REST API (contents) ключом доступа администратора.
+   Ключ хранится только в этом браузере (sessionStorage или localStorage) и уходит только на api.github.com. */
+const API = "https://api.github.com";
+const CATALOG_PATH = "data/catalog.json";
+const NOTES = ["", "фото серии", "фото похожего насоса", "фото со склада SKS", "фото запчастей серии", "фото для примера"];
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") e.className = v; else if (k === "text") e.textContent = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else if (v !== false && v != null) e.setAttribute(k, v === true ? "" : v);
+  }
+  kids.flat().forEach(c => c != null && e.append(c));
+  return e;
+};
+
+const S = { repo: "", branch: "main", token: "", sha: null, catalog: null, pending: {}, dirty: new Set(), current: null, saving: false };
+
+/* ---------- GitHub ---------- */
+async function gh(path, opts = {}) {
+  const r = await fetch(API + path, { ...opts, headers: { "Accept": "application/vnd.github+json", "Authorization": "Bearer " + S.token, "X-GitHub-Api-Version": "2022-11-28", ...(opts.body ? { "Content-Type": "application/json" } : {}) } });
+  const data = r.status === 204 ? null : await r.json().catch(() => null);
+  if (!r.ok) { const e = new Error((data && data.message) || ("HTTP " + r.status)); e.status = r.status; throw e; }
+  return data;
+}
+const b64FromBytes = bytes => { let s = ""; for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(s); };
+const b64FromText = t => b64FromBytes(new TextEncoder().encode(t));
+const textFromB64 = b => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\n/g, "")), c => c.charCodeAt(0)));
+
+async function loadCatalog() {
+  const f = await gh(`/repos/${S.repo}/contents/${CATALOG_PATH}?ref=${encodeURIComponent(S.branch)}`);
+  S.sha = f.sha;
+  S.catalog = JSON.parse(textFromB64(f.content));
+  S.catalog.products = S.catalog.products || [];
+  S.catalog.pick = S.catalog.pick || {};
+  S.catalog.brandAliases = S.catalog.brandAliases || {};
+}
+
+/* ---------- Вход ---------- */
+function siteUrl() { const [o, n] = S.repo.split("/"); return `https://${o}.github.io/${n}/`; }
+async function login(repo, branch, token, remember) {
+  S.repo = repo.trim().replace(/^https:\/\/github\.com\//, "").replace(/\/$/, ""); S.branch = branch.trim() || "main"; S.token = token.trim();
+  const info = await gh(`/repos/${S.repo}`);
+  if (info.permissions && !info.permissions.push) throw new Error("У этого ключа нет права записи в репозиторий (нужно Contents: Read and write).");
+  await loadCatalog();
+  const store = remember ? localStorage : sessionStorage;
+  try { (remember ? sessionStorage : localStorage).removeItem("sks-admin"); store.setItem("sks-admin", JSON.stringify({ repo: S.repo, branch: S.branch, token: S.token })); } catch {}
+  $("#login").classList.add("hidden"); $("#app").classList.remove("hidden");
+  $("#siteLink").href = siteUrl();
+  renderAll();
+}
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault(); $("#loginErr").textContent = "Проверяю ключ…";
+  try { await login($("#repo").value, $("#branch").value, $("#token").value, $("#remember").checked); $("#loginErr").textContent = ""; }
+  catch (err) { $("#loginErr").textContent = (err.status === 401 ? "Ключ не подходит или устарел." : err.status === 404 ? "Репозиторий или файл каталога не найден (или у ключа нет к нему доступа)." : "Ошибка: " + err.message); }
+});
+$("#logoutBtn").addEventListener("click", () => {
+  if (S.dirty.size && !confirmInline($("#logoutBtn"), "Выйти без сохранения?")) return;
+  try { localStorage.removeItem("sks-admin"); sessionStorage.removeItem("sks-admin"); } catch {}
+  location.reload();
+});
+(function autoLogin() {
+  let saved = null; try { saved = JSON.parse(sessionStorage.getItem("sks-admin") || localStorage.getItem("sks-admin") || "null"); } catch {}
+  if (!saved) return;
+  $("#repo").value = saved.repo; $("#branch").value = saved.branch;
+  login(saved.repo, saved.branch, saved.token, !!localStorage.getItem("sks-admin")).catch(() => {
+    try { localStorage.removeItem("sks-admin"); sessionStorage.removeItem("sks-admin"); } catch {}
+    $("#loginErr").textContent = "Сохранённый ключ не подошёл — войдите заново.";
+  });
+})();
+
+/* Кнопка-подтверждение без системных окон: первый клик меняет текст, второй — выполняет */
+function confirmInline(btn, text) {
+  if (btn.dataset.armed) { delete btn.dataset.armed; btn.textContent = btn.dataset.label; return true; }
+  btn.dataset.label = btn.textContent; btn.dataset.armed = "1"; btn.textContent = text;
+  setTimeout(() => { if (btn.dataset.armed) { delete btn.dataset.armed; btn.textContent = btn.dataset.label; } }, 4000);
+  return false;
+}
+
+/* ---------- Состояние ---------- */
+function markDirty(what) { S.dirty.add(what); updateStatus(); }
+function updateStatus(msg, cls) {
+  const n = S.dirty.size;
+  $("#saveBtn").disabled = !n || S.saving;
+  $("#saveBtn").textContent = n ? `Сохранить на сайт (${n})` : "Сохранить на сайт";
+  const st = $("#status"); st.className = "status" + (cls ? " " + cls : "");
+  st.textContent = msg || (n ? "Есть несохранённые изменения" : `Товаров: ${S.catalog.products.length}`);
+}
+window.addEventListener("beforeunload", e => { if (S.dirty.size) { e.preventDefault(); e.returnValue = ""; } });
+function toast(text, bad) { const t = el("div", { class: "toast" + (bad ? " bad" : ""), text }); document.body.append(t); setTimeout(() => t.remove(), bad ? 7000 : 4000); }
+
+/* ---------- Вкладки ---------- */
+$$(".tabs button").forEach(b => b.addEventListener("click", () => {
+  $$(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
+  ["products", "pick", "backup"].forEach(t => $("#tab-" + t).classList.toggle("hidden", t !== b.dataset.tab));
+  if (b.dataset.tab === "pick") renderPick();
+}));
+
+function renderAll() {
+  const ft = $("#fType"); ft.length = 1;
+  Object.entries(S.catalog.types || {}).forEach(([k, v]) => ft.append(el("option", { value: k, text: v.name })));
+  renderList(); updateStatus();
+  if (S.current && byId(S.current)) renderEditor(S.current); else $("#editor").replaceChildren(el("div", { class: "empty", text: "Выберите товар слева или добавьте новый." }));
+}
+const byId = id => S.catalog.products.find(p => p.id === id);
+const norm = s => String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[\s\-_/.]+/g, "");
+// Админка лежит рядом с сайтом, поэтому фото берутся по относительному пути; новые — из памяти до перезагрузки
+function photoSrc(p) { if (!p.photo) return null; return S.pending[p.photo.src] ? S.pending[p.photo.src].url : p.photo.src; }
+
+/* ---------- Список товаров ---------- */
+function renderList() {
+  const q = norm($("#q").value), t = $("#fType").value;
+  const list = S.catalog.products.filter(p => (!t || p.type === t) && (!q || norm([p.name, p.brand, p.id, ...(p.codes || []), ...(p.cross || []).flatMap(c => [c.machines, ...(c.numbers || [])])].join(" ")).includes(q)));
+  $("#list").replaceChildren(...(list.length ? list.map(p => {
+    const src = photoSrc(p);
+    return el("div", { class: "item" + (p.id === S.current ? " on" : ""), onclick: () => { S.current = p.id; renderList(); renderEditor(p.id); } },
+      src ? el("img", { src, alt: "", loading: "lazy" }) : el("div", { class: "noimg" }),
+      el("div", {}, el("b", { text: p.name }), el("small", { text: (S.catalog.types[p.type] || {}).short || p.type })),
+      S.dirty.has("p:" + p.id) ? el("span", { class: "dot", title: "Изменён, не сохранён" }) : null);
+  }) : [el("div", { class: "empty", text: "Ничего не найдено" })]));
+}
+$("#q").addEventListener("input", renderList);
+$("#fType").addEventListener("change", renderList);
+
+/* ---------- Редактор товара ---------- */
+const slug = s => {
+  const map = { а:"a",б:"b",в:"v",г:"g",д:"d",е:"e",ё:"e",ж:"zh",з:"z",и:"i",й:"y",к:"k",л:"l",м:"m",н:"n",о:"o",п:"p",р:"r",с:"s",т:"t",у:"u",ф:"f",х:"h",ц:"c",ч:"ch",ш:"sh",щ:"sch",ы:"y",э:"e",ю:"yu",я:"ya" };
+  return String(s).toLowerCase().replace(/[а-яё]/g, c => map[c] ?? "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "tovar";
+};
+function uniqueId(base) { let id = base, i = 2; while (byId(id)) id = `${base}-${i++}`; return id; }
+
+$("#addBtn").addEventListener("click", () => {
+  const type = Object.keys(S.catalog.types)[0];
+  const p = { id: uniqueId("novyy-tovar"), name: "Новый товар", brand: "", type, tech: [], use: "", desc: "", codes: [], cross: [], photo: null, kind: "", _new: true };
+  S.catalog.products.unshift(p); S.current = p.id; markDirty("p:" + p.id); renderList(); renderEditor(p.id);
+  setTimeout(() => $("#e-name") && $("#e-name").select(), 0);
+});
+
+function field(label, input, hint) { return el("label", { class: "f" }, el("span", { text: label }), input, hint ? el("div", { class: "hint", text: hint }) : null); }
+
+function renderEditor(id) {
+  const p = byId(id); if (!p) return;
+  const touch = () => { markDirty("p:" + p.id); renderList(); };
+  const bind = (key, input, parse = v => v) => { input.addEventListener("input", () => { p[key] = parse(input.value); touch(); }); return input; };
+
+  const name = bind("name", el("input", { type: "text", id: "e-name", value: p.name }));
+  name.addEventListener("input", () => { if (p._new) { const nid = uniqueId(slug(p.name)); if (nid !== p.id) renameId(p, nid); idInput.value = p.id; } });
+  const idInput = el("input", { type: "text", value: p.id, readonly: !p._new, class: "mono" });
+  idInput.addEventListener("change", () => { const nid = uniqueId(slug(idInput.value)); renameId(p, nid); idInput.value = nid; touch(); });
+
+  const type = el("select", {}, ...Object.entries(S.catalog.types).map(([k, v]) => el("option", { value: k, text: v.name, selected: p.type === k })));
+  type.addEventListener("change", () => { p.type = type.value; touch(); });
+
+  const tech = el("div", { class: "checks" }, ...Object.entries(S.catalog.tech || {}).map(([k, v]) => {
+    const cb = el("input", { type: "checkbox", checked: (p.tech || []).includes(k) });
+    cb.addEventListener("change", () => { p.tech = Object.keys(S.catalog.tech).filter((kk, i) => $$("input", tech)[i].checked); touch(); });
+    return el("label", {}, cb, v.name);
+  }));
+
+  const codes = bind("codes", el("textarea", { class: "mono", rows: 4 }), v => v.split("\n").map(s => s.trim()).filter(Boolean));
+  codes.value = (p.codes || []).join("\n");
+
+  // Фото
+  const pv = el("div", { class: "pv" });
+  const drawPv = () => { const src = photoSrc(p); pv.replaceChildren(src ? el("img", { src, alt: "" }) : el("span", { text: "нет фото" })); };
+  drawPv();
+  const file = el("input", { type: "file", accept: "image/*", hidden: true });
+  file.addEventListener("change", async () => {
+    const f = file.files[0]; if (!f) return;
+    try {
+      const { blob, url } = await resizeImage(f, 900);
+      const path = `img/${p.id}-${Date.now().toString(36)}.jpg`;
+      S.pending[path] = { blob, url };
+      p.photo = { src: path, note: p.photo ? p.photo.note : "" };
+      touch(); drawPv(); noteSel.value = NOTES.includes(p.photo.note) ? p.photo.note : "__custom";
+    } catch { toast("Не удалось прочитать картинку", true); }
+    file.value = "";
+  });
+  const noteSel = el("select", {}, ...NOTES.map(n => el("option", { value: n, text: n || "точное фото этой модели (без подписи)" })), el("option", { value: "__custom", text: "своя подпись…" }));
+  const noteCustom = el("input", { type: "text", placeholder: "Своя подпись" });
+  const cur = p.photo ? p.photo.note || "" : "";
+  noteSel.value = NOTES.includes(cur) ? cur : "__custom"; noteCustom.value = NOTES.includes(cur) ? "" : cur;
+  const syncNote = () => { noteCustom.classList.toggle("hidden", noteSel.value !== "__custom"); if (p.photo) { p.photo.note = noteSel.value === "__custom" ? noteCustom.value.trim() : noteSel.value; touch(); } };
+  noteSel.addEventListener("change", syncNote); noteCustom.addEventListener("input", syncNote);
+  noteCustom.classList.toggle("hidden", noteSel.value !== "__custom");
+  const removePhoto = el("button", { class: "btn sm danger", type: "button", text: "Убрать фото", onclick: () => { p.photo = null; touch(); drawPv(); } });
+
+  // Кросс-номера
+  const tbody = el("tbody");
+  const drawCross = () => tbody.replaceChildren(...(p.cross || []).map((c, i) => {
+    const m = el("input", { type: "text", value: c.machines || "", placeholder: "Hyundai R210LC-7" });
+    const n = el("input", { type: "text", class: "mono", value: (c.numbers || []).join(", "), placeholder: "31N6-10010, XJBN-00737" });
+    const s = el("input", { type: "text", value: c.source || "", placeholder: "fridayparts.com" });
+    m.addEventListener("input", () => { c.machines = m.value; touch(); });
+    n.addEventListener("input", () => { c.numbers = n.value.split(",").map(x => x.trim()).filter(Boolean); touch(); });
+    s.addEventListener("input", () => { c.source = s.value; touch(); });
+    return el("tr", {}, el("td", {}, m), el("td", {}, n), el("td", {}, s),
+      el("td", {}, el("button", { class: "btn sm danger", type: "button", title: "Удалить строку", text: "✕", onclick: () => { p.cross.splice(i, 1); touch(); drawCross(); } })));
+  }));
+  drawCross();
+
+  const del = el("button", { class: "btn danger", type: "button", text: "Удалить товар" });
+  del.addEventListener("click", () => {
+    if (!confirmInline(del, "Точно удалить? Нажмите ещё раз")) return;
+    S.catalog.products = S.catalog.products.filter(x => x !== p);
+    for (const b of Object.values(S.catalog.pick)) for (const m of Object.keys(b)) b[m] = b[m].filter(x => x !== p.id);
+    markDirty("del:" + p.id); S.dirty.delete("p:" + p.id); S.current = null; renderAll();
+  });
+  const dup = el("button", { class: "btn", type: "button", text: "Дублировать", onclick: () => {
+    const c = JSON.parse(JSON.stringify(p)); c.id = uniqueId(p.id + "-kopiya"); c.name = p.name + " (копия)"; c._new = true;
+    S.catalog.products.splice(S.catalog.products.indexOf(p) + 1, 0, c); S.current = c.id; markDirty("p:" + c.id); renderList(); renderEditor(c.id);
+  } });
+  const view = el("a", { class: "btn", target: "_blank", rel: "noopener", href: siteUrl() + "#p-" + p.id, text: "Открыть на сайте" });
+
+  $("#editor").replaceChildren(
+    el("h2", { text: p._new ? "Новый товар" : "Редактирование товара" }),
+    field("Название *", name),
+    el("div", { class: "grid2" },
+      field("Адрес на сайте (ID)", idInput, p._new ? "Ссылка на товар: #p-" + p.id : "У сохранённого товара не меняется, чтобы не сломать ссылки"),
+      field("Серия / производитель", bind("brand", el("input", { type: "text", value: p.brand || "", placeholder: "Серия Kawasaki K3V" })))),
+    el("div", { class: "grid2" },
+      field("Тип", type),
+      field("Вид изделия (если не насос)", bind("kind", el("input", { type: "text", value: p.kind || "", placeholder: "например: Гидромотор" })))),
+    field("Для какой техники (разделы каталога)", tech),
+    field("Применение (коротко, видно в карточке)", bind("use", el("input", { type: "text", value: p.use || "", placeholder: "Экскаваторы Hyundai 21–25 т" }))),
+    field("Описание", bind("desc", el("textarea", { rows: 3 }, p.desc || ""))),
+    field("Коды на шильдике — по одному в строке", codes, "Первый код показывается в карточке. По кодам работает поиск и ИИ-помощник."),
+    el("label", { class: "f" }, el("span", { text: "Фото" })),
+    el("div", { class: "photo" }, pv,
+      el("div", {},
+        el("div", { class: "actions", style: "border:0;padding:0;margin:0 0 10px" },
+          el("label", { class: "btn primary sm", style: "cursor:pointer" }, "Загрузить фото", file), removePhoto),
+        field("Подпись на фото", noteSel), noteCustom,
+        el("div", { class: "hint", text: "Фото автоматически уменьшается до 900 px. Лучше всего — насос на светлом фоне, без чужих логотипов." }))),
+    el("label", { class: "f" }, el("span", { text: "Кросс-номера и применение" })),
+    el("table", { class: "cross" }, el("thead", {}, el("tr", {}, el("th", { text: "Техника" }), el("th", { text: "Номера (через запятую)" }), el("th", { text: "Источник" }), el("th"))), tbody),
+    el("button", { class: "btn sm", type: "button", text: "+ строка", onclick: () => { (p.cross = p.cross || []).push({ machines: "", numbers: [], source: "" }); touch(); drawCross(); } }),
+    el("div", { class: "actions", style: "margin-top:16px" }, view, dup, del));
+}
+function renameId(p, nid) {
+  const old = p.id; p.id = nid; if (S.current === old) S.current = nid;
+  if (S.dirty.delete("p:" + old)) S.dirty.add("p:" + nid);
+  for (const b of Object.values(S.catalog.pick)) for (const m of Object.keys(b)) b[m] = b[m].map(x => x === old ? nid : x);
+  renderList();
+}
+
+/* Уменьшает картинку до maxSide и переводит в JPEG на белом фоне */
+function resizeImage(file, maxSide) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const k = Math.min(1, maxSide / Math.max(img.width, img.height));
+      const c = document.createElement("canvas"); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(b => b ? resolve({ blob: b, url: URL.createObjectURL(b) }) : reject(new Error("blob")), "image/jpeg", 0.85);
+      URL.revokeObjectURL(img.src);
+    };
+    img.onerror = reject; img.src = URL.createObjectURL(file);
+  });
+}
+
+/* ---------- Подбор по технике ---------- */
+function renderPick() {
+  const pick = S.catalog.pick, aliases = S.catalog.brandAliases;
+  const opts = () => [el("option", { value: "", text: "+ добавить насос…" }), ...S.catalog.products.map(p => el("option", { value: p.id, text: p.name }))];
+  $("#pickList").replaceChildren(...Object.keys(pick).map(brand => {
+    const nameIn = el("input", { type: "text", value: brand });
+    nameIn.addEventListener("change", () => {
+      const nb = nameIn.value.trim(); if (!nb || nb === brand || pick[nb]) { nameIn.value = brand; return; }
+      const rebuilt = {}; for (const k of Object.keys(pick)) rebuilt[k === brand ? nb : k] = pick[k];
+      S.catalog.pick = rebuilt; if (aliases[brand]) { aliases[nb] = aliases[brand]; delete aliases[brand]; }
+      markDirty("pick"); renderPick();
+    });
+    const al = el("input", { type: "text", value: (aliases[brand] || []).join(", "), placeholder: "синонимы: хендай, хюндай" });
+    al.addEventListener("input", () => { aliases[brand] = al.value.split(",").map(s => s.trim().toLowerCase()).filter(Boolean); markDirty("pick"); });
+    const delB = el("button", { class: "btn sm danger", type: "button", text: "Удалить марку" });
+    delB.addEventListener("click", () => { if (!confirmInline(delB, "Точно удалить?")) return; delete pick[brand]; delete aliases[brand]; markDirty("pick"); renderPick(); });
+    const models = Object.keys(pick[brand]).map(model => {
+      const ids = pick[brand][model];
+      const mIn = el("input", { type: "text", value: model });
+      mIn.addEventListener("change", () => {
+        const nm = mIn.value.trim(); if (!nm || nm === model || pick[brand][nm]) { mIn.value = model; return; }
+        const rebuilt = {}; for (const k of Object.keys(pick[brand])) rebuilt[k === model ? nm : k] = pick[brand][k];
+        pick[brand] = rebuilt; markDirty("pick"); renderPick();
+      });
+      const sel = el("select", {}, ...opts());
+      sel.addEventListener("change", () => { if (sel.value && !ids.includes(sel.value)) { ids.push(sel.value); markDirty("pick"); renderPick(); } });
+      return el("div", { class: "model" }, mIn,
+        el("div", { class: "chips" }, ...ids.map(id => el("span", { class: "chip" }, (byId(id) || { name: id + " (удалён)" }).name,
+          el("button", { type: "button", title: "Убрать", text: "×", onclick: () => { pick[brand][model] = ids.filter(x => x !== id); markDirty("pick"); renderPick(); } }))), sel),
+        el("button", { class: "btn sm danger", type: "button", text: "✕", title: "Удалить модель", onclick: () => { delete pick[brand][model]; markDirty("pick"); renderPick(); } }));
+    });
+    const addM = el("button", { class: "btn sm", type: "button", text: "+ модель", onclick: () => { let n = "Новая модель", i = 2; while (pick[brand][n]) n = "Новая модель " + i++; pick[brand][n] = []; markDirty("pick"); renderPick(); } });
+    return el("div", { class: "brand" }, el("div", { class: "brand-h" }, nameIn, al, delB), ...models, addM);
+  }));
+}
+$("#addBrand").addEventListener("click", () => {
+  let n = "Новая марка", i = 2; while (S.catalog.pick[n]) n = "Новая марка " + i++;
+  S.catalog.pick[n] = {}; markDirty("pick"); renderPick();
+});
+
+/* ---------- Резервная копия ---------- */
+function cleanCatalog() {
+  const c = JSON.parse(JSON.stringify(S.catalog));
+  c.products.forEach(p => { delete p._new; });
+  c.updated = new Date().toISOString().slice(0, 10);
+  return c;
+}
+$("#exportBtn").addEventListener("click", () => {
+  const a = el("a", { href: URL.createObjectURL(new Blob([JSON.stringify(cleanCatalog(), null, 1)], { type: "application/json" })), download: "catalog.json" });
+  document.body.append(a); a.click(); a.remove();
+});
+$("#importFile").addEventListener("change", async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try {
+    const c = JSON.parse(await f.text());
+    if (!Array.isArray(c.products) || !c.types) throw new Error("не похоже на файл каталога");
+    S.catalog = c; S.catalog.pick = c.pick || {}; S.catalog.brandAliases = c.brandAliases || {};
+    markDirty("import"); S.current = null; renderAll(); toast("Каталог загружен из файла. Проверьте и нажмите «Сохранить на сайт».");
+  } catch (err) { toast("Файл не подошёл: " + err.message, true); }
+  e.target.value = "";
+});
+
+/* ---------- Сохранение на сайт ---------- */
+function validate() {
+  const errs = [], ids = new Set();
+  for (const p of S.catalog.products) {
+    if (!p.name || !p.name.trim()) errs.push("У товара без названия (ID " + p.id + ")");
+    if (ids.has(p.id)) errs.push("Повторяется ID " + p.id); ids.add(p.id);
+    if (!S.catalog.types[p.type]) errs.push(p.name + ": неизвестный тип");
+  }
+  return errs;
+}
+$("#saveBtn").addEventListener("click", async () => {
+  const errs = validate(); if (errs.length) { toast("Не сохранено: " + errs.slice(0, 3).join("; "), true); return; }
+  S.saving = true; updateStatus("Сохраняю…");
+  try {
+    // 1) новые фото, которые ещё используются
+    const used = new Set(S.catalog.products.map(p => p.photo && p.photo.src).filter(Boolean));
+    const paths = Object.keys(S.pending).filter(p => used.has(p) && !S.pending[p].uploaded);
+    for (const [i, path] of paths.entries()) {
+      updateStatus(`Загружаю фото ${i + 1} из ${paths.length}…`);
+      const bytes = new Uint8Array(await S.pending[path].blob.arrayBuffer());
+      await gh(`/repos/${S.repo}/contents/${path}`, { method: "PUT", body: JSON.stringify({ message: `Админка: фото ${path}`, content: b64FromBytes(bytes), branch: S.branch }) });
+      S.pending[path].uploaded = true; // превью остаётся, пока GitHub собирает сайт
+    }
+    // 2) каталог
+    updateStatus("Сохраняю каталог…");
+    const n = S.dirty.size;
+    const res = await gh(`/repos/${S.repo}/contents/${CATALOG_PATH}`, { method: "PUT", body: JSON.stringify({
+      message: `Админка: каталог обновлён (${S.catalog.products.length} товаров, изменений: ${n})`,
+      content: b64FromText(JSON.stringify(cleanCatalog(), null, 1)), sha: S.sha, branch: S.branch }) });
+    S.sha = res.content.sha;
+    S.catalog.products.forEach(p => delete p._new);
+    S.dirty.clear(); S.saving = false;
+    updateStatus("Сохранено. На сайте — через 1–5 минут", "ok"); renderList(); if (S.current) renderEditor(S.current);
+    toast("Сохранено! Изменения появятся на сайте через 1–5 минут.");
+  } catch (err) {
+    S.saving = false; updateStatus("Не сохранено", "bad");
+    toast(err.status === 409 || err.status === 422 ? "Каталог уже изменили в другом месте. Скачайте резервную копию своих правок, обновите страницу и повторите." : err.status === 401 ? "Ключ доступа больше не действует — войдите заново." : "Ошибка сохранения: " + err.message, true);
+  }
+});
+</script>
+</body>
+</html>

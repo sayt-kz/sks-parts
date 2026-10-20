@@ -686,224 +686,31 @@ const WA_NUMBER = "77770305566";
 const GIS_URL = "https://2gis.kz/almaty/geo/9430047374997389"; // пр. Рыскулова, 72А в 2ГИС
 const CHAT_LIMIT = 30; // сообщений за сессию
 
-/* ---------- Данные: ассортимент из таблиц клиента (19.10.2026) ----------
-   codes — коды на шильдике (как в таблицах клиента).
-   cross — кросс-номера: [техника, [номера], источник]. Собраны по открытым данным
-   продавцов запчастей; точное исполнение (суффикс) подтверждает менеджер. */
-const TYPES = {
-  axial: {name:"Аксиально-поршневые насосы",  short:"Аксиально-поршневой", icon:"pump-axial"},
-  gear:  {name:"Шестерёнчатые насосы",        short:"Шестерёнчатый",       icon:"pump-gear"},
-  other: {name:"КОМ и гидрораспределители",   short:"Гидрокомпонент",      icon:"pump-plunger"}
-};
-const TECH = {
-  excavator:{name:"Для экскаваторов",                  icon:"pump-axial"},
-  mini:     {name:"Для мини-экскаваторов",             icon:"pump-axial"},
-  backhoe:  {name:"Для тракторов 3в1",                 icon:"pump-gear"},
-  crane:    {name:"Для самосвалов, КМУ и мусоровозов", icon:"pump-gear"},
-  mobile:   {name:"Для мобильной и промышленной гидравлики", icon:"pump-plunger"}
-};
-// id, название, бренд/серия, тип, техника, применение, описание, коды на шильдике, кросс-номера, фото, вид изделия
-const X = (id,name,brand,type,tech,use,desc,codes,cross=[],photo=null,kind=null) => ({id,name,brand,type,tech,use,desc,codes,cross,photo,kind});
-const SATU = "по данным продавцов запчастей";
-const PRODUCTS = [
-  // ---- Kawasaki K3V / K5V (коды SR-) — экскаваторы. Суффикс 9C — Hyundai, 9N — Volvo/Doosan, HN — Doosan/Daewoo, YT — Kobelco, 9T — SANY
-  X("k3v112-9c02","Kawasaki K3V112DT / DTP — исполнение 9C02","Серия Kawasaki K3V","axial",["excavator"],"Экскаваторы Hyundai 21–25 т (R210LC-7, R220LC-7, R250LC-7)",
-    "Сдвоенный аксиально-поршневой насос для экскаваторов 20-тонного класса. Суффикс 9C — исполнение для Hyundai.",
-    ["SR-K3V112DT-10ER-9C02-201","SR-K3V112DT-11ER-9C02-201","SR-K3V112DTP-11AR-9C02-202","SR-K3V112DTP-11ER-9C02-204"],
-    [["Hyundai R210LC-7, R220LC-7, R250LC-7",["XJBN-00737","XJBN-00929"],"fridayparts.com"],
-     ["Hyundai R210LC-7 (основной насос)",["31N6-10010"],"brokentractor.com"],
-     ["Hyundai R210LC-7H, R220LC-7",["31N6-10020"],"brokentractor.com"],
-     ["Hyundai R210LC-7A",["31N6-10080"],"brokentractor.com"]],
-    {src:"shelf-a",note:"фото со склада SKS"}),
-  X("k3v112-9n09","Kawasaki K3V112DT — исполнение 9N09","Серия Kawasaki K3V","axial",["excavator"],"Экскаваторы Volvo / Samsung 21–25 т (EC210B, EC240B)",
-    "Сдвоенный насос K3V112DT. Суффикс 9N — исполнение для Volvo (Samsung).",
-    ["SR-K3V112DT-11ER-9N09-105","SR-K3V112DT-11ER-9N09-201"],
-    [["Volvo EC200B, EC210B, EC240 (K3V112DT-…-9N24)",["VOE14571141"],"fridayparts.com"],
-     ["Volvo EC240B, EC240C",["VOE14577124","VOE14531594"],"fridayparts.com"],
-     ["Samsung SE240LC-3, Volvo EC240B",["1142-00530","SA1142-00531"],"fridayparts.com"]],
-    {src:"kawasaki-k3v",note:"фото серии Kawasaki"}),
-  X("k3v112-hn0v","Kawasaki K3V112DT / DTP — исполнение HN0V","Серия Kawasaki K3V","axial",["excavator"],"Экскаваторы Doosan (Daewoo) 20-тонного класса",
-    "Сдвоенный насос K3V112. Суффикс HN0V встречается у насосов для техники Doosan (Daewoo). Модель машины уточняйте у менеджера.",
-    ["SR-K3V112DT-10ER-HN0V-201","SR-K3V112DTP-11ER-HN0V-022"],
-    [["Doosan (Daewoo): суффикс HN0V используется у насосов K3V63DT для Solar 130LC-V и K5V80DTP для DH150-7",[],"mascus, accio"]],
-    {src:"shelf-b",note:"фото со склада SKS"}),
-  X("k3v112dtp-9tdl","Kawasaki K3V112DTP — исполнение 9TDL","Серия Kawasaki K3V","axial",["excavator"],"Экскаваторы 20-тонного класса (вероятно SANY)",
-    "Сдвоенный насос K3V112DTP с отбором мощности. Суффиксы 9T… встречаются у насосов SANY (например, K3V112DTP-9T8L на SY215-8). Модель машины уточняйте у менеджера.",
-    ["SR-K3V112DTP-111R-9TDL-102"],
-    [["SANY SY215-8 (близкое исполнение K3V112DTP-9T8L-14T)",[],"machineryline"]],
-    {src:"shelf-c",note:"фото со склада SKS"}),
-  X("k3v63dt-9c02","Kawasaki K3V63DT — исполнение 9C02","Серия Kawasaki K3V","axial",["excavator"],"Экскаваторы 12–16 т (суффикс 9C — Hyundai)",
-    "Сдвоенный насос K3V63DT, рабочий объём ~65 см³. Модель машины уточняйте у менеджера.",
-    ["SR-K3V63DT-110R-9C02-101"],[],{src:"mic-k3v63",note:"фото серии"}),
-  X("k3v140dtp-9c02","Kawasaki K3V140DTP — исполнение 9C02","Серия Kawasaki K3V","axial",["excavator"],"Экскаваторы Hyundai 29–33 т (R290LC-7, R305LC-7)",
-    "Сдвоенный насос K3V140DTP для экскаваторов 30-тонного класса.",
-    ["SR-K3V140DTP-12XR-9C02-202"],
-    [["Hyundai R290LC-7, R305LC-7, R330LC-9S (кросс K3V140DTP-9C12)",["31N8-10060"],"mascus"],
-     ["Hyundai R290LC-7A",["31N8-10080"],"fridayparts.com"]],
-    {src:"mic-k3v140",note:"фото серии"}),
-  X("k5v140dtp-9c02","Kawasaki K5V140DTP — исполнение 9C02","Серия Kawasaki K5V","axial",["excavator"],"Экскаваторы Hyundai 29–33 т",
-    "Сдвоенный насос K5V140DTP — развитие K3V с повышенным давлением.",
-    ["SR-K5V140DTP-12XR-9C02-105","SR-K5V140DTP-12XR-9C02-205"],
-    [["Hyundai R290LC-7, R305LC-7, R330LC-9S (кросс K5V140DTP-9C12)",["31N8-10060"],"mascus"],
-     ["Hyundai R290LC-7A (K5V140DTP1J9R-9C12-1AL)",["31N8-10080"],"fridayparts.com"]],
-    {src:"mic-k5v140",note:"фото серии"}),
-  X("k5v140dtp-yt6k","Kawasaki K5V140DTP — исполнение YT6K","Серия Kawasaki K5V","axial",["excavator"],"Экскаваторы Kobelco 33–35 т (SK330-8, SK350-8)",
-    "Сдвоенный насос K5V140DTP. Суффикс YT — исполнение для Kobelco.",
-    ["SR-K5V140DTP-121R-YT6K-105"],
-    [["Kobelco SK350-8 (основной насос)",["LC10V00014F1"],"brokentractor.com"],
-     ["Kobelco SK330-8, SK350-8, SK350-9 (регулятор насоса)",["LC10V01005F1","LC10V01005F4"],"fridayparts.com"]],
-    {src:"k-pump-red-1",note:"фото серии"}),
-  X("k5v80dtp-hn0q","Kawasaki K5V80DTP — исполнение HN0Q","Серия Kawasaki K5V","axial",["excavator"],"Экскаваторы Doosan 14–16 т (DH150-7, DX150W)",
-    "Сдвоенный насос K5V80DTP, рабочий объём 80 см³, 34,3 МПа.",
-    ["SR-K5V80DTP-100R-HN0Q-032","SR-K5V80DTP-100R-HN0Q-002"],
-    [["Doosan DH150-7 (K5V80DTP-HNOV)",[],"accio.ai"],["Doosan DX150W-9, DH150W-9",[],"ebay"]],
-    {src:"mic-k5v80",note:"фото серии"}),
-  X("k5v80dtp-9c0q","Kawasaki K5V80DTP — исполнение 9C0Q","Серия Kawasaki K5V","axial",["excavator"],"Экскаваторы 14–16 т (суффикс 9C — Hyundai)",
-    "Сдвоенный насос K5V80DTP, рабочий объём 80 см³. Модель машины уточняйте у менеджера.",
-    ["SR-K5V80DTP-100R-9C0Q-002","SR-K5V80DTP-100R-9C0Q-052","SR-K5V80DTP-100R-9C0Q-062"],[],{src:"k-pump-red-2",note:"фото серии"}),
-  X("k5v200dth-9n0a","Kawasaki K5V200DTH — исполнение 9N0A","Серия Kawasaki K5V","axial",["excavator"],"Экскаваторы Volvo 45–48 т (EC460B)",
-    "Сдвоенный насос большого объёма для тяжёлых экскаваторов. Суффикс 9N — Volvo.",
-    ["SR-K5V200DTH-120R-9N0A-203"],
-    [["Volvo EC460B, EC460BLC",["VOE9014531857","9014531857"],"fridayparts.com"],
-     ["Volvo EC460",["14526609","14618624","14612484"],"ebay"]],
-    {src:"mic-k5v200",note:"фото серии"}),
-  // ---- Hitachi HPV
-  X("hpv102","Hitachi HPV102HW-25A","Серия Hitachi HPV","axial",["excavator"],"Экскаваторы Hitachi ZX200, EX200-5/6",
-    "Основной насос Hitachi серии HPV102.",["SR-HPV102HW-25A"],
-    [["Hitachi ZX200, ZX200-1, EX200-5/6",["9195235","9205002","9191164"],"mascus"]],{src:"mic-hpv102",note:"фото серии"}),
-  X("hpv118","Hitachi HPV118HW-26B","Серия Hitachi HPV","axial",["excavator"],"Экскаваторы Hitachi ZX200-3 – ZX270-3",
-    "Основной насос Hitachi серии HPV118 для экскаваторов поколения -3.",["SR-HPV118HW-26B"],
-    [["Hitachi ZX200-3, ZX210-3, ZX240-3, ZX250-3",["9256125","9262320","4293950"],"fridayparts.com, mascus"],
-     ["Hitachi ZX270-3",["9257346"],"fridayparts.com"]],{src:"mic-hpv118",note:"фото серии"}),
-  X("hpv145","Hitachi HPV145G (RH28C)","Серия Hitachi HPV","axial",["excavator"],"Экскаваторы Hitachi ZX330 – ZX350",
-    "Основной насос Hitachi серии HPV145G.",["SR-HPV145G RH28C"],
-    [["Hitachi ZX330-3, ZX350-3, ZX360-3 (насос в сборе)",["9257596","9256100"],"fridayparts.com"],
-     ["Hitachi ZX330, ZX350H (регулятор HPV145G)",["9195243","9207292"],"fridayparts.com"]],{src:"hpv145"}),
-  // ---- Uchida (Rexroth) AP2D — мини-экскаваторы
-  X("ap2d28","Uchida AP2D28LV2RS7","Серия Uchida-Rexroth AP2D","axial",["mini"],"Мини-экскаваторы 5–6 т",
-    "Насос Uchida (Rexroth) серии AP2D для мини-экскаваторов.",["SR-AP2D28LV2RS7-220","SR-AP2D28LV2RS7-221"],[],{src:"uchida",note:"фото запчастей серии"}),
-  X("ap2d36","Uchida AP2D36LV3RS7","Серия Uchida-Rexroth AP2D","axial",["mini"],"Мини- и миди-экскаваторы 7–10 т",
-    "Насос Uchida (Rexroth) серии AP2D36.",["SR-AP2D36LV3RS7-110"],
-    [["Yanmar SV100-1 (близкое исполнение AP2D36LV3RS6)",["172499-73100"],"fridayparts.com"],
-     ["Hitachi ZX70 (AP2D36)",["4472052","4437197"],"fridayparts.com"]],{src:"uchida-b",note:"фото запчастей серии"}),
-  // ---- Rexroth A10VSO / A10VO / A2FO / A7VO и моторы (коды SA, S)
-  X("a10vso28","Rexroth A10VSO28","Серия Rexroth A10VSO","axial",["mobile"],"Мобильная и промышленная гидравлика",
-    "Регулируемый аксиально-поршневой насос открытого контура, 28 см³.",
-    ["SA1V028R0-00-11101-02 (A10VSO28DR/31R-PSC62K01)","SR-A10VSO28ED73/31R-VSC12N01"],[],{src:"a10vso28"}),
-  X("a10vso71","Rexroth A10VSO71","Серия Rexroth A10VSO","axial",["mobile"],"Мобильная и промышленная гидравлика",
-    "Регулируемый аксиально-поршневой насос, 71 см³, регулятор DFR.",
-    ["A10VSO71DFR/31R-VSC12N00","A10VSO71DFR1/31L-PSC62N00"],[],{src:"a10vso71"}),
-  X("a10vso74","Rexroth A10VSO74DFLR","Серия Rexroth A10VSO","axial",["mobile"],"Мобильная гидравлика",
-    "Регулируемый насос 74 см³ с регулятором мощности DFLR.",["A10VSO74DFLR/31R-VSC46N00-S1781"],[],{src:"a10vso"}),
-  X("a10vo60","Rexroth A10VO60","Серия Rexroth A10VO","axial",["mobile"],"Мобильная техника и сельхозтехника",
-    "Регулируемый насос A10VO, 60 см³, серии 52/53.",
-    ["SA10VO60DFR1/52R-VSD46N00","SA10VO60DFR1/52R-VSR46N00-S1607","SA10VO60LA8DS/53R-VWD15N00"],
-    [["Fendt серии 700 (близкое исполнение A10VO60DFR1/52R)",["AGCO G725940011010"],"kramp.com"]],
-    {src:"rexroth-a10vo",note:"фото серии Rexroth"}),
-  X("a10vo63","Rexroth A10VO63LA8DS","Серия Rexroth A10VO","axial",["mobile"],"Мобильная техника",
-    "Регулируемый насос A10VO, 63 см³, регулятор мощности LA8DS.",["SR-A10VO63LA8DS/53R-VUC12N00"],[],
-    {src:"rexroth-a10vso",note:"фото серии Rexroth"}),
-  X("a10vo71-72","Rexroth A10VO71 / A10VO72","Серия Rexroth A10VO","axial",["mobile"],"Мобильная техника",
-    "Регулируемые насосы A10VO: 71 см³ (регулятор DFLR) и 72 см³ (электропропорциональный EP).",
-    ["SA10VO71DFLR/31R-VSC12N00","SA10VO72EP1D/53R-VSD15N00"],[],{src:"a10vso-grey",note:"фото похожего насоса"}),
-  X("a2fo","Rexroth A2FO23 / A2FO28 / A2FO32","Серия Rexroth A2FO","axial",["crane","mobile"],"Самосвалы, КМУ, мобильная техника",
-    "Нерегулируемые насосы с наклонным блоком серии 61: 23, 28 и 32 см³, левое и правое вращение.",
-    ["A2FO23/61L-PAB05","SA2FO28/61L-PAB05","SA2FO32/61R-PAB05"],[],{src:"a2fo"}),
-  X("a7vo55","Rexroth A7VO55LRDS","Серия Rexroth A7VO","axial",["mobile"],"Мобильная техника",
-    "Регулируемый насос с наклонным блоком, 55 см³, регулятор мощности LR с отсечкой давления.",["SA7VO55LRDS/63L-NZB01-S"],[],
-    {src:"rexroth-a7vo",note:"фото серии Rexroth"}),
-  X("a10fe-fm","Гидромоторы Rexroth A10FE / A10FM","Серия Rexroth A10F","axial",["mobile"],"Приводы мобильной техники",
-    "Нерегулируемые аксиально-поршневые гидромоторы: A10FE10, A10FE16, A10FM28.",
-    ["SA10FE10/52R-VCC66X-S0797","SA10FE16/52R-VCC66X-S1274","SA10FM28/52RVSC16N007-S01"],[],
-    {src:"mic-a10fm",note:"фото серии A10FM"},"Аксиально-поршневой гидромотор"),
-  X("pve21","Eaton Vickers PVE21","Eaton Vickers (Danfoss)","axial",["mobile"],"Мини-погрузчики, ирригационная техника",
-    "Аксиально-поршневой насос открытого контура в алюминиевом корпусе.",["PVE21R930CVP12"],
-    [["Сменный номер для PVE21R930CVPC12",["521817"],"ebay"]]),
-  // ---- SKS HYDRAULICS — нерегулируемые A17FO
-  X("sks-a17fo","SKS HYDRAULICS A17FO (32–107)","SKS HYDRAULICS","axial",["crane"],"Грузовики с коробкой отбора мощности: самосвалы, КМУ, мусоровозы",
-    "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
-    ["SA17FO32","SA17FO45","SA17FO56","SA17FO63","SA17FO80","SA17FO107"],[],{src:"mic-a17fo",note:"фото серии A17FO"}),
-  // ---- Boxin (Китай)
-  X("boxin-g30-iso","Boxin — шестерёнчатый насос группы 30, фланец ISO","Boxin Hydraulic","gear",["crane"],"Самосвалы, КМУ, мусоровозы",
-    "Чугунный шестерёнчатый насос группы 30 с фланцем ISO. Рабочий объём: 51, 63, 80, 90 и 100 см³.",
-    ["Group 30 ISO 51cc","Group 30 ISO 63cc","Group 30 ISO 80cc","Group 30 ISO 90cc","Group 30 ISO 100cc"],[],{src:"gear-cbhw-iso63",note:"фото серии"}),
-  X("boxin-g30-uni","Boxin — шестерёнчатый насос группы 30, фланец UNI","Boxin Hydraulic","gear",["crane"],"Самосвалы, КМУ, мусоровозы",
-    "Чугунный шестерёнчатый насос группы 30 с фланцем UNI: 63 и 80 см³.",
-    ["Group 30 UNI 63cc","Group 30 UNI 80cc"],[],{src:"gear-cbhw-uni80",note:"фото серии"}),
-  X("boxin-p6-40","Boxin P6-40","Boxin Hydraulic","axial",["crane"],"Гидравлика грузовиков",
-    "Поршневой насос с фланцем ISO, 40 см³.",["P6-40","Piston pump ISO-40cc"],[],{src:"boxin-p6-40"}),
-  X("boxin-b6-50","Boxin B6-50","Boxin Hydraulic","axial",["crane"],"Гидравлика грузовиков",
-    "Поршневой насос с фланцем ISO, 50 см³.",["B6-50","Piston pump ISO B6-50"],[],{src:"boxin-b6-50"}),
-  X("boxin-p7-63","Boxin P7-63","Boxin Hydraulic","axial",["crane"],"Гидравлика грузовиков",
-    "Поршневой насос с фланцем ISO, 63 см³.",["P7-63","Piston pump ISO-63cc"],[],{src:"boxin-p7-63"}),
-  X("boxin-p9-80","Boxin P9-80","Boxin Hydraulic","axial",["crane"],"Гидравлика грузовиков",
-    "Поршневой насос с фланцем ISO, 80 см³, до 25 МПа.",["P9-80","Piston pump ISO-80cc"],[],{src:"boxin-p9-80"}),
-  X("boxin-lb80","Boxin LB-80 — насос с наклонным блоком 80 см³","Boxin Hydraulic","axial",["crane"],"Коробки отбора мощности грузовиков",
-    "Аксиально-поршневой насос с наклонным блоком (bent pump), 80 см³, до 30 МПа.",["bent pump 80cc","LB-80"],[],{src:"boxin-lb80"}),
-  X("kom-zf50d","Коробка отбора мощности ZF50D","Boxin Hydraulic","other",["crane"],"Грузовики с КПП ZF",
-    "Коробка отбора мощности (КОМ) для КПП ZF: крутящий момент 479,7 Н·м, передаточное отношение 1:1.",["KOM ZF50D"],[],{src:"kom-zf50d"},"Коробка отбора мощности"),
-  X("valve-dh25","Гидрораспределитель DH25","Boxin Hydraulic","other",["crane","mobile"],"Самосвалы, навесное оборудование",
-    "Ручной делитель потока (гидрораспределитель): до 200 л/мин, 315 бар, резьба G1.",["DH25"],[],{src:"valve-dh25"},"Гидрораспределитель"),
-  X("valve-qfck","Гидрораспределитель QFCK-F20L","—","other",["crane"],"Самосвалы",
-    "Гидрораспределитель для гидравлики самосвала.",["QFCK-F20L"],[],{src:"mic-qfck",note:"фото серии"},"Гидрораспределитель"),
-  // ---- HEMA (Турция) — шестерёнчатые насосы для 3в1
-  X("hema-jcb","HEMA для JCB 3CX / 4CX","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики JCB",
-    "Шестерёнчатые насосы HEMA для экскаваторов-погрузчиков JCB.",["HPX52024","HPX52030","HPX52025"],
-    [["JCB (HPX52024)",["20/925578"],"прайс HEMA/DBH"],["JCB (HPX52030)",["20/925580"],"прайс HEMA/DBH"],["JCB (HPX52025)",[],"turparts.com"]],
-    {src:"hema-qx5",note:"фото серии HEMA"}),
-  X("hema-hidromek","HEMA для Hidromek 102B / 102S","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики Hidromek",
-    "Шестерёнчатый насос HEMA для Hidromek HMK 102B / 102S.",["HPX52004"],
-    [["Hidromek HMK 102B, 102S",["F14/73107"],"turparts.com, sesaotomotiv.com"]],{src:"hema-qr",note:"фото серии HEMA"}),
-  X("hema-case","HEMA для Case / New Holland","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики Case и New Holland",
-    "Шестерёнчатые насосы HEMA для экскаваторов-погрузчиков Case и New Holland.",["HPX52017","HPX52016","HPR52018"],
-    [["Case, New Holland (HPX52017, аналог HPX52016)",[],"cermaksan.com"],["Case 580K (HPR52018)",[],"optipart.ru"]],
-    {src:"hema-1cp3",note:"фото серии HEMA"}),
-  X("hema-terex","HEMA для Terex / Fermec","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики Terex, Fermec, Çukurova",
-    "Шестерёнчатые насосы HEMA (David Brown) для экскаваторов-погрузчиков Terex и Fermec.",["HO037036","075706HO"],
-    [["Terex, Fermec 960 (HO037036)",["6102161M91"],"optipart.ru"],["Terex/Fermec MST 422, 442, 444, Çukurova 885 (075706)",[],"optipart.ru"]],
-    {src:"hema-1900",note:"фото серии HEMA"}),
-  X("hema-other","HEMA — другие насосы для тракторов 3в1","HEMA (HATTAT)","gear",["backhoe"],"Экскаваторы-погрузчики",
-    "Шестерёнчатые насосы HEMA. Применение подбираем по коду на шильдике — пришлите фото в WhatsApp.",
-    ["HPX52029","HPX52076","HPS42006","111503","111406","111403","HPX52070","HPX51021","HPX52039","HPX52040","HPX52057","HPX52078","HPX52048","HPX52064"],
-    [["Экскаватор-погрузчик (HPX52057, полный код X1C50415026C42A1K3)",[],"qjtophyds.com"]],
-    {src:"hema-2200",note:"фото серии HEMA"}),
-  X("hema-1pn082","HEMA 1PN082 — алюминиевый шестерёнчатый насос","HEMA (HATTAT)","gear",["mobile"],"Мобильная гидравлика",
-    "Алюминиевый шестерёнчатый насос HEMA серии 1PN, ~8,2 см³.",["1PN.082.CGS1/268"],[],{src:"hema-1",note:"фото серии HEMA"})
-];
-// В совместимость и поиск попадают техника, коды на шильдике и кросс-номера
-PRODUCTS.forEach(p => {
-  p.compat = p.cross.map(c => c[0]);
-  p.keys = [...p.codes, ...p.cross.flatMap(c => c[1])];
-});
-const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
-/* Фото: часть насосов — со страницы SKS PARTS на Satu (sks-parts.satu.kz); фото серий — Kawasaki (global.kawasaki.com), Bosch Rexroth (boschrexroth.africa), HEMA (hema-usa.com); часть фото серий — с made-in-china.com (без логотипов продавцов);
-   Boxin — с витрины завода (bxhs888.en.made-in-china.com), HEMA — с сайта HEMA USA (hema-usa.com).
-   Без фото — картинка с логотипа с пометкой «фото для примера». */
+/* ---------- Каталог ----------
+   Товары, категории и таблица подбора лежат в data/catalog.json — его правит админка (admin.html).
+   cross в файле — {machines, numbers, source}; внутри сайта — [техника, [номера], источник]. */
+let TYPES = {}, TECH = {}, PRODUCTS = [], PICK = {}, BRAND_ALIASES = {}, byId = {};
+function setCatalog(c){
+  TYPES = c.types || {}; TECH = c.tech || {}; PICK = c.pick || {};
+  PRODUCTS = (c.products || []).filter(p => p && p.id && TYPES[p.type]).map(p => ({...p,
+    tech: p.tech || [],
+    codes: p.codes && p.codes.length ? p.codes : [p.name],
+    cross: (p.cross || []).map(x => [x.machines || "", x.numbers || [], x.source || ""])}));
+  // В совместимость и поиск попадают техника, коды на шильдике и кросс-номера
+  PRODUCTS.forEach(p => { p.compat = p.cross.map(c => c[0]).filter(Boolean); p.keys = [...p.codes, ...p.cross.flatMap(c => c[1])]; });
+  byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+  // В подборе остаются только существующие товары; марка без синонимов ищется по своему названию
+  for (const b of Object.keys(PICK)) {
+    for (const m of Object.keys(PICK[b])) { PICK[b][m] = (PICK[b][m] || []).filter(id => byId[id]); if (!PICK[b][m].length) delete PICK[b][m]; }
+    if (!Object.keys(PICK[b]).length) delete PICK[b];
+  }
+  BRAND_ALIASES = Object.fromEntries(Object.keys(PICK).map(b => [b, (c.brandAliases || {})[b] || [b.toLowerCase()]]));
+}
 function photoHTML(p, lazy=true){
   const ph = p.photo;
   const note = ph ? ph.note : "фото для примера";
-  return `<img src="${ph ? "img/" + ph.src + ".jpg" : "pump.jpg"}" alt="${esc(p.name)}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${note}</span>` : "");
+  return `<img src="${esc(ph ? ph.src : "pump.jpg")}" alt="${esc(p.name)}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${esc(note)}</span>` : "");
 }
-
-/* Подбор «машина → насос» — по кросс-номерам выше; подтверждает менеджер */
-const PICK = {
-  "Hyundai":    {"R210LC-7":["k3v112-9c02"], "R220LC-7":["k3v112-9c02"], "R250LC-7":["k3v112-9c02"], "R290LC-7":["k3v140dtp-9c02","k5v140dtp-9c02"], "R305LC-7":["k3v140dtp-9c02","k5v140dtp-9c02"]},
-  "Volvo":      {"EC210B":["k3v112-9n09"], "EC240B":["k3v112-9n09"], "EC460B":["k5v200dth-9n0a"]},
-  "Kobelco":    {"SK330-8":["k5v140dtp-yt6k"], "SK350-8":["k5v140dtp-yt6k"]},
-  "Doosan":     {"DH150-7":["k5v80dtp-hn0q"], "DX150W":["k5v80dtp-hn0q"]},
-  "Hitachi":    {"ZX200":["hpv102"], "EX200-5":["hpv102"], "ZX200-3":["hpv118"], "ZX240-3":["hpv118"], "ZX330":["hpv145"]},
-  "Yanmar":     {"SV100":["ap2d36"]},
-  "JCB":        {"3CX":["hema-jcb"], "4CX":["hema-jcb"]},
-  "Hidromek":   {"102B":["hema-hidromek"], "102S":["hema-hidromek"]},
-  "Case":       {"580":["hema-case"]},
-  "Terex":      {"Fermec 960":["hema-terex"], "MST 422/442/444":["hema-terex"]}
-};
-const BRAND_ALIASES = {
-  "Hyundai":["hyundai","хендай","хундай","хюндай","хёндай","хендэ"], "Volvo":["volvo","вольво"], "Kobelco":["kobelco","кобелко"],
-  "Doosan":["doosan","дусан","дуосан","daewoo","дэу","солар","solar"], "Hitachi":["hitachi","хитачи","хитачы"], "Yanmar":["yanmar","янмар"],
-  "JCB":["jcb","джисиби","жсб"], "Hidromek":["hidromek","хидромек","гидромек"], "Case":["case","кейс"],
-  "New Holland":["new holland","newholland","нью холланд","ньюхолланд"], "Terex":["terex","терекс","fermec","фермек"]
-};
 
 /* ---------- Утилиты ---------- */
 const $ = (s, r=document) => r.querySelector(s);
@@ -1263,14 +1070,14 @@ function pickResult(brand, model){
 
 /* ---------- Категории (меню) ---------- */
 const catBtn = $("#catBtn"), catMenu = $("#catMenu"), mCats = $("#mCats");
-(function buildCats(){
+function buildCats(){
   const c = catLinks();
   const row = x => `<a href="${x.href}">${esc(x.name)}<em>${x.n}</em></a>`;
   catMenu.innerHTML = `<div class="grp">Тип насоса</div>${c.t.map(row).join("")}<div class="grp">По технике</div>${c.h.map(row).join("")}
     <div class="grp m-only">Разделы сайта</div>
     ${[["#home","Главная"],["#about","О компании"],["#pick","Подбор по технике"],["#catalog","Весь каталог"],["#services","Услуги"],["#contacts","Контакты"]].map(([h,n])=>`<a class="m-only" href="${h}">${n}</a>`).join("")}`;
   $("#footCats").innerHTML = c.all.map(x => `<li><a href="${x.href}">${esc(x.name)}</a></li>`).join("");
-})();
+}
 function openCats(){ catMenu.style.setProperty("--mt", Math.max(0, $(".nav").getBoundingClientRect().bottom) + "px"); catMenu.classList.add("open"); catBtn.setAttribute("aria-expanded","true"); mCats.setAttribute("aria-expanded","true"); }
 function closeCats(){ catMenu.classList.remove("open"); catBtn.setAttribute("aria-expanded","false"); mCats.setAttribute("aria-expanded","false"); }
 const toggleCats = () => catMenu.classList.contains("open") ? closeCats() : openCats();
@@ -1493,7 +1300,11 @@ const Demo = (() => {
   return {answer};
 })();
 
-route();
+// Запуск: сначала каталог, потом страница
+fetch("data/catalog.json?v=" + Date.now(), {cache: "no-store"})
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(c => { setCatalog(c); buildCats(); route(); })
+  .catch(() => { $("#main").innerHTML = `<div class="wrap" style="padding:60px 24px 80px"><h1 class="h-page">Каталог не загрузился</h1><p class="lead">Обновите страницу или напишите нам в WhatsApp.</p></div>`; });
 </script>
 </body>
 </html>

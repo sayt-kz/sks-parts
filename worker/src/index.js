@@ -13,7 +13,7 @@ const SYSTEM = `Ты — ИИ-помощник сайта SKS PARTS (юр. SKS H
 Адрес: Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26. Связь только через WhatsApp: +7 777 030 55 66. Почта: info@sksparts.kz.
 Режим работы: пн–пт 9:00–18:00 (обед 13–14), сб 10:00–17:00, вс выходной. Доставка в любой город Казахстана.
 
-Ассортимент (коды на шильдике) и кросс-номера по данным продавцов запчастей (подтверждает менеджер): Kawasaki K3V112DT/DTP-9C02 (SR-K3V112DT-10ER-9C02-201 и др.) — Hyundai R210LC-7/R220LC-7/R250LC-7, номера XJBN-00737, XJBN-00929, 31N6-10010, 31N6-10020, 31N6-10080; K3V112DT-9N09 — Volvo EC210B/EC240B, VOE14571141, VOE14577124, VOE14531594, 1142-00530, SA1142-00531; K3V112DT/DTP-HN0V — Doosan (Daewoo); K3V112DTP-9TDL — вероятно SANY; K3V63DT-9C02; K3V140DTP-9C02 и K5V140DTP-9C02 — Hyundai R290LC-7/R305LC-7, 31N8-10060, 31N8-10080; K5V140DTP-YT6K — Kobelco SK330-8/SK350-8, LC10V00014F1; K5V80DTP-HN0Q — Doosan DH150-7/DX150W; K5V80DTP-9C0Q; K5V200DTH-9N0A — Volvo EC460B, VOE9014531857, 14526609, 14618624, 14612484; Hitachi HPV102HW-25A — ZX200/EX200-5, 9195235, 9205002, 9191164; HPV118HW-26B — ZX200-3/ZX240-3, 9256125, 9262320, 4293950, 9257346; HPV145G — ZX330/ZX350, 9257596, 9256100; Uchida AP2D28LV2RS7, AP2D36LV3RS7; Rexroth A10VSO28, A10VSO71, A10VSO74, A10VO60, A10VO63, A10VO71/72, A2FO23/28/32, A7VO55, гидромоторы A10FE10/16 и A10FM28; Eaton Vickers PVE21R930CVP12; HEMA для JCB — HPX52024 (JCB 20/925578), HPX52030 (JCB 20/925580), HPX52025; для Hidromek 102B/102S — HPX52004 (F14/73107); для Case/New Holland — HPX52017, HPX52016, HPR52018; для Terex/Fermec — HO037036 (6102161M91), 075706HO; прочие HEMA — HPX52029, HPX52076, HPS42006, 111503, 111406, 111403, HPX52070, HPX51021, HPX52039, HPX52040, HPX52057, HPX52078, HPX52048, HPX52064, 1PN.082.CGS1/268.
+Ассортимент, коды на шильдике, кросс-номера и таблица подбора — в разделе «Каталог» ниже (данные продавцов запчастей, подтверждает менеджер).
 Если клиент называет код с шильдика или номер детали — найди его в ассортименте выше. Суффикс в коде насоса (9C02, 9N09 и т. п.) должен совпадать; если кода нет в списке — попроси фото шильдика в WhatsApp.
 
 Правила:
@@ -24,6 +24,22 @@ const SYSTEM = `Ты — ИИ-помощник сайта SKS PARTS (юр. SKS H
 - Не принимай паспортные, платёжные и другие личные данные; если их прислали — попроси не отправлять.
 - На бессмысленный набор букв попроси марку и модель техники или номер насоса.
 - Не обсуждай темы, не связанные с компанией и гидравликой.`;
+
+// Каталог берётся с сайта (data/catalog.json — его правит админка) и кэшируется на 10 минут
+let catalogCache = {text: "", at: 0};
+async function catalogText(env) {
+  if (catalogCache.text && Date.now() - catalogCache.at < 600000) return catalogCache.text;
+  try {
+    const c = await (await fetch(env.CATALOG_URL || "https://sayt-kz.github.io/sks-parts/data/catalog.json")).json();
+    const lines = (c.products || []).map(p => {
+      const cross = (p.cross || []).map(x => x.machines + ((x.numbers || []).length ? ` (${x.numbers.join(", ")})` : "")).join("; ");
+      return `- ${p.name} [id ${p.id}]: ${p.use || ""}. Коды: ${(p.codes || []).join(", ")}` + (cross ? `. Техника и кросс-номера: ${cross}` : "");
+    });
+    const pick = Object.entries(c.pick || {}).map(([b, ms]) => `${b}: ` + Object.entries(ms).map(([m, ids]) => `${m} → ${ids.join(", ")}`).join("; "));
+    catalogCache = {text: `Каталог:\n${lines.join("\n")}\n\nПодбор (марка: модель → id товаров):\n${pick.join("\n")}`, at: Date.now()};
+  } catch (e) { console.error("catalog load failed", e); }
+  return catalogCache.text;
+}
 
 const json = (obj, status, cors) => new Response(JSON.stringify(obj), {status, headers: {"content-type": "application/json; charset=utf-8", ...cors}});
 const FALLBACK = "Сейчас не могу ответить. Напишите, пожалуйста, менеджеру в WhatsApp: +7 777 030 55 66.";
@@ -64,7 +80,8 @@ export default {
     if (spent >= Number(env.MONTHLY_LIMIT_USD || 5)) return json({reply: FALLBACK}, 200, cors);
 
     const product = typeof body.product === "string" ? body.product.replace(/[^a-z0-9-]/gi, "").slice(0, 40) : "";
-    const system = product ? `${SYSTEM}\n\nКлиент открыл страницу товара с кодом «${product}».` : SYSTEM;
+    const base = `${SYSTEM}\n\n${await catalogText(env)}`;
+    const system = product ? `${base}\n\nКлиент открыл страницу товара с id «${product}».` : base;
 
     const client = new Anthropic({apiKey: env.ANTHROPIC_API_KEY});
     try {
