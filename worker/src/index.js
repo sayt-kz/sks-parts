@@ -30,7 +30,7 @@ let catalogCache = {text: "", at: 0};
 async function catalogText(env) {
   if (catalogCache.text && Date.now() - catalogCache.at < 600000) return catalogCache.text;
   try {
-    const c = await (await fetch(env.CATALOG_URL || "https://sayt-kz.github.io/sks-parts/data/catalog.json")).json();
+    const c = await (await fetch(env.CATALOG_URL || "https://sksparts.kz/data/catalog.json")).json();
     const lines = (c.products || []).map(p => {
       const cross = (p.cross || []).map(x => x.machines + ((x.numbers || []).length ? ` (${x.numbers.join(", ")})` : "")).join("; ");
       return `- ${p.name} [id ${p.id}]: ${p.use || ""}. Коды: ${(p.codes || []).join(", ")}` + (cross ? `. Техника и кросс-номера: ${cross}` : "");

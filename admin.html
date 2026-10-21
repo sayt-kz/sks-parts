@@ -280,7 +280,7 @@ async function saveAccess(password, data) {
 }
 
 /* ---------- Вход ---------- */
-function siteUrl() { const [o, n] = S.repo.split("/"); return `https://${o}.github.io/${n}/`; }
+function siteUrl() { return location.origin + location.pathname.replace(/[^/]*$/, ""); }
 async function login(repo, branch, token, remember) {
   S.repo = repo.trim().replace(/^https:\/\/github\.com\//, "").replace(/\/$/, ""); S.branch = branch.trim() || "main"; S.token = token.trim();
   const info = await gh(`/repos/${S.repo}`);
