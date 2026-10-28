@@ -1119,6 +1119,27 @@
    "kind": ""
   },
   {
+   "id": "boxin-shesterenchatyy-nasos-gruppy-30-un-2",
+   "name": "Boxin — шестерёнчатый насос группы 30, UNI 80cc bidirectional",
+   "brand": "Boxin Hydraulic",
+   "type": "gear",
+   "tech": [
+    "crane"
+   ],
+   "use": "Самосвалы, КМУ, мусоровозы",
+   "desc": "Чугунный шестерёнчатый насос группы 30 с фланцем UNI: 63 и 80 см³.",
+   "codes": [
+    "Group 30 UNI 63cc",
+    "Group 30 UNI 80cc"
+   ],
+   "cross": [],
+   "photo": {
+    "src": "img/gear-cbhw-uni80.jpg",
+    "note": "фото серии"
+   },
+   "kind": ""
+  },
+  {
    "id": "boxin-p6-40",
    "name": "Boxin P6-40",
    "brand": "Boxin Hydraulic",
