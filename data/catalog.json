@@ -131,6 +131,24 @@
    "kind": ""
   },
   {
+   "id": "sks-hydraulics-a17fo107",
+   "name": "SKS HYDRAULICS A17FO107",
+   "brand": "SKS HYDRAULICS",
+   "type": "axial",
+   "tech": [
+    "crane"
+   ],
+   "use": "Грузовики с коробкой отбора мощности: самосвалы, КМУ, мусоровозы",
+   "desc": "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
+   "codes": [],
+   "cross": [],
+   "photo": {
+    "src": "img/novyy-tovar-mvrw0ac3.jpg",
+    "note": ""
+   },
+   "kind": ""
+  },
+  {
    "id": "k3v112-9c02",
    "name": "Kawasaki K3V112DT / DTP — исполнение 9C02",
    "brand": "Серия Kawasaki K3V",
