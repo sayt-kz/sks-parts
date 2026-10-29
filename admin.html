@@ -91,6 +91,24 @@ table.cross td:last-child{width:40px}
 .chip button{border:0;background:none;color:inherit;font-weight:800;padding:0 4px}
 .chips select{width:auto;max-width:260px;height:30px;padding:2px 6px;font-size:12.5px}
 
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:12px}
+.gitem{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:8px;display:grid;gap:6px}
+.gitem .pv{height:120px;border-radius:6px;background:#f7f9fc;display:grid;place-items:center;overflow:hidden;position:relative}
+.gitem .pv img{max-width:100%;max-height:100%;object-fit:contain}
+.gitem .main{position:absolute;left:6px;top:6px;background:var(--blue);color:#fff;font-size:11px;font-weight:800;padding:2px 7px;border-radius:10px}
+.gitem .row{display:flex;gap:4px}
+.gitem .row .btn{flex:1;padding:0 4px}
+.gitem select,.gitem input{font-size:12.5px;padding:5px 7px}
+.gadd{display:grid;place-items:center;min-height:200px;border:2px dashed var(--line);border-radius:var(--r);color:var(--blue);font-weight:800;cursor:pointer;text-align:center;padding:10px}
+.gadd:hover{border-color:var(--blue);background:#f4f8fe}
+.cats h3{margin:0 0 4px;font-size:16px}
+.cat{display:grid;grid-template-columns:130px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-top:1px solid #eef2f7}
+.cat .pv{width:130px;height:96px;border-radius:8px;background:#f7f9fc;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.cat .pv img{max-width:100%;max-height:100%;object-fit:contain}
+.cat .pv span{font-size:12px;color:var(--muted);text-align:center;padding:4px}
+.cat .side{display:grid;gap:6px;justify-items:end}
+.cat .cnt{font-size:12.5px;color:var(--ink2);font-weight:700}
+@media (max-width:700px){.cat{grid-template-columns:1fr}.cat .side{justify-items:start}}
 .box{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;max-width:760px;margin:16px auto}
 .box h2{margin:0 0 8px;font-size:18px}
 .box p{color:var(--ink2)}
@@ -145,6 +163,7 @@ table.cross td:last-child{width:40px}
     <b>SKS PARTS · Админка</b>
     <nav class="tabs" role="tablist">
       <button type="button" data-tab="products" aria-selected="true">Товары</button>
+      <button type="button" data-tab="cats" aria-selected="false">Категории</button>
       <button type="button" data-tab="pick" aria-selected="false">Подбор по технике</button>
       <button type="button" data-tab="backup" aria-selected="false">Настройки</button>
     </nav>
@@ -164,6 +183,15 @@ table.cross td:last-child{width:40px}
       <div class="list" id="list"></div>
     </aside>
     <section class="panel ed" id="editor"><div class="empty">Выберите товар слева или добавьте новый.</div></section>
+  </section>
+
+  <section id="tab-cats" class="pick cats hidden">
+    <div class="box" style="max-width:none;margin:0 0 14px">
+      <h2>Категории</h2>
+      <p style="margin:0">Категории видны в меню «Категории», на главной странице (плитки с картинками) и в фильтрах каталога. «Тип насоса» — у каждого товара ровно один тип. «Разделы по технике» — у товара может быть несколько разделов (галочки в карточке товара). Порядок здесь = порядок на сайте.</p>
+    </div>
+    <div class="box" style="max-width:none;margin:0 0 14px"><h3>Тип насоса</h3><div id="catTypes"></div><button class="btn primary sm" type="button" id="addType" style="margin-top:10px">+ Добавить тип</button></div>
+    <div class="box" style="max-width:none;margin:0"><h3>Разделы по технике</h3><div id="catTech"></div><button class="btn primary sm" type="button" id="addTech" style="margin-top:10px">+ Добавить раздел</button></div>
   </section>
 
   <section id="tab-pick" class="pick hidden">
@@ -242,6 +270,12 @@ async function loadCatalog() {
   S.catalog.products = S.catalog.products || [];
   S.catalog.pick = S.catalog.pick || {};
   S.catalog.brandAliases = S.catalog.brandAliases || {};
+  S.catalog.types = S.catalog.types || {}; S.catalog.tech = S.catalog.tech || {};
+  // Старый формат (одно photo) → список photos; первое фото — главное
+  for (const p of S.catalog.products) {
+    p.photos = (p.photos && p.photos.length ? p.photos : p.photo ? [p.photo] : []).filter(x => x && x.src);
+    delete p.photo;
+  }
 }
 
 /* ---------- Доступ по паролю ----------
@@ -380,8 +414,9 @@ function toast(text, bad) { const t = el("div", { class: "toast" + (bad ? " bad"
 /* ---------- Вкладки ---------- */
 $$(".tabs button").forEach(b => b.addEventListener("click", () => {
   $$(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
-  ["products", "pick", "backup"].forEach(t => $("#tab-" + t).classList.toggle("hidden", t !== b.dataset.tab));
+  ["products", "cats", "pick", "backup"].forEach(t => $("#tab-" + t).classList.toggle("hidden", t !== b.dataset.tab));
   if (b.dataset.tab === "pick") renderPick();
+  if (b.dataset.tab === "cats") renderCats();
 }));
 
 function renderAll() {
@@ -393,7 +428,26 @@ function renderAll() {
 const byId = id => S.catalog.products.find(p => p.id === id);
 const norm = s => String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[\s\-_/.]+/g, "");
 // Админка лежит рядом с сайтом, поэтому фото берутся по относительному пути; новые — из памяти до перезагрузки
-function photoSrc(p) { if (!p.photo) return null; return S.pending[p.photo.src] ? S.pending[p.photo.src].url : p.photo.src; }
+const srcOf = path => S.pending[path] ? S.pending[path].url : path;
+function photoSrc(p) { return p.photos && p.photos.length ? srcOf(p.photos[0].src) : null; }
+// Загрузка картинки: уменьшает и кладёт в очередь на сохранение, возвращает путь в img/
+async function addPending(file, base, maxSide = 900) {
+  const { blob, url } = await resizeImage(file, maxSide);
+  const path = `img/${base}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}.jpg`;
+  S.pending[path] = { blob, url };
+  return path;
+}
+// Выбор подписи к фото: готовые варианты или своя
+function noteControl(ph, onChange) {
+  const sel = el("select", {}, ...NOTES.map(n => el("option", { value: n, text: n || "без подписи (точное фото)" })), el("option", { value: "__custom", text: "своя подпись…" }));
+  const custom = el("input", { type: "text", placeholder: "Своя подпись" });
+  const cur = ph.note || "";
+  sel.value = NOTES.includes(cur) ? cur : "__custom"; custom.value = NOTES.includes(cur) ? "" : cur;
+  const sync = () => { custom.classList.toggle("hidden", sel.value !== "__custom"); ph.note = sel.value === "__custom" ? custom.value.trim() : sel.value; onChange(); };
+  custom.classList.toggle("hidden", sel.value !== "__custom");
+  sel.addEventListener("change", sync); custom.addEventListener("input", sync);
+  return [sel, custom];
+}
 
 /* ---------- Список товаров ---------- */
 function renderList() {
@@ -419,7 +473,7 @@ function uniqueId(base) { let id = base, i = 2; while (byId(id)) id = `${base}-$
 
 $("#addBtn").addEventListener("click", () => {
   const type = Object.keys(S.catalog.types)[0];
-  const p = { id: uniqueId("novyy-tovar"), name: "Новый товар", brand: "", type, tech: [], use: "", desc: "", codes: [], cross: [], photo: null, kind: "", _new: true };
+  const p = { id: uniqueId("novyy-tovar"), name: "Новый товар", brand: "", type, tech: [], use: "", desc: "", codes: [], cross: [], photos: [], kind: "", _new: true };
   S.catalog.products.unshift(p); S.current = p.id; markDirty("p:" + p.id); renderList(); renderEditor(p.id);
   setTimeout(() => $("#e-name") && $("#e-name").select(), 0);
 });
@@ -448,30 +502,26 @@ function renderEditor(id) {
   const codes = bind("codes", el("textarea", { class: "mono", rows: 4 }), v => v.split("\n").map(s => s.trim()).filter(Boolean));
   codes.value = (p.codes || []).join("\n");
 
-  // Фото
-  const pv = el("div", { class: "pv" });
-  const drawPv = () => { const src = photoSrc(p); pv.replaceChildren(src ? el("img", { src, alt: "" }) : el("span", { text: "нет фото" })); };
-  drawPv();
-  const file = el("input", { type: "file", accept: "image/*", hidden: true });
-  file.addEventListener("change", async () => {
-    const f = file.files[0]; if (!f) return;
-    try {
-      const { blob, url } = await resizeImage(f, 900);
-      const path = `img/${p.id}-${Date.now().toString(36)}.jpg`;
-      S.pending[path] = { blob, url };
-      p.photo = { src: path, note: p.photo ? p.photo.note : "" };
-      touch(); drawPv(); noteSel.value = NOTES.includes(p.photo.note) ? p.photo.note : "__custom";
-    } catch { toast("Не удалось прочитать картинку", true); }
-    file.value = "";
+  // Фото: несколько, первое — главное (показывается в каталоге)
+  p.photos = p.photos || [];
+  const gal = el("div", { class: "gal" });
+  const files = el("input", { type: "file", accept: "image/*", multiple: true, hidden: true });
+  files.addEventListener("change", async () => {
+    for (const f of [...files.files]) {
+      try { p.photos.push({ src: await addPending(f, p.id), note: "" }); } catch { toast("Не удалось прочитать картинку " + f.name, true); }
+    }
+    files.value = ""; touch(); drawGal();
   });
-  const noteSel = el("select", {}, ...NOTES.map(n => el("option", { value: n, text: n || "точное фото этой модели (без подписи)" })), el("option", { value: "__custom", text: "своя подпись…" }));
-  const noteCustom = el("input", { type: "text", placeholder: "Своя подпись" });
-  const cur = p.photo ? p.photo.note || "" : "";
-  noteSel.value = NOTES.includes(cur) ? cur : "__custom"; noteCustom.value = NOTES.includes(cur) ? "" : cur;
-  const syncNote = () => { noteCustom.classList.toggle("hidden", noteSel.value !== "__custom"); if (p.photo) { p.photo.note = noteSel.value === "__custom" ? noteCustom.value.trim() : noteSel.value; touch(); } };
-  noteSel.addEventListener("change", syncNote); noteCustom.addEventListener("input", syncNote);
-  noteCustom.classList.toggle("hidden", noteSel.value !== "__custom");
-  const removePhoto = el("button", { class: "btn sm danger", type: "button", text: "Убрать фото", onclick: () => { p.photo = null; touch(); drawPv(); } });
+  const move = (i, d) => { const j = i + d; if (j < 0 || j >= p.photos.length) return; [p.photos[i], p.photos[j]] = [p.photos[j], p.photos[i]]; touch(); drawGal(); };
+  const drawGal = () => gal.replaceChildren(...p.photos.map((ph, i) => el("div", { class: "gitem" },
+      el("div", { class: "pv" }, el("img", { src: srcOf(ph.src), alt: "" }), i === 0 ? el("span", { class: "main", text: "главное" }) : null),
+      ...noteControl(ph, touch),
+      el("div", { class: "row" },
+        el("button", { class: "btn sm", type: "button", title: "Левее", text: "←", disabled: i === 0, onclick: () => move(i, -1) }),
+        el("button", { class: "btn sm", type: "button", title: "Правее", text: "→", disabled: i === p.photos.length - 1, onclick: () => move(i, 1) }),
+        el("button", { class: "btn sm danger", type: "button", title: "Удалить фото", text: "✕", onclick: () => { p.photos.splice(i, 1); touch(); drawGal(); } })))),
+    el("label", { class: "gadd" }, el("span", { text: p.photos.length ? "+ Добавить ещё фото" : "+ Добавить фото" }), files));
+  drawGal();
 
   // Кросс-номера
   const tbody = el("tbody");
@@ -513,13 +563,9 @@ function renderEditor(id) {
     field("Применение (коротко, видно в карточке)", bind("use", el("input", { type: "text", value: p.use || "", placeholder: "Экскаваторы Hyundai 21–25 т" }))),
     field("Описание", bind("desc", el("textarea", { rows: 3 }, p.desc || ""))),
     field("Коды на шильдике — по одному в строке", codes, "Первый код показывается в карточке. По кодам работает поиск и ИИ-помощник."),
-    el("label", { class: "f" }, el("span", { text: "Фото" })),
-    el("div", { class: "photo" }, pv,
-      el("div", {},
-        el("div", { class: "actions", style: "border:0;padding:0;margin:0 0 10px" },
-          el("label", { class: "btn primary sm", style: "cursor:pointer" }, "Загрузить фото", file), removePhoto),
-        field("Подпись на фото", noteSel), noteCustom,
-        el("div", { class: "hint", text: "Фото автоматически уменьшается до 900 px. Лучше всего — насос на светлом фоне, без чужих логотипов." }))),
+    el("label", { class: "f" }, el("span", { text: "Фото — можно несколько. Первое — главное, его видно в каталоге; порядок меняется стрелками" })),
+    gal,
+    el("div", { class: "hint", text: "Можно выбрать сразу несколько файлов. Фото автоматически уменьшается до 900 px. Лучше всего — светлый фон, без чужих логотипов." }),
     el("label", { class: "f" }, el("span", { text: "Кросс-номера и применение" })),
     el("table", { class: "cross" }, el("thead", {}, el("tr", {}, el("th", { text: "Техника" }), el("th", { text: "Номера (через запятую)" }), el("th", { text: "Источник" }), el("th"))), tbody),
     el("button", { class: "btn sm", type: "button", text: "+ строка", onclick: () => { (p.cross = p.cross || []).push({ machines: "", numbers: [], source: "" }); touch(); drawCross(); } }),
@@ -546,6 +592,71 @@ function resizeImage(file, maxSide) {
     img.onerror = reject; img.src = URL.createObjectURL(file);
   });
 }
+
+/* ---------- Категории ---------- */
+function catKey(dict, name) { const base = slug(name) || "kategoriya"; let k = base, i = 2; while (dict[k]) k = `${base}-${i++}`; return k; }
+// Переименовать ключ новой категории (сохраняет порядок) и обновить ссылки у товаров
+function renameCatKey(kind, oldK, newK) {
+  const dict = S.catalog[kind], rebuilt = {};
+  for (const k of Object.keys(dict)) rebuilt[k === oldK ? newK : k] = dict[k];
+  S.catalog[kind] = rebuilt;
+  for (const p of S.catalog.products) {
+    if (kind === "types" && p.type === oldK) p.type = newK;
+    if (kind === "tech") p.tech = (p.tech || []).map(t => t === oldK ? newK : t);
+  }
+}
+function renderCatList(kind, box) {
+  const dict = S.catalog[kind];
+  const keys = Object.keys(dict);
+  const count = k => kind === "types" ? S.catalog.products.filter(p => p.type === k).length : S.catalog.products.filter(p => (p.tech || []).includes(k)).length;
+  const reorder = (i, d) => { const j = i + d; if (j < 0 || j >= keys.length) return; [keys[i], keys[j]] = [keys[j], keys[i]]; const r = {}; keys.forEach(k => r[k] = dict[k]); S.catalog[kind] = r; markDirty("cats"); renderCats(); };
+  box.replaceChildren(...keys.map((k, i) => {
+    const v = dict[k], n = count(k);
+    const pv = el("div", { class: "pv" }, v.image ? el("img", { src: srcOf(v.image), alt: "" }) : el("span", { text: "нет фото — на сайте значок" }));
+    const file = el("input", { type: "file", accept: "image/*", hidden: true });
+    file.addEventListener("change", async () => {
+      const f0 = file.files[0]; if (!f0) return;
+      try { v.image = await addPending(f0, "cat-" + k, 600); markDirty("cats"); renderCats(); } catch { toast("Не удалось прочитать картинку", true); }
+    });
+    const name = el("input", { type: "text", value: v.name, placeholder: "Название категории" });
+    name.addEventListener("input", () => { v.name = name.value; markDirty("cats"); });
+    name.addEventListener("change", () => { if (v._new && name.value.trim()) { const nk = catKey(Object.fromEntries(Object.entries(dict).filter(([kk]) => kk !== k)), name.value); if (nk !== k) { renameCatKey(kind, k, nk); renderCats(); } } });
+    const short = kind === "types" ? el("input", { type: "text", value: v.short || "", placeholder: "Коротко для карточки, например: Аксиально-поршневой" }) : null;
+    if (short) short.addEventListener("input", () => { v.short = short.value; markDirty("cats"); });
+    const del = el("button", { class: "btn sm danger", type: "button", text: "Удалить" });
+    del.addEventListener("click", () => {
+      if (kind === "types" && n) { toast(`Сначала перенесите ${n} товар(ов) этого типа в другой тип (поле «Тип» в карточке товара).`, true); return; }
+      if (kind === "types" && keys.length === 1) { toast("Должен остаться хотя бы один тип.", true); return; }
+      if (!confirmInline(del, n ? `Убрать у ${n} товаров?` : "Точно удалить?")) return;
+      delete S.catalog[kind][k];
+      if (kind === "tech") for (const p of S.catalog.products) p.tech = (p.tech || []).filter(t => t !== k);
+      markDirty("cats"); renderCats(); renderAll();
+    });
+    return el("div", { class: "cat" },
+      pv,
+      el("div", { style: "display:grid;gap:6px" }, name, short,
+        el("div", { class: "actions", style: "border:0;padding:0;margin:0" },
+          el("label", { class: "btn sm", style: "cursor:pointer" }, v.image ? "Заменить фото" : "Загрузить фото", file),
+          v.image ? el("button", { class: "btn sm", type: "button", text: "Убрать фото", onclick: () => { delete v.image; markDirty("cats"); renderCats(); } }) : null),
+        el("div", { class: "hint", text: "Адрес раздела: #catalog?" + (kind === "types" ? "type=" : "tech=") + k })),
+      el("div", { class: "side" },
+        el("span", { class: "cnt", text: n + " тов." }),
+        el("div", { class: "row", style: "display:flex;gap:4px" },
+          el("button", { class: "btn sm", type: "button", title: "Выше", text: "↑", disabled: i === 0, onclick: () => reorder(i, -1) }),
+          el("button", { class: "btn sm", type: "button", title: "Ниже", text: "↓", disabled: i === keys.length - 1, onclick: () => reorder(i, 1) })),
+        del));
+  }));
+}
+function renderCats() { renderCatList("types", $("#catTypes")); renderCatList("tech", $("#catTech")); }
+const addCat = kind => {
+  const dict = S.catalog[kind];
+  const k = catKey(dict, kind === "types" ? "novyy-tip" : "novyy-razdel");
+  dict[k] = kind === "types" ? { name: "Новый тип", short: "", icon: "pump-axial", _new: true } : { name: "Для новой техники", icon: "pump-axial", _new: true };
+  markDirty("cats"); renderCats();
+  setTimeout(() => { const ins = $$("#" + (kind === "types" ? "catTypes" : "catTech") + " .cat input[type=text]"); const last = kind === "types" ? ins[ins.length - 2] : ins[ins.length - 1]; if (last) last.select(); }, 0);
+};
+$("#addType").addEventListener("click", () => addCat("types"));
+$("#addTech").addEventListener("click", () => addCat("tech"));
 
 /* ---------- Подбор по технике ---------- */
 function renderPick() {
@@ -590,7 +701,8 @@ $("#addBrand").addEventListener("click", () => {
 /* ---------- Резервная копия ---------- */
 function cleanCatalog() {
   const c = JSON.parse(JSON.stringify(S.catalog));
-  c.products.forEach(p => { delete p._new; });
+  c.products.forEach(p => { delete p._new; p.photos = p.photos || []; p.photo = p.photos[0] || null; });
+  for (const d of [c.types || {}, c.tech || {}]) for (const v of Object.values(d)) delete v._new;
   c.updated = new Date().toISOString().slice(0, 10);
   return c;
 }
@@ -624,7 +736,7 @@ $("#saveBtn").addEventListener("click", async () => {
   S.saving = true; updateStatus("Сохраняю…");
   try {
     // 1) новые фото, которые ещё используются
-    const used = new Set(S.catalog.products.map(p => p.photo && p.photo.src).filter(Boolean));
+    const used = new Set([...S.catalog.products.flatMap(p => (p.photos || []).map(x => x.src)), ...[...Object.values(S.catalog.types), ...Object.values(S.catalog.tech)].map(v => v.image)].filter(Boolean));
     const paths = Object.keys(S.pending).filter(p => used.has(p) && !S.pending[p].uploaded);
     for (const [i, path] of paths.entries()) {
       updateStatus(`Загружаю фото ${i + 1} из ${paths.length}…`);
@@ -640,6 +752,7 @@ $("#saveBtn").addEventListener("click", async () => {
       content: b64FromText(JSON.stringify(cleanCatalog(), null, 1)), sha: S.sha, branch: S.branch }) });
     S.sha = res.content.sha;
     S.catalog.products.forEach(p => delete p._new);
+    for (const d of [S.catalog.types, S.catalog.tech]) for (const v of Object.values(d)) delete v._new;
     S.dirty.clear(); S.saving = false;
     updateStatus("Сохранено. На сайте — через 1–5 минут", "ok"); renderList(); if (S.current) renderEditor(S.current);
     toast("Сохранено! Изменения появятся на сайте через 1–5 минут.");

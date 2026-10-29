@@ -171,8 +171,13 @@ main{min-height:60vh}
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .tile{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:10px;min-height:210px;overflow:hidden;transition:border-color .2s,box-shadow .25s,transform .25s}
 .tile:hover{border-color:var(--blue);box-shadow:0 14px 30px rgba(22,119,230,.14);transform:translateY(-3px)}
-.tile svg.pic{height:96px;width:100%;margin:0 auto 4px;transition:transform .35s}
-.tile:hover svg.pic{transform:scale(1.06)}
+.tile .pic{height:96px;width:100%;margin:0 auto 4px;transition:transform .35s}
+.tile img.pic{height:120px;object-fit:contain}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.thumb{width:76px;height:58px;padding:3px;border:2px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
+.thumb.on{border-color:var(--blue)}
+.thumb img{width:100%;height:100%;object-fit:contain}
+.tile:hover .pic{transform:scale(1.06)}
 .tile b{font-size:15.5px;line-height:1.3}
 .tile small{color:var(--ink2);font-size:13px;margin-top:auto;display:flex;justify-content:space-between;align-items:center}
 .tile small span{color:var(--blue);font-weight:800}
@@ -413,7 +418,7 @@ footer .wa-f .ico{color:var(--wa)}
   .hero-cta .btn{flex:1 1 100%}
   .adv,.tiles,.svc,.how,.lists{grid-template-columns:1fr}
   .tile{min-height:0;flex-direction:row;align-items:center}
-  .tile svg.pic{width:90px;height:64px;margin:0;flex:none}
+  .tile .pic{width:90px;height:64px;margin:0;flex:none}
   .tile small{margin-top:4px;flex-direction:column;align-items:flex-start;gap:2px}
   .strip{grid-template-columns:1fr;padding:24px}
   .strip .btns{justify-content:stretch}
@@ -691,10 +696,16 @@ const CHAT_LIMIT = 30; // сообщений за сессию
 let TYPES = {}, TECH = {}, PRODUCTS = [], PICK = {}, BRAND_ALIASES = {}, byId = {};
 function setCatalog(c){
   TYPES = c.types || {}; TECH = c.tech || {}; PICK = c.pick || {};
-  PRODUCTS = (c.products || []).filter(p => p && p.id && TYPES[p.type]).map(p => ({...p,
-    tech: p.tech || [],
+  // Категории, созданные в админке, могут быть без значка — берём значок по умолчанию
+  for (const v of [...Object.values(TYPES), ...Object.values(TECH)]) { v.icon = v.icon || "pump-axial"; v.short = v.short || v.name; }
+  PRODUCTS = (c.products || []).filter(p => p && p.id && TYPES[p.type]).map(p => {
+    // Несколько фото: photos[0] — главное; старый формат с одним photo тоже поддерживается
+    const photos = (p.photos && p.photos.length ? p.photos : p.photo ? [p.photo] : []).filter(x => x && x.src);
+    return {...p, photos, photo: photos[0] || null,
+    tech: (p.tech || []).filter(k => TECH[k]),
     codes: p.codes && p.codes.length ? p.codes : [p.name],
-    cross: (p.cross || []).map(x => [x.machines || "", x.numbers || [], x.source || ""])}));
+    cross: (p.cross || []).map(x => [x.machines || "", x.numbers || [], x.source || ""])};
+  });
   // В совместимость и поиск попадают техника, коды на шильдике и кросс-номера
   PRODUCTS.forEach(p => { p.compat = p.cross.map(c => c[0]).filter(Boolean); p.keys = [...p.codes, ...p.cross.flatMap(c => c[1])]; });
   byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
@@ -705,11 +716,12 @@ function setCatalog(c){
   }
   BRAND_ALIASES = Object.fromEntries(Object.keys(PICK).map(b => [b, (c.brandAliases || {})[b] || [b.toLowerCase()]]));
 }
-function photoHTML(p, lazy=true){
-  const ph = p.photo;
+function photoHTML(p, lazy=true, ph=p.photo){
   const note = ph ? ph.note : "фото для примера";
   return `<img src="${esc(ph ? ph.src : "pump.jpg")}" alt="${esc(p.name)}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${esc(note)}</span>` : "");
 }
+// Картинка категории: своё фото из админки или значок
+const catPic = x => x.image ? `<img class="pic" src="${esc(x.image)}" alt="" loading="lazy">` : icon(x.icon, "pic");
 
 /* ---------- Утилиты ---------- */
 const $ = (s, r=document) => r.querySelector(s);
@@ -722,8 +734,8 @@ const icon = (id, cls="ico") => `<svg class="${cls}" aria-hidden="true"><use hre
 const plural = (n, a, b, c) => { const m=n%10, h=n%100; return n+" "+(m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c); };
 
 function catLinks(){
-  const t = Object.entries(TYPES).map(([k,v]) => ({href:`#catalog?type=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.type===k).length, icon:v.icon}));
-  const h = Object.entries(TECH).map(([k,v]) => ({href:`#catalog?tech=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.tech.includes(k)).length, icon:v.icon}));
+  const t = Object.entries(TYPES).map(([k,v]) => ({href:`#catalog?type=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.type===k).length, icon:v.icon, image:v.image}));
+  const h = Object.entries(TECH).map(([k,v]) => ({href:`#catalog?tech=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.tech.includes(k)).length, icon:v.icon, image:v.image}));
   return {t, h, all:[...t, ...h]};
 }
 function searchProducts(q){
@@ -791,7 +803,7 @@ const PAGES = {
       <div class="wrap">
         <h2 class="h-sec">Категории</h2>
         <p class="lead">Выберите тип насоса или технику — покажем подходящие модели.</p>
-        <div class="tiles">${c.all.map(x => `<a class="tile" href="${x.href}">${icon(x.icon,"pic")}<div><b>${esc(x.name)}</b><small>${plural(x.n,"товар","товара","товаров")} <span>Смотреть →</span></small></div></a>`).join("")}</div>
+        <div class="tiles">${c.all.map(x => `<a class="tile" href="${x.href}">${catPic(x)}<div><b>${esc(x.name)}</b><small>${plural(x.n,"товар","товара","товаров")} <span>Смотреть →</span></small></div></a>`).join("")}</div>
       </div>
     </section>
     <section class="sec sec-gray">
@@ -916,7 +928,10 @@ const PAGES = {
     const buyText = `Здравствуйте! Хочу купить ${p.name}. Подскажите цену и наличие.`;
     return {title:`${p.name} — купить в Алматы | SKS PARTS`, crumbs:[["Каталог","#catalog"],[TYPES[p.type].name,`#catalog?type=${p.type}`],[p.name]], html:`
     <div class="wrap"><div class="prod">
-      <div class="photo${p.photo ? "" : " dark"}" style="margin-top:30px">${photoHTML(p, false)}</div>
+      <div class="gallery" style="margin-top:30px">
+        <div class="photo${p.photo ? "" : " dark"}" id="gMain">${photoHTML(p, false)}</div>
+        ${p.photos.length > 1 ? `<div class="thumbs">${p.photos.map((ph, i) => `<button type="button" class="thumb${i ? "" : " on"}" data-i="${i}" aria-label="Фото ${i + 1}"><img src="${esc(ph.src)}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}
+      </div>
       <div>
         <h1>${esc(p.name)}</h1>
         <table class="spec">
@@ -977,6 +992,11 @@ const PAGES = {
       const tr = $("#track"); const step = d => tr.scrollBy({left: d * (tr.firstElementChild.offsetWidth + 18), behavior: reduceMotion.matches ? "auto" : "smooth"});
       $("#simL").addEventListener("click", () => step(-1)); $("#simR").addEventListener("click", () => step(1));
       $("#askAi").addEventListener("click", () => Chat.open(`Расскажи про насос ${p.name}: на какую технику он подходит?`, p.id));
+      // Галерея: клик по миниатюре меняет главное фото
+      $$(".thumb").forEach(b => b.addEventListener("click", () => {
+        $("#gMain").innerHTML = photoHTML(p, false, p.photos[+b.dataset.i]);
+        $$(".thumb").forEach(x => x.classList.toggle("on", x === b));
+      }));
     }};
   },
 
@@ -1284,7 +1304,7 @@ const Demo = (() => {
     }
     // Тип техники
     const techMap = [["мини","mini"],["экскаватор","excavator"],["3в1","backhoe"],["3 в 1","backhoe"],["погрузчик","backhoe"],["кран","crane"],["кму","crane"],["манипулятор","crane"],["мусоровоз","crane"],["самосвал","crane"],["грузовик","crane"],["отбора мощности","crane"],[" ком ","crane"],["лесовоз","crane"],["автовышк","crane"],["вышк","crane"],["каток","mobile"],["катк","mobile"],["фрез","mobile"],["комбайн","mobile"],["трактор","mobile"]];
-    const tm = techMap.find(([w]) => s.includes(w));
+    const tm = techMap.find(([w, k]) => TECH[k] && s.includes(w)); // раздел могли удалить в админке
     if(tm) return {text:L.tech(TECH[tm[1]].name), links:[{label:TECH[tm[1]].name, href:`#catalog?tech=${tm[1]}`}]};
     // Контекст товара («Спросить ИИ» на странице товара)
     if(ctx && byId[ctx] && has(s, ["этот","этого","про насос","подходит","расскажи"])){
