@@ -589,11 +589,19 @@ function renderEditor(id) {
       field("Адрес на сайте (ID)", idInput, p._new ? "Ссылка на товар: #p-" + p.id : "У сохранённого товара не меняется, чтобы не сломать ссылки"),
       field("Серия / производитель", bind("brand", el("input", { type: "text", value: p.brand || "", placeholder: "Серия Kawasaki K3V" })))),
     el("div", { class: "grid2" },
+      field("Название — на казахском", bind("name_kk", el("input", { type: "text", value: p.name_kk || "", placeholder: "если в названии есть русские слова" }))),
+      field("Серия — на казахском", bind("brand_kk", el("input", { type: "text", value: p.brand_kk || "", placeholder: "Kawasaki K3V сериясы" })))),
+    el("div", { class: "grid2" },
       field("Тип", type),
       field("Вид изделия (если не насос)", bind("kind", el("input", { type: "text", value: p.kind || "", placeholder: "например: Гидромотор" })))),
     field("Для какой техники (разделы каталога)", tech),
-    field("Применение (коротко, видно в карточке)", bind("use", el("input", { type: "text", value: p.use || "", placeholder: "Экскаваторы Hyundai 21–25 т" }))),
-    field("Описание", bind("desc", el("textarea", { rows: 3 }, p.desc || ""))),
+    el("div", { class: "grid2" },
+      field("Применение (коротко, видно в карточке)", bind("use", el("input", { type: "text", value: p.use || "", placeholder: "Экскаваторы Hyundai 21–25 т" }))),
+      field("Применение — на казахском", bind("use_kk", el("input", { type: "text", value: p.use_kk || "", placeholder: "Hyundai экскаваторлары, 21–25 т" })))),
+    el("div", { class: "grid2" },
+      field("Описание", bind("desc", el("textarea", { rows: 3 }, p.desc || ""))),
+      field("Описание — на казахском", bind("desc_kk", el("textarea", { rows: 3 }, p.desc_kk || "")))),
+    el("div", { class: "hint", text: "Казахские поля видны, когда на сайте выбран язык ҚАЗ. Если поле пустое — показывается русский текст.", style: "margin:-6px 0 12px" }),
     field("Коды на шильдике — по одному в строке", codes, "Первый код показывается в карточке. По кодам работает поиск и ИИ-помощник."),
     el("label", { class: "f" }, el("span", { text: "Фото — можно несколько. Первое — главное, его видно в каталоге; порядок меняется стрелками" })),
     gal,
@@ -658,6 +666,10 @@ function renderCatList(kind, box) {
     name.addEventListener("change", () => { if (v._new && name.value.trim()) { const nk = catKey(Object.fromEntries(Object.entries(dict).filter(([kk]) => kk !== k)), name.value); if (nk !== k) { renameCatKey(kind, k, nk); renderCats(); } } });
     const short = kind === "types" ? el("input", { type: "text", value: v.short || "", placeholder: "Коротко для карточки, например: Аксиально-поршневой" }) : null;
     if (short) short.addEventListener("input", () => { v.short = short.value; markDirty("cats"); });
+    // Казахский вариант названия — виден, когда на сайте выбран язык ҚАЗ
+    const kkIn = (f, ph) => { const i = el("input", { type: "text", value: v[f] || "", placeholder: ph }); i.addEventListener("input", () => { v[f] = i.value; markDirty("cats"); }); return i; };
+    const nameKk = kkIn("name_kk", "Название на казахском");
+    const shortKk = kind === "types" ? kkIn("short_kk", "Коротко на казахском") : null;
     const del = el("button", { class: "btn sm danger", type: "button", text: "Удалить" });
     del.addEventListener("click", () => {
       if (kind === "types" && n) { toast(`Сначала перенесите ${n} товар(ов) этого типа в другой тип (поле «Тип» в карточке товара).`, true); return; }
@@ -669,7 +681,7 @@ function renderCatList(kind, box) {
     });
     return el("div", { class: "cat" },
       pv,
-      el("div", { style: "display:grid;gap:6px" }, name, short,
+      el("div", { style: "display:grid;gap:6px" }, name, short, nameKk, shortKk,
         el("div", { class: "actions", style: "border:0;padding:0;margin:0" },
           el("label", { class: "btn sm", style: "cursor:pointer" }, v.image ? "Заменить фото" : "Загрузить фото", file),
           v.image ? el("button", { class: "btn sm", type: "button", text: "Убрать фото", onclick: () => { delete v.image; markDirty("cats"); renderCats(); } }) : null),
@@ -688,7 +700,7 @@ const addCat = kind => {
   const k = catKey(dict, kind === "types" ? "novyy-tip" : "novyy-razdel");
   dict[k] = kind === "types" ? { name: "Новый тип", short: "", icon: "pump-axial", _new: true } : { name: "Для новой техники", icon: "pump-axial", _new: true };
   markDirty("cats"); renderCats();
-  setTimeout(() => { const ins = $$("#" + (kind === "types" ? "catTypes" : "catTech") + " .cat input[type=text]"); const last = kind === "types" ? ins[ins.length - 2] : ins[ins.length - 1]; if (last) last.select(); }, 0);
+  setTimeout(() => { const ins = $$("#" + (kind === "types" ? "catTypes" : "catTech") + " .cat input[type=text]"); const last = ins[ins.length - (kind === "types" ? 4 : 2)] /* поле названия: у типа после него ещё 3 поля, у раздела — 1 */; if (last) last.select(); }, 0);
 };
 $("#addType").addEventListener("click", () => addCat("types"));
 $("#addTech").addEventListener("click", () => addCat("tech"));

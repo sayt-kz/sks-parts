@@ -60,7 +60,7 @@ h1,h2,h3{font-family:var(--f-head);font-weight:400;line-height:1.15;margin:0}
 .logo b span{color:var(--blue)}
 .logo small{display:block;font-size:11px;color:var(--ink2);letter-spacing:.4px;margin-top:4px;text-transform:uppercase}
 .badges{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink2)}
-.badges span,.badges a{display:flex;align-items:center;gap:8px}
+.badges span,.badges a{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .badges a{color:var(--blue);font-weight:700}
 .badges a:hover{text-decoration:underline}
 footer .gis-f{display:inline-block;margin-top:6px;color:var(--blue-l);font-weight:700}
@@ -77,6 +77,10 @@ footer .gis-f{display:inline-block;margin-top:6px;color:var(--blue-l);font-weigh
 .top-hours{font-size:12.5px;color:var(--ink2);line-height:1.45;flex:none}
 .top-hours b{color:var(--ink)}
 .top-wa-m{display:none}
+.lang{display:flex;flex:none;align-self:center;margin-left:auto;height:34px;border:1.5px solid #3a424e;border-radius:8px;overflow:hidden}
+.lang button{padding:0 11px;font-size:12.5px;font-weight:800;letter-spacing:.4px;color:#c9d1dc}
+.lang button:hover{color:#fff}
+.lang button[aria-pressed=true]{background:var(--blue);color:#fff}
 
 /* ---------- Меню ---------- */
 .nav{background:var(--dark);position:sticky;top:0;z-index:40;box-shadow:0 2px 10px rgba(0,0,0,.18)}
@@ -90,7 +94,7 @@ footer .gis-f{display:inline-block;margin-top:6px;color:var(--blue-l);font-weigh
 .cat-btn[aria-expanded="true"] .burger i{opacity:0}
 .cat-btn[aria-expanded="true"] .burger::after{transform:translateY(-6px) rotate(-45deg)}
 .links{display:flex;align-items:stretch;margin-left:10px}
-.links a{display:flex;align-items:center;padding:0 16px;color:#c9d1dc;font-weight:700;font-size:14.5px;position:relative;transition:color .2s}
+.links a{display:flex;align-items:center;padding:0 16px;color:#c9d1dc;font-weight:700;font-size:14.5px;position:relative;transition:color .2s;white-space:nowrap}
 .links a:hover{color:#fff}
 .links a.on{color:#fff}
 .links a.on::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:3px;background:var(--blue);border-radius:3px 3px 0 0}
@@ -141,6 +145,7 @@ main{min-height:60vh}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue-l);box-shadow:0 0 10px var(--blue-l)}
 .hero h1{font-size:clamp(32px,4.6vw,56px);margin:20px 0 16px;text-transform:uppercase}
 .hero h1 span{color:var(--blue-l);text-shadow:0 0 28px rgba(22,119,230,.55)}
+:lang(kk) .hero h1{font-size:clamp(30px,3.9vw,46px)} /* казахские слова длиннее */
 .hero p{color:#aeb9c8;font-size:17px;max-width:520px;margin:0 0 28px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
 .hero-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:30px;font-size:13px;color:#8d9aab}
@@ -401,6 +406,9 @@ footer .wa-f .ico{color:var(--wa)}
 }
 @media (max-width:1100px){
   .rail{display:none}
+  .links{margin-left:2px}
+  .links a{padding:0 10px;font-size:14px}
+  .links a.on::after{left:10px;right:10px}
   .adv,.tiles{grid-template-columns:repeat(2,1fr)}
   .track{grid-auto-columns:calc((100% - 36px)/3)}
   .how{grid-template-columns:repeat(2,1fr)}
@@ -413,11 +421,15 @@ footer .wa-f .ico{color:var(--wa)}
   .top .search,.top-wa{display:none}
   .top-wa-m{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--wa);color:#fff}
   .top-wa-m .ico{width:24px;height:24px}
+@@END
+
   .nav .wrap{height:52px;padding:0;gap:0}
   .links{display:none}
-  .cat-btn{padding:0 16px}
+  .cat-btn{padding:0 17px;font-size:0;gap:0} /* на телефоне — только значок: подпись есть в нижней панели */
   .nav-search{display:flex;flex:1;min-width:0;align-items:center;padding:0 10px}
   .nav-search .search{height:38px;min-width:0;max-width:none;border-color:#3a424e;background:#2a3039}
+  .lang{margin:0 10px 0 0;height:36px}
+  .lang button{padding:0 8px}
   .nav-search input{color:#fff}
   .nav-search input::placeholder{color:#8d99a8}
   .cat-menu{position:fixed;top:var(--mt,0px);left:0;right:0;width:auto;border-radius:0;max-height:none;bottom:64px;padding-bottom:20px;overscroll-behavior:contain}
@@ -621,6 +633,7 @@ footer .wa-f .ico{color:var(--wa)}
         <button type="submit" aria-label="Искать"><svg class="ico"><use href="#i-search"/></svg></button>
       </form>
     </div>
+    <div class="lang" role="group" aria-label="Язык сайта"><button type="button" data-lang="kk" lang="kk" aria-pressed="false">ҚАЗ</button><button type="button" data-lang="ru" lang="ru" aria-pressed="true">РУС</button></div>
     <div class="cat-menu" id="catMenu"></div>
   </div>
 </nav>
@@ -729,8 +742,8 @@ function setCatalog(c){
   BRAND_ALIASES = Object.fromEntries(Object.keys(PICK).map(b => [b, (c.brandAliases || {})[b] || [b.toLowerCase()]]));
 }
 function photoHTML(p, lazy=true, ph=p.photo){
-  const note = ph ? ph.note : "фото для примера";
-  return `<img src="${esc(ph ? ph.src : "pump.jpg")}" alt="${esc(p.name)}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${esc(note)}</span>` : "");
+  const note = t(ph ? ph.note : "фото для примера");
+  return `<img src="${esc(ph ? ph.src : "pump.jpg")}" alt="${esc(kz(p,"name"))}"${lazy ? ' loading="lazy"' : ""}>` + (note ? `<span class="soon">${esc(note)}</span>` : "");
 }
 // Картинка категории: своё фото из админки или значок
 const catPic = x => x.image ? `<img class="pic" src="${esc(x.image)}" alt="" loading="lazy">` : icon(x.icon, "pic");
@@ -744,34 +757,46 @@ const norm = s => String(s).toLowerCase().replace(/ё/g,"е").replace(/[\s\-_/.]
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const icon = (id, cls="ico") => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 const fmtSize = b => !b ? "" : b < 1048576 ? Math.max(1, Math.round(b / 1024)) + " КБ" : (b / 1048576).toFixed(1).replace(".", ",") + " МБ";
-const plural = (n, a, b, c) => { const m=n%10, h=n%100; return n+" "+(m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c); };
+// В казахском существительное после числа не меняется — kk передаётся одной формой
+const plural = (n, a, b, c, kk) => { if(LANG === "kk" && kk) return n+" "+kk; const m=n%10, h=n%100; return n+" "+(m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c); };
+
+/* ---------- Язык: русский / казахский ----------
+   t("рус", "қаз") — текст на текущем языке; без второго аргумента перевод берётся из словаря I18N_KK.
+   Поля каталога на казахском: name_kk, short_kk, use_kk, desc_kk, kind_kk (их правит админка);
+   если казахского текста нет — показывается русский. */
+let LANG = "ru";
+// Первый визит: язык, который в настройках браузера стоит раньше — русский или казахский
+try { LANG = localStorage.getItem("sks-lang") || (/^kk/i.test((navigator.languages || []).find(l => /^(ru|kk)/i.test(l)) || "") ? "kk" : "ru"); } catch {}
+const t = (ru, kk) => LANG === "kk" ? (kk ?? I18N_KK[ru] ?? ru) : ru;
+const kz = (o, f) => (LANG === "kk" && o[f + "_kk"]) || o[f] || "";
+const kindOf = p => kz(p, "kind") || kz(TYPES[p.type], "short") + t(" насос", " сорғы");
 
 function catLinks(){
-  const t = Object.entries(TYPES).map(([k,v]) => ({href:`#catalog?type=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.type===k).length, icon:v.icon, image:v.image}));
-  const h = Object.entries(TECH).map(([k,v]) => ({href:`#catalog?tech=${k}`, name:v.name, n:PRODUCTS.filter(p=>p.tech.includes(k)).length, icon:v.icon, image:v.image}));
-  return {t, h, all:[...t, ...h]};
+  const ty = Object.entries(TYPES).map(([k,v]) => ({href:`#catalog?type=${k}`, name:kz(v,"name"), n:PRODUCTS.filter(p=>p.type===k).length, icon:v.icon, image:v.image}));
+  const h = Object.entries(TECH).map(([k,v]) => ({href:`#catalog?tech=${k}`, name:kz(v,"name"), n:PRODUCTS.filter(p=>p.tech.includes(k)).length, icon:v.icon, image:v.image}));
+  return {t:ty, h, all:[...ty, ...h]};
 }
 function searchProducts(q){
   const n = norm(q); if(!n) return PRODUCTS;
-  return PRODUCTS.filter(p => norm([p.name,p.brand,p.use,TYPES[p.type].name,...p.compat,...p.keys].join(" ")).includes(n));
+  return PRODUCTS.filter(p => norm([p.name,p.name_kk||"",p.brand,p.use,p.use_kk||"",TYPES[p.type].name,TYPES[p.type].name_kk||"",...p.compat,...p.keys].join(" ")).includes(n));
 }
 
 /* ---------- Карточка товара ---------- */
 function cardHTML(p){
   return `<article class="card">
-    <a class="photo${p.photo ? "" : " dark"}" href="#p-${p.id}" aria-label="${esc(p.name)}">
+    <a class="photo${p.photo ? "" : " dark"}" href="#p-${p.id}" aria-label="${esc(kz(p,"name"))}">
       ${photoHTML(p)}
     </a>
     <div class="body">
-      <span class="type">${esc(TYPES[p.type].short)}</span>
-      <h3><a href="#p-${p.id}">${esc(p.name)}</a></h3>
-      <div class="code" title="Код на шильдике">${esc(p.codes[0])}${p.codes.length > 1 ? ` <em>+${p.codes.length - 1}</em>` : ""}</div>
-      <p>${esc(p.use)}</p>
-      <div class="price">Цена: <b>по запросу</b></div>
+      <span class="type">${esc(kz(TYPES[p.type],"short"))}</span>
+      <h3><a href="#p-${p.id}">${esc(kz(p,"name"))}</a></h3>
+      <div class="code" title="${t("Код на шильдике")}">${esc(p.codes[0])}${p.codes.length > 1 ? ` <em>+${p.codes.length - 1}</em>` : ""}</div>
+      <p>${esc(kz(p,"use"))}</p>
+      <div class="price">${t("Цена: <b>по запросу</b>", "Бағасы: <b>сұраныс бойынша</b>")}</div>
     </div>
     <div class="act">
-      <a class="btn btn-ghost" href="#p-${p.id}">Подробнее</a>
-      <a class="btn btn-wa" href="${wa(`Здравствуйте! Хочу узнать цену: ${p.name}`)}" target="_blank" rel="noopener">Узнать цену</a>
+      <a class="btn btn-ghost" href="#p-${p.id}">${t("Подробнее", "Толығырақ")}</a>
+      <a class="btn btn-wa" href="${wa(t(`Здравствуйте! Хочу узнать цену: ${kz(p,"name")}`, `Сәлеметсіз бе! Бағасын білгім келеді: ${kz(p,"name")}`))}" target="_blank" rel="noopener">${t("Узнать цену", "Бағасын білу")}</a>
     </div>
   </article>`;
 }
@@ -780,22 +805,22 @@ function cardHTML(p){
 const PAGES = {
   home(){
     const c = catLinks();
-    return {title:"SKS PARTS — гидравлические насосы для спецтехники в Алматы", crumbs:null, html:`
+    return {title:t("SKS PARTS — гидравлические насосы для спецтехники в Алматы", "SKS PARTS — Алматыдағы арнайы техникаға арналған гидравликалық сорғылар"), crumbs:null, html:`
     <section class="hero">
       <div class="hero-grid"></div>
       <span class="hero-ring r1"></span><span class="hero-ring r2"></span><span class="hero-ring r3"></span><span class="hero-ring r4"></span>
       <canvas id="sparks" aria-hidden="true"></canvas>
       <div class="wrap">
         <div>
-          <span class="eyebrow">Дилер завода SKS HYDRAULICS в Казахстане</span>
-          <h1>Гидравлические насосы <span>для спецтехники</span></h1>
-          <p>Аксиально-поршневые, шестерёнчатые и плунжерные насосы, запчасти, ремкомплекты, ремонт и диагностика. Подберём насос по марке техники или по шильдику.</p>
+          <span class="eyebrow">${t("Дилер завода SKS HYDRAULICS в Казахстане", "SKS HYDRAULICS зауытының Қазақстандағы дилері")}</span>
+          <h1>${t("Гидравлические насосы <span>для спецтехники</span>", "Арнайы техникаға арналған <span>гидравликалық сорғылар</span>")}</h1>
+          <p>${t("Аксиально-поршневые, шестерёнчатые и плунжерные насосы, запчасти, ремкомплекты, ремонт и диагностика. Подберём насос по марке техники или по шильдику.", "Аксиалды-поршеньді, тісті және плунжерлі сорғылар, қосалқы бөлшектер, жөндеу жинақтары, жөндеу және диагностика. Сорғыны техника маркасы немесе шильдик бойынша таңдап береміз.")}</p>
           <div class="hero-cta">
-            <a class="btn btn-blue" href="#pick">Подобрать насос</a>
-            <a class="btn btn-line" href="#catalog">Каталог</a>
-            <a class="btn btn-wa" href="${wa("Здравствуйте! Отправляю фото шильдика насоса, помогите подобрать.")}" target="_blank" rel="noopener">${icon("i-wa")}Фото шильдика</a>
+            <a class="btn btn-blue" href="#pick">${t("Подобрать насос", "Сорғы таңдау")}</a>
+            <a class="btn btn-line" href="#catalog">${t("Каталог")}</a>
+            <a class="btn btn-wa" href="${wa(t("Здравствуйте! Отправляю фото шильдика насоса, помогите подобрать."))}" target="_blank" rel="noopener">${icon("i-wa")}${t("Фото шильдика", "Шильдик суреті")}</a>
           </div>
-          <div class="hero-meta"><div><b>2018</b>работаем с</div><div><b>${PRODUCTS.length}+</b>моделей насосов</div><div><b>КЗ</b>доставка по стране</div></div>
+          <div class="hero-meta">${t(`<div><b>2018</b>работаем с</div><div><b>${PRODUCTS.length}+</b>моделей насосов</div><div><b>КЗ</b>доставка по стране</div>`, `<div><b>2018</b>жылдан бері</div><div><b>${PRODUCTS.length}+</b>сорғы моделі</div><div><b>ҚЗ</b>ел бойынша жеткізу</div>`)}</div>
         </div>
         <div class="hero-stage" aria-hidden="true">
           <div class="hero-glow"></div>
@@ -806,26 +831,26 @@ const PAGES = {
     </section>
     <div class="wrap">
       <div class="adv">
-        <div>${icon("i-factory")}<b>Прямые поставки</b><p>Мы — дилеры завода SKS HYDRAULICS. Сотрудничаем с заводами Boxinhuasheng (Китай) и HEMA (Турция)</p></div>
-        <div>${icon("i-shield")}<b>С 2018 года</b><p>Опыт подбора насосов для экскаваторов, кранов, катков и 3в1</p></div>
-        <div>${icon("i-truck")}<b>Доставка по Казахстану</b><p>Отправляем в любой город — Астана, Шымкент, Костанай и другие</p></div>
-        <div>${icon("i-wrench")}<b>Ремонт и диагностика</b><p>Ремкомплекты, запчасти к насосам и гидромоторам</p></div>
+        <div>${icon("i-factory")}${t("<b>Прямые поставки</b><p>Мы — дилеры завода SKS HYDRAULICS. Сотрудничаем с заводами Boxinhuasheng (Китай) и HEMA (Турция)</p>", "<b>Тікелей жеткізу</b><p>Біз — SKS HYDRAULICS зауытының дилерлеріміз. Boxinhuasheng (Қытай) және HEMA (Түркия) зауыттарымен жұмыс істейміз</p>")}</div>
+        <div>${icon("i-shield")}${t("<b>С 2018 года</b><p>Опыт подбора насосов для экскаваторов, кранов, катков и 3в1</p>", "<b>2018 жылдан бері</b><p>Экскаваторлар, крандар, катоктар және 3в1 үшін сорғы таңдау тәжірибесі</p>")}</div>
+        <div>${icon("i-truck")}${t("<b>Доставка по Казахстану</b><p>Отправляем в любой город — Астана, Шымкент, Костанай и другие</p>", "<b>Қазақстан бойынша жеткізу</b><p>Кез келген қалаға жібереміз — Астана, Шымкент, Қостанай және басқалары</p>")}</div>
+        <div>${icon("i-wrench")}${t("<b>Ремонт и диагностика</b><p>Ремкомплекты, запчасти к насосам и гидромоторам</p>", "<b>Жөндеу және диагностика</b><p>Жөндеу жинақтары, сорғылар мен гидромоторларға қосалқы бөлшектер</p>")}</div>
       </div>
     </div>
     <section class="sec">
       <div class="wrap">
-        <h2 class="h-sec">Категории</h2>
-        <p class="lead">Выберите тип насоса или технику — покажем подходящие модели.</p>
-        <div class="tiles">${c.all.map(x => `<a class="tile" href="${x.href}">${catPic(x)}<div><b>${esc(x.name)}</b><small>${plural(x.n,"товар","товара","товаров")} <span>Смотреть →</span></small></div></a>`).join("")}</div>
+        <h2 class="h-sec">${t("Категории")}</h2>
+        <p class="lead">${t("Выберите тип насоса или технику — покажем подходящие модели.", "Сорғы түрін немесе техниканы таңдаңыз — сәйкес модельдерді көрсетеміз.")}</p>
+        <div class="tiles">${c.all.map(x => `<a class="tile" href="${x.href}">${catPic(x)}<div><b>${esc(x.name)}</b><small>${plural(x.n,"товар","товара","товаров","тауар")} <span>${t("Смотреть →", "Көру →")}</span></small></div></a>`).join("")}</div>
       </div>
     </section>
     <section class="sec sec-gray">
       <div class="wrap">
         <div class="strip">
-          <div><h2>Не знаете модель насоса?</h2><p>Сфотографируйте шильдик (табличку на корпусе насоса) и отправьте в WhatsApp — менеджер подберёт насос или аналог.</p></div>
+          <div>${t("<h2>Не знаете модель насоса?</h2><p>Сфотографируйте шильдик (табличку на корпусе насоса) и отправьте в WhatsApp — менеджер подберёт насос или аналог.</p>", "<h2>Сорғы моделін білмейсіз бе?</h2><p>Шильдикті (сорғы корпусындағы тақтайшаны) суретке түсіріп, WhatsApp-қа жіберіңіз — менеджер сорғыны немесе баламасын таңдап береді.</p>")}</div>
           <div class="btns">
-            <a class="btn btn-wa" href="${wa("Здравствуйте! Отправляю фото шильдика насоса, помогите подобрать.")}" target="_blank" rel="noopener">${icon("i-camera")}Отправить фото шильдика</a>
-            <a class="btn btn-line" href="#pick">Подбор по технике</a>
+            <a class="btn btn-wa" href="${wa(t("Здравствуйте! Отправляю фото шильдика насоса, помогите подобрать."))}" target="_blank" rel="noopener">${icon("i-camera")}${t("Отправить фото шильдика")}</a>
+            <a class="btn btn-line" href="#pick">${t("Подбор по технике")}</a>
           </div>
         </div>
       </div>
@@ -833,57 +858,62 @@ const PAGES = {
     <section class="sec">
       <div class="wrap find">
         ${icon("i-pin")}
-        <div><h2 class="h-sec">Как нас найти</h2><p>Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26<br>Пн–Пт 9:00–18:00 (обед 13–14), Сб 10:00–17:00</p></div>
-        <a class="btn btn-blue" href="${GIS_URL}" target="_blank" rel="noopener">${icon("i-pin")}Открыть в 2ГИС</a>
+        <div><h2 class="h-sec">${t("Как нас найти", "Бізді қалай табуға болады")}</h2><p>${t("Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26")}<br>${t("Пн–Пт 9:00–18:00 (обед 13–14), Сб 10:00–17:00", "Дс–Жм 9:00–18:00 (түскі үзіліс 13–14), Сб 10:00–17:00")}</p></div>
+        <a class="btn btn-blue" href="${GIS_URL}" target="_blank" rel="noopener">${icon("i-pin")}${t("Открыть в 2ГИС")}</a>
       </div>
     </section>`};
   },
 
   about(){
-    return {title:"О компании — SKS PARTS", crumbs:[["О компании"]], html:`
-    <div class="wrap"><h1 class="h-page">О компании</h1></div>
+    return {title:t("О компании — SKS PARTS", "Компания туралы — SKS PARTS"), crumbs:[[t("О компании")]], html:`
+    <div class="wrap"><h1 class="h-page">${t("О компании")}</h1></div>
     <section class="sec" style="padding-top:20px"><div class="wrap two">
-      <div class="prose">
+      <div class="prose">${t(`
         <p><b>SKS PARTS</b> (юридическое лицо — SKS HYDRAULIC) работает в Алматы с 2018 года. Мы занимаемся гидравлическим оборудованием для спецтехники: продаём насосы, запчасти к насосам и гидромоторам, ремкомплекты, выполняем ремонт и диагностику.</p>
         <p><b>Мы являемся дилерами завода SKS HYDRAULICS.</b></p>
         <p>Кроме того, мы сотрудничаем ещё с двумя заводами: <b>Boxinhuasheng</b> — это ещё один завод из Китая, и <b>HEMA</b> — завод из Турции.</p>
         <p>Поставляем аксиально-поршневые, шестерёнчатые и плунжерные насосы для экскаваторов, тракторов 3в1, кранов, КМУ, автовышек, катков, дорожных фрез, мусоровозов и комбайнов.</p>
-        <p>Подбираем насос по марке и модели техники или по шильдику. Отправляем в любой город Казахстана.</p>
-        <p><a class="btn btn-wa" href="${wa("Здравствуйте! Хочу проконсультироваться по насосу.")}" target="_blank" rel="noopener">${icon("i-wa")}Написать в WhatsApp</a></p>
+        <p>Подбираем насос по марке и модели техники или по шильдику. Отправляем в любой город Казахстана.</p>`, `
+        <p><b>SKS PARTS</b> (заңды тұлға — SKS HYDRAULIC) 2018 жылдан бері Алматыда жұмыс істейді. Біз арнайы техникаға арналған гидравликалық жабдықпен айналысамыз: сорғыларды, сорғылар мен гидромоторларға қосалқы бөлшектерді, жөндеу жинақтарын сатамыз, жөндеу және диагностика жасаймыз.</p>
+        <p><b>Біз SKS HYDRAULICS зауытының дилерлеріміз.</b></p>
+        <p>Сонымен қатар біз тағы екі зауытпен жұмыс істейміз: <b>Boxinhuasheng</b> — Қытайдағы тағы бір зауыт, және <b>HEMA</b> — Түркиядағы зауыт.</p>
+        <p>Экскаваторларға, 3в1 тракторларына, крандарға, КМУ-ға, автомұнараларға, катоктарға, жол фрезаларына, қоқыс тасығыштарға және комбайндарға аксиалды-поршеньді, тісті және плунжерлі сорғылар жеткіземіз.</p>
+        <p>Сорғыны техниканың маркасы мен моделі немесе шильдик бойынша таңдаймыз. Қазақстанның кез келген қаласына жібереміз.</p>`)}
+        <p><a class="btn btn-wa" href="${wa(t("Здравствуйте! Хочу проконсультироваться по насосу.", "Сәлеметсіз бе! Сорғы бойынша кеңес алғым келеді."))}" target="_blank" rel="noopener">${icon("i-wa")}${t("Написать в WhatsApp")}</a></p>
       </div>
       <div class="factory">
-        <div><b>SKS HYDRAULICS</b><small>Китай · мы — дилеры завода</small><p> Нерегулируемые аксиально-поршневые насосы серии A17FO с рабочим объёмом от 34 до 107 см³.</p></div>
-        <div><b>Boxinhuasheng (Boxin)</b><small>Китай · сотрудничаем с заводом</small><p>Шестерёнчатые, поршневые и плунжерные насосы.</p></div>
-        <div><b>HEMA (HATTAT)</b><small>Турция · сотрудничаем с заводом</small><p>Шестерёнчатые насосы для экскаваторов-погрузчиков (тракторов 3в1).</p></div>
+        <div><b>SKS HYDRAULICS</b>${t("<small>Китай · мы — дилеры завода</small><p>Нерегулируемые аксиально-поршневые насосы серии A17FO с рабочим объёмом от 34 до 107 см³.</p>", "<small>Қытай · біз — зауыт дилерлеріміз</small><p>Жұмыс көлемі 34-тен 107 см³-ге дейінгі A17FO сериялы реттелмейтін аксиалды-поршеньді сорғылар.</p>")}</div>
+        <div><b>Boxinhuasheng (Boxin)</b>${t("<small>Китай · сотрудничаем с заводом</small><p>Шестерёнчатые, поршневые и плунжерные насосы.</p>", "<small>Қытай · зауытпен серіктеспіз</small><p>Тісті, поршеньді және плунжерлі сорғылар.</p>")}</div>
+        <div><b>HEMA (HATTAT)</b>${t("<small>Турция · сотрудничаем с заводом</small><p>Шестерёнчатые насосы для экскаваторов-погрузчиков (тракторов 3в1).</p>", "<small>Түркия · зауытпен серіктеспіз</small><p>Экскаватор-тиегіштерге (3в1 тракторларына) арналған тісті сорғылар.</p>")}</div>
       </div>
     </div></section>
     <section class="sec sec-gray"><div class="wrap lists">
-      <div><h3>Насосы</h3><div class="tags mono">${["SKS HYDRAULICS A17FO","Kawasaki K3V / K5V","Hitachi HPV","Uchida AP2D","Rexroth A10VSO / A10VO","Rexroth A2FO / A7VO","Eaton Vickers PVE","Boxin","HEMA"].map(t=>`<span>${t}</span>`).join("")}</div></div>
-      <div><h3>Техника</h3><div class="tags">${["Hyundai","Volvo","Kobelco","Doosan","Hitachi","SANY","Yanmar","JCB","Hidromek","Case","New Holland","Terex"].map(t=>`<span>${t}</span>`).join("")}</div></div>
-      <div><h3>Виды техники</h3><div class="tags">${["Экскаваторы","Мини-экскаваторы","Тракторы 3в1","Самосвалы","КМУ","Мусоровозы","Мобильная техника"].map(t=>`<span>${t}</span>`).join("")}</div></div>
+      <div><h3>${t("Насосы", "Сорғылар")}</h3><div class="tags mono">${["SKS HYDRAULICS A17FO","Kawasaki K3V / K5V","Hitachi HPV","Uchida AP2D","Rexroth A10VSO / A10VO","Rexroth A2FO / A7VO","Eaton Vickers PVE","Boxin","HEMA"].map(x=>`<span>${x}</span>`).join("")}</div></div>
+      <div><h3>${t("Техника")}</h3><div class="tags">${["Hyundai","Volvo","Kobelco","Doosan","Hitachi","SANY","Yanmar","JCB","Hidromek","Case","New Holland","Terex"].map(x=>`<span>${x}</span>`).join("")}</div></div>
+      <div><h3>${t("Виды техники", "Техника түрлері")}</h3><div class="tags">${(LANG === "kk" ? ["Экскаваторлар","Шағын экскаваторлар","3в1 тракторлары","Самосвалдар","КМУ","Қоқыс тасығыштар","Мобильді техника"] : ["Экскаваторы","Мини-экскаваторы","Тракторы 3в1","Самосвалы","КМУ","Мусоровозы","Мобильная техника"]).map(x=>`<span>${x}</span>`).join("")}</div></div>
     </div></section>`};
   },
 
   pick(params){
     const brand = PICK[params.get("brand")] ? params.get("brand") : "";
     const model = brand && PICK[brand][params.get("model")] ? params.get("model") : "";
-    return {title:"Подбор насоса по технике — SKS PARTS", crumbs:[["Подбор по технике"]], html:`
-    <div class="wrap"><h1 class="h-page">Подбор насоса по технике</h1>
-      <p class="lead">Выберите марку и модель техники — покажем насосы, которые на неё ставят.</p>
+    return {title:t("Подбор насоса по технике — SKS PARTS", "Техника бойынша сорғы таңдау — SKS PARTS"), crumbs:[[t("Подбор по технике")]], html:`
+    <div class="wrap"><h1 class="h-page">${t("Подбор насоса по технике", "Техника бойынша сорғы таңдау")}</h1>
+      <p class="lead">${t("Выберите марку и модель техники — покажем насосы, которые на неё ставят.", "Техниканың маркасы мен моделін таңдаңыз — оған орнатылатын сорғыларды көрсетеміз.")}</p>
     </div>
     <section class="sec" style="padding-top:6px"><div class="wrap">
-      <div class="steps"><span><b>1</b>Марка</span><span><b>2</b>Модель</span><span><b>3</b>Насос</span></div>
+      <div class="steps"><span><b>1</b>${t("Марка")}</span><span><b>2</b>${t("Модель")}</span><span><b>3</b>${t("Насос", "Сорғы")}</span></div>
       <form class="pick" id="pickForm">
-        <label>Марка техники<select id="pBrand"><option value="">— выберите марку —</option>${Object.keys(PICK).map(b=>`<option${b===brand?" selected":""}>${esc(b)}</option>`).join("")}</select></label>
-        <label>Модель<select id="pModel"${brand?"":" disabled"}><option value="">— выберите модель —</option>${brand?Object.keys(PICK[brand]).map(m=>`<option${m===model?" selected":""}>${esc(m)}</option>`).join(""):""}</select></label>
-        <a class="btn btn-ghost" href="#catalog">Весь каталог</a>
+        <label>${t("Марка техники", "Техника маркасы")}<select id="pBrand"><option value="">${t("— выберите марку —", "— маркасын таңдаңыз —")}</option>${Object.keys(PICK).map(b=>`<option${b===brand?" selected":""}>${esc(b)}</option>`).join("")}</select></label>
+        <label>${t("Модель")}<select id="pModel"${brand?"":" disabled"}><option value="">${t("— выберите модель —", "— моделін таңдаңыз —")}</option>${brand?Object.keys(PICK[brand]).map(m=>`<option${m===model?" selected":""}>${esc(m)}</option>`).join(""):""}</select></label>
+        <a class="btn btn-ghost" href="#catalog">${t("Весь каталог")}</a>
       </form>
       <div class="result" id="pickResult">${pickResult(brand, model)}</div>
-      <div class="note" style="margin-top:22px">${icon("i-info")}<span>Таблица подбора — пример по открытым данным. На одну модель техники в разные годы ставили разные насосы, поэтому <b>совместимость всегда подтверждает менеджер</b> по шильдику или VIN.</span></div>
+      <div class="note" style="margin-top:22px">${icon("i-info")}<span>${t("Таблица подбора — пример по открытым данным. На одну модель техники в разные годы ставили разные насосы, поэтому <b>совместимость всегда подтверждает менеджер</b> по шильдику или VIN.", "Таңдау кестесі — ашық деректер бойынша мысал. Бір техника моделіне әр жылдары әртүрлі сорғылар орнатылған, сондықтан <b>сәйкестікті әрқашан менеджер растайды</b> — шильдик немесе VIN бойынша.")}</span></div>
       <div class="nofind">
         ${icon("i-camera")}
-        <div><b>Не нашли свою модель в списке?</b><p>Сфотографируйте шильдик насоса (металлическая табличка на корпусе) и отправьте в WhatsApp — подберём насос или аналог.</p></div>
-        <a class="btn btn-wa" href="${wa("Здравствуйте! Не нашёл свою модель в подборе. Отправляю фото шильдика насоса.")}" target="_blank" rel="noopener">${icon("i-wa")}Отправить фото шильдика</a>
+        <div>${t("<b>Не нашли свою модель в списке?</b><p>Сфотографируйте шильдик насоса (металлическая табличка на корпусе) и отправьте в WhatsApp — подберём насос или аналог.</p>", "<b>Тізімнен моделіңізді таппадыңыз ба?</b><p>Сорғы шильдигін (корпустағы металл тақтайша) суретке түсіріп, WhatsApp-қа жіберіңіз — сорғыны немесе баламасын таңдап береміз.</p>")}</div>
+        <a class="btn btn-wa" href="${wa(t("Здравствуйте! Не нашёл свою модель в подборе. Отправляю фото шильдика насоса.", "Сәлеметсіз бе! Таңдаудан моделімді таппадым. Сорғы шильдигінің суретін жіберемін."))}" target="_blank" rel="noopener">${icon("i-wa")}${t("Отправить фото шильдика")}</a>
       </div>
     </div></section>`, after(){
       const b = $("#pBrand"), m = $("#pModel");
@@ -897,39 +927,39 @@ const PAGES = {
     const type = TYPES[params.get("type")] ? params.get("type") : "";
     const tech = TECH[params.get("tech")] ? params.get("tech") : "";
     const q = (params.get("q") || "").slice(0, 60);
-    const crumbs = type ? [["Каталог","#catalog"],[TYPES[type].name]] : tech ? [["Каталог","#catalog"],[TECH[tech].name]] : [["Каталог"]];
-    const h = type ? TYPES[type].name : tech ? "Насосы " + TECH[tech].name.toLowerCase() : "Каталог";
+    const crumbs = type ? [[t("Каталог"),"#catalog"],[kz(TYPES[type],"name")]] : tech ? [[t("Каталог"),"#catalog"],[kz(TECH[tech],"name")]] : [[t("Каталог")]];
+    const h = type ? kz(TYPES[type],"name") : tech ? t("Насосы " + TECH[tech].name.toLowerCase(), TECH[tech].name_kk ? TECH[tech].name_kk + " сорғылар" : undefined) : t("Каталог");
     return {title:`${h} — SKS PARTS`, crumbs, html:`
     <div class="wrap"><h1 class="h-page" id="catH">${esc(h)}</h1>
-      <p class="lead">Цены — по запросу: напишите в WhatsApp, менеджер уточнит цену, наличие и сроки.</p>
+      <p class="lead">${t("Цены — по запросу: напишите в WhatsApp, менеджер уточнит цену, наличие и сроки.", "Бағасы — сұраныс бойынша: WhatsApp-қа жазыңыз, менеджер бағасын, бар-жоғын және мерзімін нақтылайды.")}</p>
     </div>
     <section class="sec" style="padding-top:6px"><div class="wrap">
       <div class="filters">
-        <div class="chips" role="group" aria-label="Тип насоса">
-          <button type="button" class="chip" data-type="" aria-pressed="${!type}">Все</button>
-          ${Object.entries(TYPES).map(([k,v])=>`<button type="button" class="chip" data-type="${k}" aria-pressed="${type===k}">${esc(v.short)}</button>`).join("")}
+        <div class="chips" role="group" aria-label="${t("Тип насоса")}">
+          <button type="button" class="chip" data-type="" aria-pressed="${!type}">${t("Все", "Барлығы")}</button>
+          ${Object.entries(TYPES).map(([k,v])=>`<button type="button" class="chip" data-type="${k}" aria-pressed="${type===k}">${esc(kz(v,"short"))}</button>`).join("")}
         </div>
-        <label class="sr" for="fTech">Техника</label>
-        <select id="fTech"><option value="">Любая техника</option>${Object.entries(TECH).map(([k,v])=>`<option value="${k}"${tech===k?" selected":""}>${esc(v.name.replace("Для ",""))}</option>`).join("")}</select>
-        <label class="sr" for="fQ">Поиск</label>
-        <input class="grow" id="fQ" type="search" placeholder="Модель, марка техники…" value="${esc(q)}" maxlength="60">
+        <label class="sr" for="fTech">${t("Техника")}</label>
+        <select id="fTech"><option value="">${t("Любая техника", "Кез келген техника")}</option>${Object.entries(TECH).map(([k,v])=>`<option value="${k}"${tech===k?" selected":""}>${esc(LANG === "kk" && v.name_kk ? v.name_kk : v.name.replace("Для ",""))}</option>`).join("")}</select>
+        <label class="sr" for="fQ">${t("Поиск")}</label>
+        <input class="grow" id="fQ" type="search" placeholder="${t("Модель, марка техники…", "Модель, техника маркасы…")}" value="${esc(q)}" maxlength="60">
         <span class="found" id="found"></span>
       </div>
       <div class="grid" id="grid"></div>
-      <div class="note" style="margin-top:24px">${icon("i-info")}<span>Здесь показана часть ассортимента. Нет нужной модели — напишите в WhatsApp, подберём насос или аналог.</span></div>
+      <div class="note" style="margin-top:24px">${icon("i-info")}<span>${t("Здесь показана часть ассортимента. Нет нужной модели — напишите в WhatsApp, подберём насос или аналог.", "Мұнда ассортименттің бір бөлігі көрсетілген. Қажетті модель болмаса — WhatsApp-қа жазыңыз, сорғыны немесе баламасын таңдап береміз.")}</span></div>
     </div></section>`, after(){
       const state = {type, tech, q};
       const draw = () => {
         const list = searchProducts(state.q).filter(p => (!state.type || p.type===state.type) && (!state.tech || p.tech.includes(state.tech)));
         $("#grid").innerHTML = list.length ? list.map(cardHTML).join("") :
-          `<div class="empty"><b>Ничего не нашлось</b>Попробуйте другой запрос или <a class="ask-ai" href="${wa("Здравствуйте! Ищу насос: " + state.q)}" target="_blank" rel="noopener">спросите менеджера в WhatsApp</a></div>`;
-        $("#found").textContent = "Найдено: " + plural(list.length, "товар", "товара", "товаров");
+          `<div class="empty"><b>${t("Ничего не нашлось", "Ештеңе табылмады")}</b>${t("Попробуйте другой запрос или ", "Басқа сұрау жазып көріңіз немесе ")}<a class="ask-ai" href="${wa(t("Здравствуйте! Ищу насос: ", "Сәлеметсіз бе! Сорғы іздеп жүрмін: ") + state.q)}" target="_blank" rel="noopener">${t("спросите менеджера в WhatsApp", "WhatsApp арқылы менеджерден сұраңыз")}</a></div>`;
+        $("#found").textContent = t("Найдено: ", "Табылды: ") + plural(list.length, "товар", "товара", "товаров", "тауар");
         const sp = new URLSearchParams(); if(state.type) sp.set("type",state.type); if(state.tech) sp.set("tech",state.tech); if(state.q) sp.set("q",state.q);
         const s = sp.toString(); history.replaceState(null, "", "#catalog" + (s ? "?" + s : ""));
       };
       $$(".chip").forEach(b => b.addEventListener("click", () => { state.type = b.dataset.type; $$(".chip").forEach(x => x.setAttribute("aria-pressed", x===b)); draw(); }));
       $("#fTech").addEventListener("change", e => { state.tech = e.target.value; draw(); });
-      let t; $("#fQ").addEventListener("input", e => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value.trim(); draw(); }, 150); });
+      let qt; $("#fQ").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value.trim(); draw(); }, 150); });
       draw();
     }};
   },
@@ -938,71 +968,72 @@ const PAGES = {
     const p = byId[id];
     if(!p) return PAGES.notfound();
     const sim = [...PRODUCTS.filter(x => x.type===p.type && x.id!==p.id), ...PRODUCTS.filter(x => x.type!==p.type)].slice(0, 8);
-    const buyText = `Здравствуйте! Хочу купить ${p.name}. Подскажите цену и наличие.`;
-    return {title:`${p.name} — купить в Алматы | SKS PARTS`, crumbs:[["Каталог","#catalog"],[TYPES[p.type].name,`#catalog?type=${p.type}`],[p.name]], html:`
+    const buyText = t(`Здравствуйте! Хочу купить ${kz(p,"name")}. Подскажите цену и наличие.`, `Сәлеметсіз бе! ${kz(p,"name")} сатып алғым келеді. Бағасы мен бар-жоғын айтыңызшы.`);
+    const docTitle = d => d.title || t("Техописание", "Техникалық құжат");
+    return {title:t(`${kz(p,"name")} — купить в Алматы | SKS PARTS`, `${kz(p,"name")} — Алматыда сатып алу | SKS PARTS`), crumbs:[[t("Каталог"),"#catalog"],[kz(TYPES[p.type],"name"),`#catalog?type=${p.type}`],[kz(p,"name")]], html:`
     <div class="wrap"><div class="prod">
       <div class="gallery" style="margin-top:30px">
         <div class="photo${p.photo ? "" : " dark"}" id="gMain">${photoHTML(p, false)}</div>
-        ${p.photos.length > 1 ? `<div class="thumbs">${p.photos.map((ph, i) => `<button type="button" class="thumb${i ? "" : " on"}" data-i="${i}" aria-label="Фото ${i + 1}"><img src="${esc(ph.src)}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}
+        ${p.photos.length > 1 ? `<div class="thumbs">${p.photos.map((ph, i) => `<button type="button" class="thumb${i ? "" : " on"}" data-i="${i}" aria-label="${t("Фото", "Сурет")} ${i + 1}"><img src="${esc(ph.src)}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}
       </div>
       <div>
-        <h1>${esc(p.name)}</h1>
+        <h1>${esc(kz(p,"name"))}</h1>
         <table class="spec">
-          <tr><th>Серия / производитель</th><td>${esc(p.brand)}</td></tr>
-          <tr><th>Тип</th><td>${esc(p.kind || TYPES[p.type].short + " насос")}</td></tr>
-          <tr><th>Код на шильдике</th><td class="mono">${p.codes.map(esc).join("<br>")}</td></tr>
-          <tr><th>Применение</th><td>${esc(p.use)}</td></tr>
-          <tr><th>Цена</th><td class="pr">по запросу</td></tr>
+          <tr><th>${t("Серия / производитель")}</th><td>${esc(kz(p,"brand"))}</td></tr>
+          <tr><th>${t("Тип")}</th><td>${esc(kindOf(p))}</td></tr>
+          <tr><th>${t("Код на шильдике")}</th><td class="mono">${p.codes.map(esc).join("<br>")}</td></tr>
+          <tr><th>${t("Применение")}</th><td>${esc(kz(p,"use"))}</td></tr>
+          <tr><th>${t("Цена")}</th><td class="pr">${t("по запросу")}</td></tr>
         </table>
         <div class="buy">
-          <div class="wa-num">${icon("i-wa")}<div>+7 777 030 55 66<small>Отдел продаж, WhatsApp</small></div></div>
-          <a class="btn btn-wa" href="${wa(buyText)}" target="_blank" rel="noopener">Купить</a>
+          <div class="wa-num">${icon("i-wa")}<div>+7 777 030 55 66<small>${t("Отдел продаж, WhatsApp", "Сату бөлімі, WhatsApp")}</small></div></div>
+          <a class="btn btn-wa" href="${wa(buyText)}" target="_blank" rel="noopener">${t("Купить", "Сатып алу")}</a>
         </div>
-        <button type="button" class="ask-ai" id="askAi">${icon("i-ai")}Спросить ИИ про этот насос</button>
-        ${p.docs.length ? `<a class="ask-ai doc-link" href="${esc(p.docs[0].src)}" target="_blank" rel="noopener">${icon("i-doc")}Скачать техописание (PDF)</a>` : ""}
+        <button type="button" class="ask-ai" id="askAi">${icon("i-ai")}${t("Спросить ИИ про этот насос", "Осы сорғы туралы ЖИ-ден сұрау")}</button>
+        ${p.docs.length ? `<a class="ask-ai doc-link" href="${esc(p.docs[0].src)}" target="_blank" rel="noopener">${icon("i-doc")}${t("Скачать техописание (PDF)", "Техникалық құжатты жүктеу (PDF)")}</a>` : ""}
       </div>
     </div>
     <div class="tabs" role="tablist">
-      <button role="tab" id="t1" aria-selected="true" aria-controls="tp1">Описание</button>
-      <button role="tab" id="t2" aria-selected="false" aria-controls="tp2">Характеристика</button>
-      ${p.docs.length ? `<button role="tab" id="t3" aria-selected="false" aria-controls="tp3">Техописание (PDF)</button>` : ""}
+      <button role="tab" id="t1" aria-selected="true" aria-controls="tp1">${t("Описание", "Сипаттамасы")}</button>
+      <button role="tab" id="t2" aria-selected="false" aria-controls="tp2">${t("Характеристика", "Сипаттамалары")}</button>
+      ${p.docs.length ? `<button role="tab" id="t3" aria-selected="false" aria-controls="tp3">${t("Техописание (PDF)", "Техникалық құжат (PDF)")}</button>` : ""}
     </div>
     <div class="tabpanel" id="tp1" role="tabpanel" aria-labelledby="t1">
-      <p class="warn">! Внимание ! Цены на момент покупки могут отличаться от указанных на сайте. Актуальную цену и наличие уточняйте у менеджера в WhatsApp.</p>
-      <p>${esc(p.desc)}</p>
-      <h3>Применение</h3><p>${esc(p.use)}.</p>
-      <h3>Коды на шильдике</h3>
+      <p class="warn">${t("! Внимание ! Цены на момент покупки могут отличаться от указанных на сайте. Актуальную цену и наличие уточняйте у менеджера в WhatsApp.", "! Назар аударыңыз ! Сатып алу кезіндегі баға сайттағы бағадан өзгеше болуы мүмкін. Өзекті бағасы мен бар-жоғын WhatsApp арқылы менеджерден нақтылаңыз.")}</p>
+      <p>${esc(kz(p,"desc"))}</p>
+      <h3>${t("Применение")}</h3><p>${esc(kz(p,"use"))}.</p>
+      <h3>${t("Коды на шильдике")}</h3>
       <div class="tags mono">${p.codes.map(c=>`<span>${esc(c)}</span>`).join("")}</div>
-      <h3>Кросс-номера и применение</h3>
+      <h3>${t("Кросс-номера и применение", "Кросс-нөмірлер және қолданылуы")}</h3>
       ${p.cross.length ? `<div class="xref"><table>
-        <tr><th>Техника</th><th>Кросс-номера (OEM)</th><th>Источник</th></tr>
+        <tr><th>${t("Техника")}</th><th>${t("Кросс-номера (OEM)", "Кросс-нөмірлер (OEM)")}</th><th>${t("Источник", "Дереккөз")}</th></tr>
         ${p.cross.map(c=>`<tr><td>${esc(c[0])}</td><td class="mono">${c[1].length ? c[1].map(esc).join("<br>") : "—"}</td><td>${esc(c[2])}</td></tr>`).join("")}
-      </table></div>` : `<p>Кросс-номера для этой модели пока не собраны.</p>`}
-      <p style="font-size:13.5px;color:var(--ink2)">Кросс-номера собраны по открытым данным продавцов запчастей. Исполнение насоса (суффикс в коде) должно совпадать — точную совместимость подтверждает менеджер по шильдику или номеру детали.</p>
-      <h3>Как найти шильдик</h3>
-      <p>Шильдик — металлическая табличка на корпусе насоса с моделью и серийным номером. Сфотографируйте его и отправьте в WhatsApp — так подбор будет точным.</p>
-      <h3>Доставка</h3>
-      <p>По Алматы — самовывоз из бутика на Рыскулова, 72А или доставка. В города Казахстана — транспортными компаниями. Сроки и стоимость уточняйте у менеджера.</p>
+      </table></div>` : `<p>${t("Кросс-номера для этой модели пока не собраны.", "Бұл модель үшін кросс-нөмірлер әлі жиналмаған.")}</p>`}
+      <p style="font-size:13.5px;color:var(--ink2)">${t("Кросс-номера собраны по открытым данным продавцов запчастей. Исполнение насоса (суффикс в коде) должно совпадать — точную совместимость подтверждает менеджер по шильдику или номеру детали.", "Кросс-нөмірлер қосалқы бөлшек сатушыларының ашық деректері бойынша жиналған. Сорғы нұсқасы (кодтағы жұрнақ) сәйкес келуі керек — нақты сәйкестікті менеджер шильдик немесе бөлшек нөмірі бойынша растайды.")}</p>
+      <h3>${t("Как найти шильдик", "Шильдикті қалай табуға болады")}</h3>
+      <p>${t("Шильдик — металлическая табличка на корпусе насоса с моделью и серийным номером. Сфотографируйте его и отправьте в WhatsApp — так подбор будет точным.", "Шильдик — сорғы корпусындағы моделі мен сериялық нөмірі жазылған металл тақтайша. Оны суретке түсіріп, WhatsApp-қа жіберіңіз — сонда таңдау дәл болады.")}</p>
+      <h3>${t("Доставка")}</h3>
+      <p>${t("По Алматы — самовывоз из бутика на Рыскулова, 72А или доставка. В города Казахстана — транспортными компаниями. Сроки и стоимость уточняйте у менеджера.", "Алматы бойынша — Рысқұлов, 72А мекенжайындағы бутиктен алып кету немесе жеткізу. Қазақстан қалаларына — көлік компаниялары арқылы. Мерзімі мен құнын менеджерден нақтылаңыз.")}</p>
     </div>
     <div class="tabpanel" id="tp2" role="tabpanel" aria-labelledby="t2" hidden>
       <table class="spec">
-        <tr><th>Наименование</th><td class="mono">${esc(p.name)}</td></tr>
-        <tr><th>Серия / производитель</th><td>${esc(p.brand)}</td></tr>
-        <tr><th>Тип</th><td>${esc(p.kind || TYPES[p.type].short + " насос")}</td></tr>
-        <tr><th>Коды на шильдике</th><td class="mono">${p.codes.map(esc).join("<br>")}</td></tr>
-        <tr><th>Применение</th><td>${esc(p.use)}</td></tr>
-        <tr><th>Кросс-номера</th><td class="mono">${p.cross.flatMap(c=>c[1]).map(esc).join(", ") || "уточняйте у менеджера"}</td></tr>
-        <tr><th>Наличие</th><td>уточняйте в WhatsApp</td></tr>
-        <tr><th>Цена</th><td class="pr">по запросу</td></tr>
-        ${p.docs.length ? `<tr><th>Техописание</th><td>${p.docs.map(d => `<a class="doc-a" href="${esc(d.src)}" target="_blank" rel="noopener">${esc(d.title || "Техописание")} (PDF)</a>`).join("<br>")}</td></tr>` : ""}
+        <tr><th>${t("Наименование", "Атауы")}</th><td class="mono">${esc(kz(p,"name"))}</td></tr>
+        <tr><th>${t("Серия / производитель")}</th><td>${esc(kz(p,"brand"))}</td></tr>
+        <tr><th>${t("Тип")}</th><td>${esc(kindOf(p))}</td></tr>
+        <tr><th>${t("Коды на шильдике")}</th><td class="mono">${p.codes.map(esc).join("<br>")}</td></tr>
+        <tr><th>${t("Применение")}</th><td>${esc(kz(p,"use"))}</td></tr>
+        <tr><th>${t("Кросс-номера", "Кросс-нөмірлер")}</th><td class="mono">${p.cross.flatMap(c=>c[1]).map(esc).join(", ") || t("уточняйте у менеджера", "менеджерден нақтылаңыз")}</td></tr>
+        <tr><th>${t("Наличие", "Бар-жоғы")}</th><td>${t("уточняйте в WhatsApp", "WhatsApp арқылы нақтылаңыз")}</td></tr>
+        <tr><th>${t("Цена")}</th><td class="pr">${t("по запросу")}</td></tr>
+        ${p.docs.length ? `<tr><th>${t("Техописание", "Техникалық құжат")}</th><td>${p.docs.map(d => `<a class="doc-a" href="${esc(d.src)}" target="_blank" rel="noopener">${esc(docTitle(d))} (PDF)</a>`).join("<br>")}</td></tr>` : ""}
       </table>
     </div>
     ${p.docs.length ? `<div class="tabpanel" id="tp3" role="tabpanel" aria-labelledby="t3" hidden>
       <div class="docs">${p.docs.map(d => `<a class="doc-card" href="${esc(d.src)}" target="_blank" rel="noopener">
-        <span class="pdf">PDF</span><span><b>${esc(d.title || "Техописание")}</b><small>${d.size ? fmtSize(d.size) + " · " : ""}откроется в новой вкладке</small></span>${icon("i-doc")}</a>`).join("")}</div>
+        <span class="pdf">PDF</span><span><b>${esc(docTitle(d))}</b><small>${d.size ? fmtSize(d.size) + " · " : ""}${t("откроется в новой вкладке", "жаңа бетте ашылады")}</small></span>${icon("i-doc")}</a>`).join("")}</div>
     </div>` : ""}
-    <div class="similar"><h2 class="h-sec" style="margin:0">Похожие товары</h2>
-      <div class="arrows"><button type="button" id="simL" aria-label="Назад">${icon("i-left")}</button><button type="button" id="simR" aria-label="Вперёд">${icon("i-right")}</button></div>
+    <div class="similar"><h2 class="h-sec" style="margin:0">${t("Похожие товары", "Ұқсас тауарлар")}</h2>
+      <div class="arrows"><button type="button" id="simL" aria-label="${t("Назад", "Артқа")}">${icon("i-left")}</button><button type="button" id="simR" aria-label="${t("Вперёд", "Алға")}">${icon("i-right")}</button></div>
     </div>
     <div class="track" id="track">${sim.map(cardHTML).join("")}</div>
     <div style="height:56px"></div>
@@ -1011,7 +1042,7 @@ const PAGES = {
       tabs.forEach((t,i) => t.addEventListener("click", () => { tabs.forEach((x,j) => x.setAttribute("aria-selected", i===j)); panels.forEach((x,j) => x.hidden = i!==j); }));
       const tr = $("#track"); const step = d => tr.scrollBy({left: d * (tr.firstElementChild.offsetWidth + 18), behavior: reduceMotion.matches ? "auto" : "smooth"});
       $("#simL").addEventListener("click", () => step(-1)); $("#simR").addEventListener("click", () => step(1));
-      $("#askAi").addEventListener("click", () => Chat.open(`Расскажи про насос ${p.name}: на какую технику он подходит?`, p.id));
+      $("#askAi").addEventListener("click", () => Chat.open(t(`Расскажи про насос ${kz(p,"name")}: на какую технику он подходит?`, `${kz(p,"name")} сорғысы туралы айтып беріңіз: қандай техникаға сәйкес келеді?`), p.id));
       // Галерея: клик по миниатюре меняет главное фото
       $$(".thumb").forEach(b => b.addEventListener("click", () => {
         $("#gMain").innerHTML = photoHTML(p, false, p.photos[+b.dataset.i]);
@@ -1021,37 +1052,45 @@ const PAGES = {
   },
 
   services(){
-    const s = (ico, h, items, msg) => `<article>${icon(ico)}<h2>${h}</h2><ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul><a class="btn btn-wa" href="${wa(msg)}" target="_blank" rel="noopener">${icon("i-wa")}Узнать в WhatsApp</a></article>`;
-    return {title:"Услуги — запчасти, ремкомплекты, ремонт насосов | SKS PARTS", crumbs:[["Услуги"]], html:`
-    <div class="wrap"><h1 class="h-page">Услуги</h1><p class="lead">Не только продаём насосы — поможем восстановить ваш.</p></div>
+    const s = (ico, h, items, msg) => `<article>${icon(ico)}<h2>${h}</h2><ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul><a class="btn btn-wa" href="${wa(msg)}" target="_blank" rel="noopener">${icon("i-wa")}${t("Узнать в WhatsApp", "WhatsApp арқылы білу")}</a></article>`;
+    const kk = LANG === "kk";
+    return {title:t("Услуги — запчасти, ремкомплекты, ремонт насосов | SKS PARTS", "Қызметтер — қосалқы бөлшектер, жөндеу жинақтары, сорғы жөндеу | SKS PARTS"), crumbs:[[t("Услуги")]], html:`
+    <div class="wrap"><h1 class="h-page">${t("Услуги")}</h1><p class="lead">${t("Не только продаём насосы — поможем восстановить ваш.", "Біз сорғыларды сатып қана қоймаймыз — сіздің сорғыңызды қалпына келтіруге көмектесеміз.")}</p></div>
     <section class="sec" style="padding-top:6px"><div class="wrap">
       <div class="svc">
-        ${s("i-gear","Запчасти",["Запчасти к аксиально-поршневым насосам","Запчасти к гидромоторам","Блоки цилиндров, поршни, распределители","Пилотные (шестерёнчатые) насосы"],"Здравствуйте! Нужны запчасти к насосу.")}
-        ${s("i-kit","Ремкомплекты",["Ремкомплекты уплотнений насосов","Ремкомплекты гидромоторов","Подбор по модели насоса или шильдику"],"Здравствуйте! Нужен ремкомплект для насоса.")}
-        ${s("i-wrench","Ремонт и диагностика",["Диагностика гидравлического насоса","Ремонт аксиально-поршневых насосов","Замена изношенных деталей","Проверка после ремонта"],"Здравствуйте! Нужен ремонт / диагностика насоса.")}
+        ${kk ? s("i-gear","Қосалқы бөлшектер",["Аксиалды-поршеньді сорғыларға қосалқы бөлшектер","Гидромоторларға қосалқы бөлшектер","Цилиндр блоктары, поршеньдер, таратқыштар","Пилоттық (тісті) сорғылар"],"Сәлеметсіз бе! Сорғыға қосалқы бөлшектер керек.")
+             : s("i-gear","Запчасти",["Запчасти к аксиально-поршневым насосам","Запчасти к гидромоторам","Блоки цилиндров, поршни, распределители","Пилотные (шестерёнчатые) насосы"],"Здравствуйте! Нужны запчасти к насосу.")}
+        ${kk ? s("i-kit","Жөндеу жинақтары",["Сорғы тығыздағыштарының жөндеу жинақтары","Гидромоторлардың жөндеу жинақтары","Сорғы моделі немесе шильдик бойынша таңдау"],"Сәлеметсіз бе! Сорғыға жөндеу жинағы керек.")
+             : s("i-kit","Ремкомплекты",["Ремкомплекты уплотнений насосов","Ремкомплекты гидромоторов","Подбор по модели насоса или шильдику"],"Здравствуйте! Нужен ремкомплект для насоса.")}
+        ${kk ? s("i-wrench","Жөндеу және диагностика",["Гидравликалық сорғы диагностикасы","Аксиалды-поршеньді сорғыларды жөндеу","Тозған бөлшектерді ауыстыру","Жөндеуден кейін тексеру"],"Сәлеметсіз бе! Сорғыны жөндеу / диагностикалау керек.")
+             : s("i-wrench","Ремонт и диагностика",["Диагностика гидравлического насоса","Ремонт аксиально-поршневых насосов","Замена изношенных деталей","Проверка после ремонта"],"Здравствуйте! Нужен ремонт / диагностика насоса.")}
       </div>
     </div></section>
     <section class="sec sec-gray"><div class="wrap">
-      <h2 class="h-sec" style="margin-bottom:20px">Как мы работаем</h2>
-      <div class="how">
+      <h2 class="h-sec" style="margin-bottom:20px">${t("Как мы работаем", "Біз қалай жұмыс істейміз")}</h2>
+      <div class="how">${t(`
         <div><b>Пишете в WhatsApp</b><p>Марка и модель техники или фото шильдика насоса</p></div>
         <div><b>Подбираем</b><p>Менеджер подтверждает совместимость, цену и сроки</p></div>
         <div><b>Оплата</b><p>Условия оплаты обсуждаются с менеджером</p></div>
-        <div><b>Получаете</b><p>Самовывоз в Алматы или доставка по Казахстану</p></div>
+        <div><b>Получаете</b><p>Самовывоз в Алматы или доставка по Казахстану</p></div>`, `
+        <div><b>WhatsApp-қа жазасыз</b><p>Техника маркасы мен моделі немесе сорғы шильдигінің суреті</p></div>
+        <div><b>Таңдаймыз</b><p>Менеджер сәйкестікті, бағаны және мерзімді растайды</p></div>
+        <div><b>Төлем</b><p>Төлем шарттары менеджермен келісіледі</p></div>
+        <div><b>Аласыз</b><p>Алматыда алып кету немесе Қазақстан бойынша жеткізу</p></div>`)}
       </div>
     </div></section>`};
   },
 
   contacts(){
-    return {title:"Контакты — SKS PARTS, Алматы", crumbs:[["Контакты"]], html:`
-    <div class="wrap"><h1 class="h-page">Контакты</h1><p class="lead">Связь — только через WhatsApp: пишите или звоните в WhatsApp.</p></div>
+    return {title:t("Контакты — SKS PARTS, Алматы", "Байланыс — SKS PARTS, Алматы"), crumbs:[[t("Контакты")]], html:`
+    <div class="wrap"><h1 class="h-page">${t("Контакты")}</h1><p class="lead">${t("Связь — только через WhatsApp: пишите или звоните в WhatsApp.", "Байланыс — тек WhatsApp арқылы: WhatsApp-қа жазыңыз немесе қоңырау шалыңыз.")}</p></div>
     <section class="sec" style="padding-top:6px"><div class="wrap contacts">
       <div class="cbox">
-        <div>${icon("i-pin")}<span><small>Адрес</small><b>Алматы, пр. Рыскулова, 72А</b><br>ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26</span></div>
-        <div class="wa">${icon("i-wa")}<span><small>Отдел продаж — WhatsApp</small><b><a href="${wa("Здравствуйте! Пишу с сайта SKS PARTS.")}" target="_blank" rel="noopener">+7 777 030 55 66</a></b></span></div>
-        <div>${icon("i-mail")}<span><small>Почта</small><b><a href="mailto:info@sksparts.kz">info@sksparts.kz</a></b></span></div>
-        <div>${icon("i-clock")}<span><small>Режим работы</small><b>Пн–Пт 9:00–18:00</b> (обед 13–14)<br><b>Сб 10:00–17:00</b>, Вс — выходной</span></div>
-        <div>${icon("i-truck")}<span><small>Доставка</small><b>В любой город Казахстана</b></span></div>
+        <div>${icon("i-pin")}<span>${t("<small>Адрес</small><b>Алматы, пр. Рыскулова, 72А</b><br>ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26", "<small>Мекенжай</small><b>Алматы, Рысқұлов даңғылы, 72А</b><br>«Аман-Авто» СО, сол қанат, 2 қабат, 26 бутик")}</span></div>
+        <div class="wa">${icon("i-wa")}<span><small>${t("Отдел продаж — WhatsApp", "Сату бөлімі — WhatsApp")}</small><b><a href="${wa(t("Здравствуйте! Пишу с сайта SKS PARTS."))}" target="_blank" rel="noopener">+7 777 030 55 66</a></b></span></div>
+        <div>${icon("i-mail")}<span><small>${t("Почта")}</small><b><a href="mailto:info@sksparts.kz">info@sksparts.kz</a></b></span></div>
+        <div>${icon("i-clock")}<span>${t("<small>Режим работы</small><b>Пн–Пт 9:00–18:00</b> (обед 13–14)<br><b>Сб 10:00–17:00</b>, Вс — выходной", "<small>Жұмыс уақыты</small><b>Дс–Жм 9:00–18:00</b> (түскі үзіліс 13–14)<br><b>Сб 10:00–17:00</b>, Жс — демалыс")}</span></div>
+        <div>${icon("i-truck")}<span>${t("<small>Доставка</small><b>В любой город Казахстана</b>", "<small>Жеткізу</small><b>Қазақстанның кез келген қаласына</b>")}</span></div>
       </div>
       <div class="map">
         <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -1060,23 +1099,23 @@ const PAGES = {
           <rect x="220" y="230" width="120" height="140" rx="6" fill="#cfe0f6"/>
           <path d="M0 185h600" stroke="#fff" stroke-width="34"/><path d="M200 0v400M360 0v400" stroke="#fff" stroke-width="20"/>
           <path d="M0 185h600" stroke="#f6d77a" stroke-width="4" stroke-dasharray="18 12"/>
-          <text x="20" y="178" font-family="Manrope,Arial" font-size="13" font-weight="700" fill="#7d8899">пр. Рыскулова</text>
+          <text x="20" y="178" font-family="Manrope,Arial" font-size="13" font-weight="700" fill="#7d8899">${t("пр. Рыскулова", "Рысқұлов даңғылы")}</text>
         </svg>
-        <div class="pin"><span>SKS PARTS · ТД «Аман-Авто»</span><i></i></div>
-        <a class="btn btn-blue btn-sm" href="${GIS_URL}" target="_blank" rel="noopener">${icon("i-pin")}Открыть в 2ГИС</a>
+        <div class="pin"><span>${t("SKS PARTS · ТД «Аман-Авто»", "SKS PARTS · «Аман-Авто» СО")}</span><i></i></div>
+        <a class="btn btn-blue btn-sm" href="${GIS_URL}" target="_blank" rel="noopener">${icon("i-pin")}${t("Открыть в 2ГИС")}</a>
       </div>
     </div></section>`};
   },
 
   notfound(){
-    return {title:"Страница не найдена — SKS PARTS", crumbs:[["Страница не найдена"]], html:`
-    <div class="wrap" style="padding:60px 24px 80px"><h1 class="h-page">Страница не найдена</h1><p class="lead">Возможно, ссылка устарела.</p><a class="btn btn-blue" href="#catalog">Перейти в каталог</a></div>`};
+    return {title:t("Страница не найдена — SKS PARTS", "Бет табылмады — SKS PARTS"), crumbs:[[t("Страница не найдена", "Бет табылмады")]], html:`
+    <div class="wrap" style="padding:60px 24px 80px"><h1 class="h-page">${t("Страница не найдена", "Бет табылмады")}</h1><p class="lead">${t("Возможно, ссылка устарела.", "Сілтеме ескірген болуы мүмкін.")}</p><a class="btn btn-blue" href="#catalog">${t("Перейти в каталог", "Каталогқа өту")}</a></div>`};
   }
 };
 
 /* ---------- Роутер ---------- */
 let currentPage = "";
-function route(){
+function route(keepScroll){
   const raw = decodeURIComponent(location.hash.slice(1)) || "home";
   const [path, query=""] = raw.split("?");
   const params = new URLSearchParams(query);
@@ -1086,13 +1125,13 @@ function route(){
   else { key = ""; view = PAGES.notfound(); }
 
   document.title = view.title;
-  $("#crumbs").innerHTML = view.crumbs ? `<nav class="crumbs" aria-label="Строка пути"><div class="wrap"><a href="#home">Главная</a>${view.crumbs.map((c,i) => `<i>/</i>${c[1] && i<view.crumbs.length-1 ? `<a href="${c[1]}">${esc(c[0])}</a>` : `<span aria-current="page">${esc(c[0])}</span>`}`).join("")}</div></nav>` : "";
+  $("#crumbs").innerHTML = view.crumbs ? `<nav class="crumbs" aria-label="${t("Строка пути", "Навигация жолы")}"><div class="wrap"><a href="#home">${t("Главная")}</a>${view.crumbs.map((c,i) => `<i>/</i>${c[1] && i<view.crumbs.length-1 ? `<a href="${c[1]}">${esc(c[0])}</a>` : `<span aria-current="page">${esc(c[0])}</span>`}`).join("")}</div></nav>` : "";
   const main = $("#main");
   main.innerHTML = `<div class="page">${view.html}</div>`;
   $$("#links a").forEach(a => a.classList.toggle("on", a.dataset.p === key));
   closeCats();
   const samePage = currentPage === path && path === "pick";
-  if(!samePage) window.scrollTo({top:0, behavior:"auto"});
+  if(!samePage && keepScroll !== true) window.scrollTo({top:0, behavior:"auto"}); // при смене языка страница остаётся на месте
   currentPage = path;
   view.after && view.after();
   Sparks.toggle(path === "home" || path === "");
@@ -1101,10 +1140,10 @@ window.addEventListener("hashchange", route);
 
 /* ---------- Подбор: результат ---------- */
 function pickResult(brand, model){
-  if(!brand) return `<p class="lead" style="margin:0">Начните с выбора марки техники.</p>`;
-  if(!model) return `<p class="lead" style="margin:0">Теперь выберите модель ${esc(brand)}.</p>`;
+  if(!brand) return `<p class="lead" style="margin:0">${t("Начните с выбора марки техники.", "Алдымен техника маркасын таңдаңыз.")}</p>`;
+  if(!model) return `<p class="lead" style="margin:0">${t(`Теперь выберите модель ${esc(brand)}.`, `Енді ${esc(brand)} моделін таңдаңыз.`)}</p>`;
   const list = PICK[brand][model].map(id => byId[id]);
-  return `<h3>${esc(brand)} ${esc(model)} — ${plural(list.length,"подходящий насос","подходящих насоса","подходящих насосов")}</h3><div class="grid">${list.map(cardHTML).join("")}</div>`;
+  return `<h3>${esc(brand)} ${esc(model)} — ${plural(list.length,"подходящий насос","подходящих насоса","подходящих насосов","сәйкес сорғы")}</h3><div class="grid">${list.map(cardHTML).join("")}</div>`;
 }
 
 /* ---------- Категории (меню) ---------- */
@@ -1112,9 +1151,9 @@ const catBtn = $("#catBtn"), catMenu = $("#catMenu"), mCats = $("#mCats");
 function buildCats(){
   const c = catLinks();
   const row = x => `<a href="${x.href}">${esc(x.name)}<em>${x.n}</em></a>`;
-  catMenu.innerHTML = `<div class="grp">Тип насоса</div>${c.t.map(row).join("")}<div class="grp">По технике</div>${c.h.map(row).join("")}
-    <div class="grp m-only">Разделы сайта</div>
-    ${[["#home","Главная"],["#about","О компании"],["#pick","Подбор по технике"],["#catalog","Весь каталог"],["#services","Услуги"],["#contacts","Контакты"]].map(([h,n])=>`<a class="m-only" href="${h}">${n}</a>`).join("")}`;
+  catMenu.innerHTML = `<div class="grp">${t("Тип насоса")}</div>${c.t.map(row).join("")}<div class="grp">${t("По технике", "Техника бойынша")}</div>${c.h.map(row).join("")}
+    <div class="grp m-only">${t("Разделы сайта", "Сайт бөлімдері")}</div>
+    ${[["#home","Главная"],["#about","О компании"],["#pick","Подбор по технике"],["#catalog","Весь каталог"],["#services","Услуги"],["#contacts","Контакты"]].map(([h,n])=>`<a class="m-only" href="${h}">${t(n)}</a>`).join("")}`;
   $("#footCats").innerHTML = c.all.map(x => `<li><a href="${x.href}">${esc(x.name)}</a></li>`).join("");
 }
 function openCats(){ catMenu.style.setProperty("--mt", Math.max(0, $(".nav").getBoundingClientRect().bottom) + "px"); catMenu.classList.add("open"); catBtn.setAttribute("aria-expanded","true"); mCats.setAttribute("aria-expanded","true"); }
@@ -1186,8 +1225,8 @@ const Chat = (() => {
   function el(tag, cls, text){ const e = document.createElement(tag); if(cls) e.className = cls; if(text != null) e.textContent = text; return e; }
   function waLink(question){
     const a = el("a", "to-wa"); a.target = "_blank"; a.rel = "noopener";
-    a.href = wa(question ? `Здравствуйте! Вопрос с сайта: ${question}` : "Здравствуйте! Пишу с сайта SKS PARTS.");
-    a.insertAdjacentHTML("afterbegin", icon("i-wa")); a.append("Спросить менеджера в WhatsApp");
+    a.href = wa(question ? t(`Здравствуйте! Вопрос с сайта: ${question}`, `Сәлеметсіз бе! Сайттан сұрақ: ${question}`) : t("Здравствуйте! Пишу с сайта SKS PARTS."));
+    a.insertAdjacentHTML("afterbegin", icon("i-wa")); a.append(t("Спросить менеджера в WhatsApp", "WhatsApp арқылы менеджерден сұрау"));
     return a;
   }
   function add(role, text, links, question){
@@ -1201,7 +1240,7 @@ const Chat = (() => {
   function open(prefill, pid){
     closeCats();
     box.classList.add("open"); fab.setAttribute("aria-expanded","true"); mAi.setAttribute("aria-expanded","true");
-    if(!greeted){ greeted = true; add("bot", "Здравствуйте! Я ИИ-помощник SKS PARTS. Напишите марку и модель техники (например, Hitachi ZX200) или номер насоса — подскажу, что подходит. Цены и наличие уточняет менеджер в WhatsApp."); }
+    if(!greeted){ greeted = true; add("bot", t("Здравствуйте! Я ИИ-помощник SKS PARTS. Напишите марку и модель техники (например, Hitachi ZX200) или номер насоса — подскажу, что подходит. Цены и наличие уточняет менеджер в WhatsApp.", "Сәлеметсіз бе! Мен SKS PARTS ЖИ-көмекшісімін. Техниканың маркасы мен моделін (мысалы, Hitachi ZX200) немесе сорғы нөмірін жазыңыз — қайсысы сәйкес келетінін айтамын. Баға мен бар-жоғын WhatsApp арқылы менеджер нақтылайды.")); }
     if(pid) productCtx = pid;
     if(prefill){ input.value = prefill; }
     input.focus();
@@ -1209,7 +1248,7 @@ const Chat = (() => {
   function close(){ box.classList.remove("open"); fab.setAttribute("aria-expanded","false"); mAi.setAttribute("aria-expanded","false"); }
   async function send(text){
     text = text.trim().slice(0, 500); if(!text || busy) return;
-    if(sent >= CHAT_LIMIT){ add("bot", "Лимит сообщений в чате исчерпан. Напишите, пожалуйста, менеджеру в WhatsApp — он ответит на все вопросы.", null, text); return; }
+    if(sent >= CHAT_LIMIT){ add("bot", t("Лимит сообщений в чате исчерпан. Напишите, пожалуйста, менеджеру в WhatsApp — он ответит на все вопросы.", "Чаттағы хабарлама лимиті таусылды. WhatsApp арқылы менеджерге жазыңыз — ол барлық сұрақтарға жауап береді."), null, text); return; }
     sent++; add("me", text); input.value = ""; busy = true; form.querySelector("button").disabled = true;
     history.push({role:"user", content:text});
     const typing = el("div","msg bot typing"); typing.innerHTML = "<i></i><i></i><i></i>"; msgs.append(typing); msgs.scrollTop = msgs.scrollHeight;
@@ -1259,7 +1298,11 @@ const Demo = (() => {
       found:(m,list)=>`На ${m} обычно ставят: ${list}.\nЭто пример — точную совместимость подтвердит менеджер по шильдику.`,
       brand:(b,ms)=>`Какая у вас модель ${b}? В моей таблице есть: ${ms}. Если вашей модели нет — отправьте фото шильдика в WhatsApp.`,
       nobrand:"Этой модели нет в моей таблице подбора. Отправьте фото шильдика насоса в WhatsApp — менеджер подберёт насос.",
-      tech:(n)=>`Для этой техники посмотрите раздел «${n}». Чтобы подобрать точно, напишите марку и модель техники.`
+      tech:(n)=>`Для этой техники посмотрите раздел «${n}». Чтобы подобрать точно, напишите марку и модель техники.`,
+      info:(p,use,m,nums)=>`${p}. Применение: ${use}.` + (m ? ` Техника: ${m}.` : "") + (nums ? ` Кросс-номера: ${nums}.` : ""),
+      confirm:"Совместимость с вашей машиной подтвердит менеджер.",
+      confirmExact:"Точную совместимость с вашей машиной подтвердит менеджер.",
+      map:"Открыть на карте 2ГИС", contacts:"Страница контактов", services:"Услуги", pick:"Подбор по технике", pickBrand:b=>`Подбор: ${b}`
     },
     kk:{
       addr:`Мекенжайымыз: Алматы, Рысқұлов даңғылы, 72А, «Аман-Авто» СО, сол қанат, 2 қабат, 26 бутик.\nЖұмыс уақыты: Дс–Жм 9:00–18:00 (түскі үзіліс 13–14), Сб 10:00–17:00, Жс — демалыс.`,
@@ -1275,29 +1318,33 @@ const Demo = (() => {
       found:(m,list)=>`${m} үшін әдетте: ${list}.\nБұл мысал — нақты сәйкестікті менеджер шильдик бойынша растайды.`,
       brand:(b,ms)=>`${b} моделіңіз қандай? Кестемде бар: ${ms}. Моделіңіз болмаса — шильдиктің суретін WhatsApp-қа жіберіңіз.`,
       nobrand:"Бұл модель кестемде жоқ. Сорғы шильдигінің суретін WhatsApp-қа жіберіңіз — менеджер таңдап береді.",
-      tech:(n)=>`Бұл техника үшін «${n}» бөлімін қараңыз. Нақты таңдау үшін техниканың маркасы мен моделін жазыңыз.`
+      tech:(n)=>`Бұл техника үшін «${n}» бөлімін қараңыз. Нақты таңдау үшін техниканың маркасы мен моделін жазыңыз.`,
+      info:(p,use,m,nums)=>`${p}. Қолданылуы: ${use}.` + (m ? ` Техника: ${m}.` : "") + (nums ? ` Кросс-нөмірлер: ${nums}.` : ""),
+      confirm:"Машинаңызға сәйкестігін менеджер растайды.",
+      confirmExact:"Машинаңызға нақты сәйкестігін менеджер растайды.",
+      map:"2ГИС картасында ашу", contacts:"Байланыс беті", services:"Қызметтер", pick:"Техника бойынша таңдау", pickBrand:b=>`Таңдау: ${b}`
     }
   };
   const has = (s, words) => words.some(w => s.includes(w));
-  const plink = p => ({label: p.name, href: "#p-" + p.id});
+  const plink = p => ({label: kz(p,"name"), href: "#p-" + p.id});
+  // Казахское поле товара, если ответ на казахском и поле заполнено
+  const fld = (L, p, f) => (L === T.kk && p[f + "_kk"]) || p[f];
   // Название, применение, техника и кросс-номера товара — одной строкой для ответа
-  const productInfo = p => {
-    const nums = p.cross.flatMap(c => c[1]);
-    return `${p.name}. Применение: ${p.use}.` + (p.compat.length ? ` Техника: ${p.compat.join("; ")}.` : "") + (nums.length ? ` Кросс-номера: ${nums.join(", ")}.` : "");
-  };
+  const productInfo = (L, p) => L.info(fld(L, p, "name"), fld(L, p, "use"), p.compat.join("; "), p.cross.flatMap(c => c[1]).join(", "));
 
   function answer(text, ctx){
-    const L = KK.test(text) ? T.kk : T.ru;
+    // Язык ответа: казахский, если сайт на казахском или вопрос написан по-казахски
+    const L = LANG === "kk" || KK.test(text) ? T.kk : T.ru;
     const s = " " + text.toLowerCase().replace(/ё/g,"е") + " ";
     const n = norm(text);
 
     if(/\d{12,}/.test(text.replace(/[\s-]/g,"")) || has(s, ["паспорт","иин ","cvv","номер карты","карта ","card","төлқұжат"])) return {text:L.pii};
     if(has(s, ["цен","стоит","стоимост","почем","наличи","срок","скольк","баға","бағасы","қанша"])) return {text:L.price};
-    if(has(s, ["где вы","адрес","находит","как доехать","2гис","қайда","мекенжай"])) return {text:L.addr, links:[{label:"Открыть на карте 2ГИС", href:GIS_URL}, {label:"Страница контактов", href:"#contacts"}]};
+    if(has(s, ["где вы","адрес","находит","как доехать","2гис","қайда","мекенжай"])) return {text:L.addr, links:[{label:L.map, href:GIS_URL}, {label:L.contacts, href:"#contacts"}]};
     if(has(s, ["режим","часы работы","время работы","во сколько","когда работ","выходн","открыт","уақыт"])) return {text:L.hours};
     if(has(s, ["доставк","достав","отправ","жеткіз","астан","шымкент","караганд","актобе","атырау","костанай","павлодар"])) return {text:L.deliv};
-    if(has(s, ["шильдик","табличк","узнать модель","как понять","какой у меня насос","не знаю модель"])) return {text:L.plate};
-    if(has(s, ["ремонт","диагност","ремкомплект","запчаст","уплотн","жөнде"])) return {text:L.svc, links:[{label:"Услуги", href:"#services"}]};
+    if(has(s, ["шильдик","табличк","узнать модель","как понять","какой у меня насос","не знаю модель","тақтайша","қалай біл"])) return {text:L.plate};
+    if(has(s, ["ремонт","диагност","ремкомплект","запчаст","уплотн","жөнде","бөлшек"])) return {text:L.svc, links:[{label:L.services, href:"#services"}]};
 
     // Модель техники из таблицы подбора
     for(const [brand, models] of Object.entries(PICK)){
@@ -1307,7 +1354,7 @@ const Demo = (() => {
         const brandSaid = has(s, BRAND_ALIASES[brand]);
         if(variants.some(v => /^\d+$/.test(v) ? brandSaid && new RegExp(`(^|\\D)${v}(\\D|$)`).test(s) : n.includes(v))){
           const list = ids.map(id => byId[id]);
-          return {text:L.found(`${brand} ${model}`, list.map(p=>p.name).join(", ")), links:[...list.map(plink), {label:"Подбор по технике", href:`#pick?brand=${encodeURIComponent(brand)}&model=${encodeURIComponent(model)}`}]};
+          return {text:L.found(`${brand} ${model}`, list.map(p=>fld(L, p, "name")).join(", ")), links:[...list.map(plink), {label:L.pick, href:`#pick?brand=${encodeURIComponent(brand)}&model=${encodeURIComponent(model)}`}]};
         }
       }
     }
@@ -1316,22 +1363,22 @@ const Demo = (() => {
     const partial = n.length >= 5 && /\d/.test(n) && /[a-z]/.test(n);
     const prods = PRODUCTS.filter(p => p.keys.some(k => k.length >= 3 && (n.includes(norm(k)) || (partial && norm(k).includes(n)))));
     if(prods.length){
-      return {text:`${productInfo(prods[0])}\nСовместимость с вашей машиной подтвердит менеджер.`, links:prods.slice(0,3).map(plink)};
+      return {text:`${productInfo(L, prods[0])}\n${L.confirm}`, links:prods.slice(0,3).map(plink)};
     }
     // Только марка
     for(const [brand, al] of Object.entries(BRAND_ALIASES)){
-      if(has(s, al)) return {text:L.brand(brand, Object.keys(PICK[brand]).join(", ")), links:[{label:`Подбор: ${brand}`, href:`#pick?brand=${encodeURIComponent(brand)}`}]};
+      if(has(s, al)) return {text:L.brand(brand, Object.keys(PICK[brand]).join(", ")), links:[{label:L.pickBrand(brand), href:`#pick?brand=${encodeURIComponent(brand)}`}]};
     }
     // Тип техники
-    const techMap = [["мини","mini"],["экскаватор","excavator"],["3в1","backhoe"],["3 в 1","backhoe"],["погрузчик","backhoe"],["кран","crane"],["кму","crane"],["манипулятор","crane"],["мусоровоз","crane"],["самосвал","crane"],["грузовик","crane"],["отбора мощности","crane"],[" ком ","crane"],["лесовоз","crane"],["автовышк","crane"],["вышк","crane"],["каток","mobile"],["катк","mobile"],["фрез","mobile"],["комбайн","mobile"],["трактор","mobile"]];
+    const techMap = [["мини","mini"],["шағын","mini"],["экскаватор","excavator"],["тиегіш","backhoe"],["қоқыс","crane"],["3в1","backhoe"],["3 в 1","backhoe"],["погрузчик","backhoe"],["кран","crane"],["кму","crane"],["манипулятор","crane"],["мусоровоз","crane"],["самосвал","crane"],["грузовик","crane"],["отбора мощности","crane"],[" ком ","crane"],["лесовоз","crane"],["автовышк","crane"],["вышк","crane"],["каток","mobile"],["катк","mobile"],["фрез","mobile"],["комбайн","mobile"],["трактор","mobile"]];
     const tm = techMap.find(([w, k]) => TECH[k] && s.includes(w)); // раздел могли удалить в админке
-    if(tm) return {text:L.tech(TECH[tm[1]].name), links:[{label:TECH[tm[1]].name, href:`#catalog?tech=${tm[1]}`}]};
+    if(tm){ const nm = fld(L, TECH[tm[1]], "name"); return {text:L.tech(nm), links:[{label:nm, href:`#catalog?tech=${tm[1]}`}]}; }
     // Контекст товара («Спросить ИИ» на странице товара)
-    if(ctx && byId[ctx] && has(s, ["этот","этого","про насос","подходит","расскажи"])){
+    if(ctx && byId[ctx] && has(s, ["этот","этого","про насос","подходит","расскажи","туралы","сәйкес"])){
       const p = byId[ctx];
-      return {text:`${p.desc}\n${productInfo(p)}\nТочную совместимость с вашей машиной подтвердит менеджер.`};
+      return {text:`${fld(L, p, "desc")}\n${productInfo(L, p)}\n${L.confirmExact}`};
     }
-    if(has(s, ["привет","здравств","добрый","салам","hello","hi "])) return {text:L.hi};
+    if(has(s, ["привет","здравств","добрый","салам","сәлем","hello","hi "])) return {text:L.hi};
     if(has(s, ["спасибо","рахмет","благодар"])) return {text:L.thanks};
     if(has(s, ["модел","техник","машин"])) return {text:L.nobrand};
     return {text:L.unk};
@@ -1339,11 +1386,126 @@ const Demo = (() => {
   return {answer};
 })();
 
+/* ---------- Переключатель языка ----------
+   Шапка, меню, подвал и чат написаны в разметке по-русски; переводы — в словаре I18N_KK.
+   Исходный русский текст запоминается, поэтому переключать можно в обе стороны. */
+const I18N_KK = {
+  "SKS PARTS — на главную": "SKS PARTS — басты бетке",
+  "Логотип SKS PARTS": "SKS PARTS логотипі",
+  "Гидравлика для спецтехники": "Арнайы техника гидравликасы",
+  "Доставка по всему Казахстану": "Қазақстан бойынша жеткізу",
+  "Работаем с 2018 года": "2018 жылдан бері нарықта",
+  "Рыскулова, 72А — на карте 2ГИС": "Рысқұлов, 72А — 2ГИС-те",
+  "Поиск по каталогу": "Каталог бойынша іздеу",
+  "Поиск: K3V112, HPV102, Hitachi…": "Іздеу: K3V112, HPV102, Hitachi…",
+  "Искать": "Іздеу",
+  "Поиск": "Іздеу",
+  "Поиск насоса…": "Сорғыны іздеу…",
+  "Здравствуйте! Пишу с сайта SKS PARTS.": "Сәлеметсіз бе! SKS PARTS сайтынан жазып отырмын.",
+  "Здравствуйте! Отправляю фото шильдика насоса, помогите подобрать.": "Сәлеметсіз бе! Сорғы шильдигінің суретін жіберемін, таңдауға көмектесіңіз.",
+  "Написать в WhatsApp": "WhatsApp-қа жазу",
+  "Пн–Пт": "Дс–Жм",
+  "9:00–18:00 (обед 13–14)": "9:00–18:00 (үзіліс 13–14)",
+  "Вс": "Жс",
+  "выходной": "демалыс",
+  "Язык сайта": "Сайт тілі",
+  "Основное меню": "Негізгі мәзір",
+  "Быстрое меню": "Жылдам мәзір",
+  "Быстрые действия": "Жылдам әрекеттер",
+  "Категории": "Санаттар",
+  "Главная": "Басты бет",
+  "О компании": "Компания туралы",
+  "Подбор": "Таңдау",
+  "Подбор по технике": "Техника бойынша таңдау",
+  "Каталог": "Каталог",
+  "Весь каталог": "Бүкіл каталог",
+  "Услуги": "Қызметтер",
+  "Контакты": "Байланыс",
+  "Меню": "Мәзір",
+  "Офис": "Кеңсе",
+  "Адрес": "Мекенжай",
+  "Алматы, пр. Рыскулова, 72А, ТД «Аман-Авто», левое крыло, 2 этаж, бутик 26": "Алматы, Рысқұлов даңғылы, 72А, «Аман-Авто» СО, сол қанат, 2 қабат, 26 бутик",
+  "Открыть в 2ГИС →": "2ГИС-те ашу →",
+  "Открыть в 2ГИС": "2ГИС-те ашу",
+  "Отдел продаж": "Сату бөлімі",
+  "Почта": "Пошта",
+  "Режим работы": "Жұмыс уақыты",
+  "Пн–Пт 9:00–18:00 (обед 13–14)": "Дс–Жм 9:00–18:00 (түскі үзіліс 13–14)",
+  "Сб 10:00–17:00, Вс — выходной": "Сб 10:00–17:00, Жс — демалыс",
+  "SKS PARTS (SKS HYDRAULIC). Алматы, Казахстан.": "SKS PARTS (SKS HYDRAULIC). Алматы, Қазақстан.",
+  "Цены и наличие уточняйте у менеджера в WhatsApp": "Баға мен бар-жоғын WhatsApp арқылы менеджерден нақтылаңыз",
+  "Наверх": "Жоғарыға",
+  "Открыть ИИ-помощника": "ЖИ-көмекшіні ашу",
+  "ИИ": "ЖИ",
+  "ИИ-помощник SKS PARTS": "SKS PARTS ЖИ-көмекшісі",
+  "ИИ-помощник SKS": "SKS ЖИ-көмекшісі",
+  "ИИ-подбор": "ЖИ-таңдау",
+  "подбор насосов · онлайн": "сорғы таңдау · онлайн",
+  "подбор насосов · демо-режим": "сорғы таңдау · демо-режим",
+  "Закрыть": "Жабу",
+  "Подобрать насос на Hitachi ZX200": "Hitachi ZX200 үшін сорғы таңдау",
+  "Как узнать модель насоса?": "Сорғы моделін қалай білуге болады?",
+  "Где вы находитесь?": "Сіздер қайдасыздар?",
+  "Доставка в Астану": "Астанаға жеткізу",
+  "Сообщение": "Хабарлама",
+  "Марка и модель техники или номер насоса…": "Техника маркасы мен моделі немесе сорғы нөмірі…",
+  "Отправить": "Жіберу",
+  "ИИ может ошибаться. Цены, наличие и совместимость подтверждает менеджер.": "ЖИ қателесуі мүмкін. Баға, бар-жоғы мен сәйкестікті менеджер растайды.",
+  "Отправить фото шильдика": "Шильдик суретін жіберу",
+  "Код на шильдике": "Шильдиктегі код",
+  "Коды на шильдике": "Шильдиктегі кодтар",
+  "Серия / производитель": "Серия / өндіруші",
+  "Тип": "Түрі",
+  "Тип насоса": "Сорғы түрі",
+  "Применение": "Қолданылуы",
+  "Цена": "Бағасы",
+  "по запросу": "сұраныс бойынша",
+  "Доставка": "Жеткізу",
+  "Техника": "Техника",
+  "Марка": "Марка",
+  "Модель": "Модель",
+  "фото серии": "серия суреті",
+  "фото похожего насоса": "ұқсас сорғының суреті",
+  "фото со склада SKS": "SKS қоймасынан сурет",
+  "фото запчастей серии": "серия бөлшектерінің суреті",
+  "фото для примера": "мысал ретіндегі сурет"
+};
+const I18N_SKIP = "main,#crumbs,script,style,svg,#msgs,#catMenu,#footCats";
+const I18N_ATTRS = ["placeholder", "aria-label", "data-tip", "data-wa", "alt", "title"];
+const ruText = new WeakMap(), ruAttrs = new WeakMap();
+const META_DESC = $('meta[name="description"]').content;
+function translateStatic(){
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT,
+    {acceptNode: n => n.nodeType === 1 && n.matches(I18N_SKIP) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT});
+  for(let n; (n = w.nextNode());){
+    if(n.nodeType === 3){
+      if(!ruText.has(n)){ if(!n.nodeValue.trim()) continue; ruText.set(n, n.nodeValue); }
+      const ru = ruText.get(n), core = ru.trim();
+      n.nodeValue = ru.replace(core, () => t(core));
+    } else {
+      if(!ruAttrs.has(n)) ruAttrs.set(n, I18N_ATTRS.filter(a => n.hasAttribute(a)).map(a => [a, n.getAttribute(a)]));
+      for(const [a, ru] of ruAttrs.get(n)) n.setAttribute(a, t(ru));
+    }
+  }
+}
+function setLang(l, save){
+  LANG = l === "kk" ? "kk" : "ru";
+  if(save) try { localStorage.setItem("sks-lang", LANG); } catch {}
+  document.documentElement.lang = LANG;
+  $('meta[name="description"]').content = t(META_DESC, "SKS PARTS — арнайы техникаға арналған гидравликалық сорғылар, қосалқы бөлшектер, жөндеу жинақтары, жөндеу және диагностика. SKS HYDRAULICS, Boxin (Қытай) және HEMA (Түркия) зауыттарының дилері. Бүкіл Қазақстан бойынша жеткізу.");
+  translateStatic();
+  $$(".js-wa").forEach(a => a.href = wa(a.dataset.wa));
+  $$(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === LANG));
+  if(PRODUCTS.length){ buildCats(); route(true); }
+}
+$$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang, true)));
+setLang(LANG);
+
 // Запуск: сначала каталог, потом страница
 fetch("data/catalog.json?v=" + Date.now(), {cache: "no-store"})
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(c => { setCatalog(c); buildCats(); route(); })
-  .catch(() => { $("#main").innerHTML = `<div class="wrap" style="padding:60px 24px 80px"><h1 class="h-page">Каталог не загрузился</h1><p class="lead">Обновите страницу или напишите нам в WhatsApp.</p></div>`; });
+  .catch(() => { $("#main").innerHTML = `<div class="wrap" style="padding:60px 24px 80px"><h1 class="h-page">${t("Каталог не загрузился", "Каталог жүктелмеді")}</h1><p class="lead">${t("Обновите страницу или напишите нам в WhatsApp.", "Бетті жаңартыңыз немесе бізге WhatsApp-қа жазыңыз.")}</p></div>`; });
 </script>
 </body>
 </html>
