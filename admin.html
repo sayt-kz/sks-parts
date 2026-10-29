@@ -99,6 +99,12 @@ table.cross td:last-child{width:40px}
 .gitem .row{display:flex;gap:4px}
 .gitem .row .btn{flex:1;padding:0 4px}
 .gitem select,.gitem input{font-size:12.5px;padding:5px 7px}
+.docs{display:grid;gap:6px}
+.doc{display:grid;grid-template-columns:auto 1fr auto auto auto;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.doc .pdf{background:#d92d20;color:#fff;font-size:11px;font-weight:800;padding:3px 6px;border-radius:5px}
+.doc small{color:var(--muted);font-size:12px;white-space:nowrap}
+.docs>label{justify-self:start}
+@media (max-width:700px){.doc{grid-template-columns:auto 1fr auto}}
 .gadd{display:grid;place-items:center;min-height:200px;border:2px dashed var(--line);border-radius:var(--r);color:var(--blue);font-weight:800;cursor:pointer;text-align:center;padding:10px}
 .gadd:hover{border-color:var(--blue);background:#f4f8fe}
 .cats h3{margin:0 0 4px;font-size:16px}
@@ -237,6 +243,8 @@ table.cross td:last-child{width:40px}
 const API = "https://api.github.com";
 const CATALOG_PATH = "data/catalog.json";
 const NOTES = ["", "фото серии", "фото похожего насоса", "фото со склада SKS", "фото запчастей серии", "фото для примера"];
+const MAX_DOC = 20 * 1048576; // предел размера PDF (GitHub API принимает файлы до ~50 МБ, берём с запасом)
+const fmtSize = b => !b ? "" : b < 1048576 ? Math.max(1, Math.round(b / 1024)) + " КБ" : (b / 1048576).toFixed(1).replace(".", ",") + " МБ";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -523,6 +531,30 @@ function renderEditor(id) {
     el("label", { class: "gadd" }, el("span", { text: p.photos.length ? "+ Добавить ещё фото" : "+ Добавить фото" }), files));
   drawGal();
 
+  // Техописание: PDF-файлы (кладутся в docs/, на сайте — ссылки «Скачать» на странице товара)
+  p.docs = p.docs || [];
+  const docsBox = el("div", { class: "docs" });
+  const docFiles = el("input", { type: "file", accept: "application/pdf,.pdf", multiple: true, hidden: true });
+  docFiles.addEventListener("change", () => {
+    for (const f of [...docFiles.files]) {
+      if (f.type !== "application/pdf" && !/\.pdf$/i.test(f.name)) { toast(`«${f.name}» — не PDF`, true); continue; }
+      if (f.size > MAX_DOC) { toast(`«${f.name}» больше ${MAX_DOC / 1048576} МБ — сожмите PDF`, true); continue; }
+      const path = `docs/${p.id}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}.pdf`;
+      S.pending[path] = { blob: f, url: URL.createObjectURL(f) };
+      p.docs.push({ src: path, title: f.name.replace(/\.pdf$/i, "").replace(/[_]+/g, " ").trim() || "Техописание", size: f.size });
+    }
+    docFiles.value = ""; touch(); drawDocs();
+  });
+  const drawDocs = () => docsBox.replaceChildren(...p.docs.map((d, i) => {
+    const t = el("input", { type: "text", value: d.title || "", placeholder: "Название, например: Техописание A17FO" });
+    t.addEventListener("input", () => { d.title = t.value; touch(); });
+    return el("div", { class: "doc" }, el("span", { class: "pdf", text: "PDF" }), t,
+      el("small", { text: fmtSize(d.size) }),
+      el("a", { class: "btn sm", href: srcOf(d.src), target: "_blank", rel: "noopener", text: "Открыть" }),
+      el("button", { class: "btn sm danger", type: "button", title: "Удалить файл", text: "✕", onclick: () => { p.docs.splice(i, 1); touch(); drawDocs(); } }));
+  }), el("label", { class: "btn sm", style: "cursor:pointer" }, p.docs.length ? "+ Добавить ещё PDF" : "+ Загрузить PDF", docFiles));
+  drawDocs();
+
   // Кросс-номера
   const tbody = el("tbody");
   const drawCross = () => tbody.replaceChildren(...(p.cross || []).map((c, i) => {
@@ -566,6 +598,9 @@ function renderEditor(id) {
     el("label", { class: "f" }, el("span", { text: "Фото — можно несколько. Первое — главное, его видно в каталоге; порядок меняется стрелками" })),
     gal,
     el("div", { class: "hint", text: "Можно выбрать сразу несколько файлов. Фото автоматически уменьшается до 900 px. Лучше всего — светлый фон, без чужих логотипов." }),
+    el("label", { class: "f", style: "margin-top:14px" }, el("span", { text: "Техописание (PDF) — на сайте появится кнопка «Скачать техописание»" })),
+    docsBox,
+    el("div", { class: "hint", text: `Можно несколько файлов, каждый до ${MAX_DOC / 1048576} МБ. Название можно поправить — так ссылка будет подписана на сайте.`, style: "margin-bottom:14px" }),
     el("label", { class: "f" }, el("span", { text: "Кросс-номера и применение" })),
     el("table", { class: "cross" }, el("thead", {}, el("tr", {}, el("th", { text: "Техника" }), el("th", { text: "Номера (через запятую)" }), el("th", { text: "Источник" }), el("th"))), tbody),
     el("button", { class: "btn sm", type: "button", text: "+ строка", onclick: () => { (p.cross = p.cross || []).push({ machines: "", numbers: [], source: "" }); touch(); drawCross(); } }),
@@ -736,10 +771,10 @@ $("#saveBtn").addEventListener("click", async () => {
   S.saving = true; updateStatus("Сохраняю…");
   try {
     // 1) новые фото, которые ещё используются
-    const used = new Set([...S.catalog.products.flatMap(p => (p.photos || []).map(x => x.src)), ...[...Object.values(S.catalog.types), ...Object.values(S.catalog.tech)].map(v => v.image)].filter(Boolean));
+    const used = new Set([...S.catalog.products.flatMap(p => [...(p.photos || []), ...(p.docs || [])].map(x => x.src)), ...[...Object.values(S.catalog.types), ...Object.values(S.catalog.tech)].map(v => v.image)].filter(Boolean));
     const paths = Object.keys(S.pending).filter(p => used.has(p) && !S.pending[p].uploaded);
     for (const [i, path] of paths.entries()) {
-      updateStatus(`Загружаю фото ${i + 1} из ${paths.length}…`);
+      updateStatus(`Загружаю файл ${i + 1} из ${paths.length}…`);
       const bytes = new Uint8Array(await S.pending[path].blob.arrayBuffer());
       await gh(`/repos/${S.repo}/contents/${path}`, { method: "PUT", body: JSON.stringify({ message: `Админка: фото ${path}`, content: b64FromBytes(bytes), branch: S.branch }) });
       S.pending[path].uploaded = true; // превью остаётся, пока GitHub собирает сайт

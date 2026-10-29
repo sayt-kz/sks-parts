@@ -245,6 +245,17 @@ main{min-height:60vh}
 .buy .wa-num{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;margin-right:auto}
 .buy .wa-num .ico{width:30px;height:30px;color:var(--wa)}
 .buy .wa-num small{display:block;font-size:12px;color:var(--ink2);font-weight:600}
+.doc-link{margin-left:18px}
+.doc-a{color:var(--blue);font-weight:700}
+.doc-a:hover{text-decoration:underline}
+.docs{display:grid;gap:10px;max-width:640px}
+.doc-card{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);background:#fff;transition:border-color .2s,box-shadow .2s}
+.doc-card:hover{border-color:var(--blue);box-shadow:0 8px 20px rgba(22,119,230,.1)}
+.doc-card .pdf{background:var(--red);color:#fff;font-size:12px;font-weight:800;padding:6px 8px;border-radius:6px}
+.doc-card b{display:block}
+.doc-card small{color:var(--ink2);font-size:12.5px}
+.doc-card .ico{color:var(--blue)}
+@media (max-width:860px){.doc-link{margin-left:0;margin-top:10px}}
 .ask-ai{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:800;font-size:14.5px}
 .ask-ai:hover{text-decoration:underline}
 .tabs{margin-top:46px;border-bottom:2px solid var(--line);display:flex;gap:4px}
@@ -563,6 +574,7 @@ footer .wa-f .ico{color:var(--wa)}
   <symbol id="i-kit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 12h18M11 12v3h2v-3"/></g></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></g></symbol>
   <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13.5" r="3.5"/></g></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 13h6M9 17h6"/></g></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></g></symbol>
 </svg>
 
@@ -701,7 +713,7 @@ function setCatalog(c){
   PRODUCTS = (c.products || []).filter(p => p && p.id && TYPES[p.type]).map(p => {
     // Несколько фото: photos[0] — главное; старый формат с одним photo тоже поддерживается
     const photos = (p.photos && p.photos.length ? p.photos : p.photo ? [p.photo] : []).filter(x => x && x.src);
-    return {...p, photos, photo: photos[0] || null,
+    return {...p, photos, photo: photos[0] || null, docs: (p.docs || []).filter(d => d && d.src),
     tech: (p.tech || []).filter(k => TECH[k]),
     codes: p.codes && p.codes.length ? p.codes : [p.name],
     cross: (p.cross || []).map(x => [x.machines || "", x.numbers || [], x.source || ""])};
@@ -731,6 +743,7 @@ const wa = text => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`
 const norm = s => String(s).toLowerCase().replace(/ё/g,"е").replace(/[\s\-_/.]+/g,"");
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const icon = (id, cls="ico") => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
+const fmtSize = b => !b ? "" : b < 1048576 ? Math.max(1, Math.round(b / 1024)) + " КБ" : (b / 1048576).toFixed(1).replace(".", ",") + " МБ";
 const plural = (n, a, b, c) => { const m=n%10, h=n%100; return n+" "+(m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c); };
 
 function catLinks(){
@@ -946,11 +959,13 @@ const PAGES = {
           <a class="btn btn-wa" href="${wa(buyText)}" target="_blank" rel="noopener">Купить</a>
         </div>
         <button type="button" class="ask-ai" id="askAi">${icon("i-ai")}Спросить ИИ про этот насос</button>
+        ${p.docs.length ? `<a class="ask-ai doc-link" href="${esc(p.docs[0].src)}" target="_blank" rel="noopener">${icon("i-doc")}Скачать техописание (PDF)</a>` : ""}
       </div>
     </div>
     <div class="tabs" role="tablist">
       <button role="tab" id="t1" aria-selected="true" aria-controls="tp1">Описание</button>
       <button role="tab" id="t2" aria-selected="false" aria-controls="tp2">Характеристика</button>
+      ${p.docs.length ? `<button role="tab" id="t3" aria-selected="false" aria-controls="tp3">Техописание (PDF)</button>` : ""}
     </div>
     <div class="tabpanel" id="tp1" role="tabpanel" aria-labelledby="t1">
       <p class="warn">! Внимание ! Цены на момент покупки могут отличаться от указанных на сайте. Актуальную цену и наличие уточняйте у менеджера в WhatsApp.</p>
@@ -979,15 +994,20 @@ const PAGES = {
         <tr><th>Кросс-номера</th><td class="mono">${p.cross.flatMap(c=>c[1]).map(esc).join(", ") || "уточняйте у менеджера"}</td></tr>
         <tr><th>Наличие</th><td>уточняйте в WhatsApp</td></tr>
         <tr><th>Цена</th><td class="pr">по запросу</td></tr>
+        ${p.docs.length ? `<tr><th>Техописание</th><td>${p.docs.map(d => `<a class="doc-a" href="${esc(d.src)}" target="_blank" rel="noopener">${esc(d.title || "Техописание")} (PDF)</a>`).join("<br>")}</td></tr>` : ""}
       </table>
     </div>
+    ${p.docs.length ? `<div class="tabpanel" id="tp3" role="tabpanel" aria-labelledby="t3" hidden>
+      <div class="docs">${p.docs.map(d => `<a class="doc-card" href="${esc(d.src)}" target="_blank" rel="noopener">
+        <span class="pdf">PDF</span><span><b>${esc(d.title || "Техописание")}</b><small>${d.size ? fmtSize(d.size) + " · " : ""}откроется в новой вкладке</small></span>${icon("i-doc")}</a>`).join("")}</div>
+    </div>` : ""}
     <div class="similar"><h2 class="h-sec" style="margin:0">Похожие товары</h2>
       <div class="arrows"><button type="button" id="simL" aria-label="Назад">${icon("i-left")}</button><button type="button" id="simR" aria-label="Вперёд">${icon("i-right")}</button></div>
     </div>
     <div class="track" id="track">${sim.map(cardHTML).join("")}</div>
     <div style="height:56px"></div>
     </div>`, after(){
-      const tabs = [$("#t1"), $("#t2")], panels = [$("#tp1"), $("#tp2")];
+      const tabs = $$(".tabs [role=tab]"), panels = tabs.map(t => $("#" + t.getAttribute("aria-controls")));
       tabs.forEach((t,i) => t.addEventListener("click", () => { tabs.forEach((x,j) => x.setAttribute("aria-selected", i===j)); panels.forEach((x,j) => x.hidden = i!==j); }));
       const tr = $("#track"); const step = d => tr.scrollBy({left: d * (tr.firstElementChild.offsetWidth + 18), behavior: reduceMotion.matches ? "auto" : "smooth"});
       $("#simL").addEventListener("click", () => step(-1)); $("#simR").addEventListener("click", () => step(1));
