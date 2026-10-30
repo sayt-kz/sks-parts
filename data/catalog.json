@@ -1,12 +1,13 @@
 {
- "updated": "2026-10-28",
+ "updated": "2026-10-30",
  "types": {
   "axial": {
    "name": "Аксиально-поршневые насосы",
    "short": "Аксиально-поршневой",
    "icon": "pump-axial",
    "name_kk": "Аксиалды-поршеньді сорғылар",
-   "short_kk": "Аксиалды-поршеньді"
+   "short_kk": "Аксиалды-поршеньді",
+   "image": "img/cat-axial-mvuon90b61j.jpg"
   },
   "gear": {
    "name": "Шестерёнчатые насосы",
@@ -63,13 +64,19 @@
    "desc": "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
    "codes": [],
    "cross": [],
+   "kind": "",
+   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
+   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады.",
+   "photos": [
+    {
+     "src": "img/novyy-tovar-mvrw0ac3.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/novyy-tovar-mvrw0ac3.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
-   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады."
+   }
   },
   {
    "id": "sks-hydraulics-a17fo045",
@@ -83,13 +90,19 @@
    "desc": "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
    "codes": [],
    "cross": [],
+   "kind": "",
+   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
+   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады.",
+   "photos": [
+    {
+     "src": "img/novyy-tovar-mvrw0ac3.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/novyy-tovar-mvrw0ac3.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
-   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады."
+   }
   },
   {
    "id": "sks-hydraulics-a17fo056",
@@ -103,13 +116,19 @@
    "desc": "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
    "codes": [],
    "cross": [],
+   "kind": "",
+   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
+   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады.",
+   "photos": [
+    {
+     "src": "img/novyy-tovar-mvrw0ac3.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/novyy-tovar-mvrw0ac3.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
-   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады."
+   }
   },
   {
    "id": "sks-hydraulics-a17fo063",
@@ -123,13 +142,19 @@
    "desc": "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
    "codes": [],
    "cross": [],
+   "kind": "",
+   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
+   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады.",
+   "photos": [
+    {
+     "src": "img/novyy-tovar-mvrw0ac3.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/novyy-tovar-mvrw0ac3.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
-   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады."
+   }
   },
   {
    "id": "sks-hydraulics-a17fo080",
@@ -143,13 +168,19 @@
    "desc": "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
    "codes": [],
    "cross": [],
+   "kind": "",
+   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
+   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады.",
+   "photos": [
+    {
+     "src": "img/novyy-tovar-mvrw0ac3.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/novyy-tovar-mvrw0ac3.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
-   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады."
+   }
   },
   {
    "id": "sks-hydraulics-a17fo107",
@@ -163,13 +194,19 @@
    "desc": "Нерегулируемый аксиально-поршневой насос с наклонным блоком серии A17FO. Рабочий объём: 32, 45, 56, 63, 80 и 107 см³. Ставится на коробку отбора мощности грузовика.",
    "codes": [],
    "cross": [],
+   "kind": "",
+   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
+   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады.",
+   "photos": [
+    {
+     "src": "img/novyy-tovar-mvrw0ac3.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/novyy-tovar-mvrw0ac3.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
-   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады."
+   }
   },
   {
    "id": "k3v112-9c02",
@@ -218,15 +255,21 @@
      "source": "brokentractor.com"
     }
    ],
-   "photo": {
-    "src": "img/k3v112-9c02-mvrohhtf.jpg",
-    "note": "фото со склада SKS"
-   },
    "kind": "",
    "use_kk": "Hyundai экскаваторлары, 21–25 т (R210LC-7, R220LC-7, R250LC-7)",
    "desc_kk": "20 тонналық сыныптағы экскаваторларға арналған қос аксиалды-поршеньді сорғы. 9C жұрнағы — Hyundai үшін нұсқа.",
    "name_kk": "Kawasaki K3V112DT / DTP — 9C02 нұсқасы",
-   "brand_kk": "Kawasaki K3V сериясы"
+   "brand_kk": "Kawasaki K3V сериясы",
+   "photos": [
+    {
+     "src": "img/k3v112-9c02-mvrohhtf.jpg",
+     "note": "фото со склада SKS"
+    }
+   ],
+   "photo": {
+    "src": "img/k3v112-9c02-mvrohhtf.jpg",
+    "note": "фото со склада SKS"
+   }
   },
   {
    "id": "k3v112-9n09",
@@ -267,15 +310,21 @@
      "source": "fridayparts.com"
     }
    ],
-   "photo": {
-    "src": "img/kawasaki-k3v.jpg",
-    "note": "фото серии Kawasaki"
-   },
    "kind": "",
    "use_kk": "Volvo / Samsung экскаваторлары, 21–25 т (EC210B, EC240B)",
    "desc_kk": "K3V112DT қос сорғысы. 9N жұрнағы — Volvo (Samsung) үшін нұсқа.",
    "name_kk": "Kawasaki K3V112DT — 9N09 нұсқасы",
-   "brand_kk": "Kawasaki K3V сериясы"
+   "brand_kk": "Kawasaki K3V сериясы",
+   "photos": [
+    {
+     "src": "img/kawasaki-k3v.jpg",
+     "note": "фото серии Kawasaki"
+    }
+   ],
+   "photo": {
+    "src": "img/kawasaki-k3v.jpg",
+    "note": "фото серии Kawasaki"
+   }
   },
   {
    "id": "k3v112-hn0v",
@@ -298,15 +347,21 @@
      "source": "mascus, accio"
     }
    ],
-   "photo": {
-    "src": "img/shelf-b.jpg",
-    "note": "фото со склада SKS"
-   },
    "kind": "",
    "use_kk": "20 тонналық сыныптағы Doosan (Daewoo) экскаваторлары",
    "desc_kk": "K3V112 қос сорғысы. HN0V жұрнағы Doosan (Daewoo) техникасына арналған сорғыларда кездеседі. Машина моделін менеджерден нақтылаңыз.",
    "name_kk": "Kawasaki K3V112DT / DTP — HN0V нұсқасы",
-   "brand_kk": "Kawasaki K3V сериясы"
+   "brand_kk": "Kawasaki K3V сериясы",
+   "photos": [
+    {
+     "src": "img/shelf-b.jpg",
+     "note": "фото со склада SKS"
+    }
+   ],
+   "photo": {
+    "src": "img/shelf-b.jpg",
+    "note": "фото со склада SKS"
+   }
   },
   {
    "id": "k3v112dtp-9tdl",
@@ -328,15 +383,21 @@
      "source": "machineryline"
     }
    ],
-   "photo": {
-    "src": "img/shelf-c.jpg",
-    "note": "фото со склада SKS"
-   },
    "kind": "",
    "use_kk": "20 тонналық сыныптағы экскаваторлар (шамасы, SANY)",
    "desc_kk": "Қуат алу шығысы бар K3V112DTP қос сорғысы. 9T… жұрнақтары SANY сорғыларында кездеседі (мысалы, SY215-8-дегі K3V112DTP-9T8L). Машина моделін менеджерден нақтылаңыз.",
    "name_kk": "Kawasaki K3V112DTP — 9TDL нұсқасы",
-   "brand_kk": "Kawasaki K3V сериясы"
+   "brand_kk": "Kawasaki K3V сериясы",
+   "photos": [
+    {
+     "src": "img/shelf-c.jpg",
+     "note": "фото со склада SKS"
+    }
+   ],
+   "photo": {
+    "src": "img/shelf-c.jpg",
+    "note": "фото со склада SKS"
+   }
   },
   {
    "id": "k3v63dt-9c02",
@@ -352,15 +413,21 @@
     "SR-K3V63DT-110R-9C02-101"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/mic-k3v63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "12–16 т экскаваторлар (9C жұрнағы — Hyundai)",
    "desc_kk": "K3V63DT қос сорғысы, жұмыс көлемі ~65 см³. Машина моделін менеджерден нақтылаңыз.",
    "name_kk": "Kawasaki K3V63DT — 9C02 нұсқасы",
-   "brand_kk": "Kawasaki K3V сериясы"
+   "brand_kk": "Kawasaki K3V сериясы",
+   "photos": [
+    {
+     "src": "img/mic-k3v63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-k3v63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "k3v140dtp-9c02",
@@ -391,15 +458,21 @@
      "source": "fridayparts.com"
     }
    ],
-   "photo": {
-    "src": "img/mic-k3v140.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Hyundai экскаваторлары, 29–33 т (R290LC-7, R305LC-7)",
    "desc_kk": "30 тонналық сыныптағы экскаваторларға арналған K3V140DTP қос сорғысы.",
    "name_kk": "Kawasaki K3V140DTP — 9C02 нұсқасы",
-   "brand_kk": "Kawasaki K3V сериясы"
+   "brand_kk": "Kawasaki K3V сериясы",
+   "photos": [
+    {
+     "src": "img/mic-k3v140.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-k3v140.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "k5v140dtp-9c02",
@@ -431,15 +504,21 @@
      "source": "fridayparts.com"
     }
    ],
-   "photo": {
-    "src": "img/mic-k5v140.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Hyundai экскаваторлары, 29–33 т",
    "desc_kk": "K5V140DTP қос сорғысы — қысымы жоғарылатылған, K3V-ның жетілдірілген нұсқасы.",
    "name_kk": "Kawasaki K5V140DTP — 9C02 нұсқасы",
-   "brand_kk": "Kawasaki K5V сериясы"
+   "brand_kk": "Kawasaki K5V сериясы",
+   "photos": [
+    {
+     "src": "img/mic-k5v140.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-k5v140.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "k5v140dtp-yt6k",
@@ -471,15 +550,21 @@
      "source": "fridayparts.com"
     }
    ],
-   "photo": {
-    "src": "img/k-pump-red-1.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Kobelco экскаваторлары, 33–35 т (SK330-8, SK350-8)",
    "desc_kk": "K5V140DTP қос сорғысы. YT жұрнағы — Kobelco үшін нұсқа.",
    "name_kk": "Kawasaki K5V140DTP — YT6K нұсқасы",
-   "brand_kk": "Kawasaki K5V сериясы"
+   "brand_kk": "Kawasaki K5V сериясы",
+   "photos": [
+    {
+     "src": "img/k-pump-red-1.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/k-pump-red-1.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "k5v80dtp-hn0q",
@@ -507,15 +592,21 @@
      "source": "ebay"
     }
    ],
-   "photo": {
-    "src": "img/mic-k5v80.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Doosan экскаваторлары, 14–16 т (DH150-7, DX150W)",
    "desc_kk": "K5V80DTP қос сорғысы, жұмыс көлемі 80 см³, 34,3 МПа.",
    "name_kk": "Kawasaki K5V80DTP — HN0Q нұсқасы",
-   "brand_kk": "Kawasaki K5V сериясы"
+   "brand_kk": "Kawasaki K5V сериясы",
+   "photos": [
+    {
+     "src": "img/mic-k5v80.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-k5v80.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "k5v80dtp-9c0q",
@@ -533,15 +624,21 @@
     "SR-K5V80DTP-100R-9C0Q-062"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/k5v80dtp-9c0q-mvroqwcd.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "14–16 т экскаваторлар (9C жұрнағы — Hyundai)",
    "desc_kk": "K5V80DTP қос сорғысы, жұмыс көлемі 80 см³. Машина моделін менеджерден нақтылаңыз.",
    "name_kk": "Kawasaki K5V80DTP — 9C0Q нұсқасы",
-   "brand_kk": "Kawasaki K5V сериясы"
+   "brand_kk": "Kawasaki K5V сериясы",
+   "photos": [
+    {
+     "src": "img/k5v80dtp-9c0q-mvroqwcd.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/k5v80dtp-9c0q-mvroqwcd.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "k5v200dth-9n0a",
@@ -575,15 +672,21 @@
      "source": "ebay"
     }
    ],
-   "photo": {
-    "src": "img/mic-k5v200.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Volvo экскаваторлары, 45–48 т (EC460B)",
    "desc_kk": "Ауыр экскаваторларға арналған үлкен көлемді қос сорғы. 9N жұрнағы — Volvo.",
    "name_kk": "Kawasaki K5V200DTH — 9N0A нұсқасы",
-   "brand_kk": "Kawasaki K5V сериясы"
+   "brand_kk": "Kawasaki K5V сериясы",
+   "photos": [
+    {
+     "src": "img/mic-k5v200.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-k5v200.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "hpv102",
@@ -609,14 +712,20 @@
      "source": "mascus"
     }
    ],
-   "photo": {
-    "src": "img/mic-hpv102.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Hitachi ZX200, EX200-5/6 экскаваторлары",
    "desc_kk": "Hitachi HPV102 сериялы негізгі сорғы.",
-   "brand_kk": "Hitachi HPV сериясы"
+   "brand_kk": "Hitachi HPV сериясы",
+   "photos": [
+    {
+     "src": "img/mic-hpv102.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-hpv102.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "hpv118",
@@ -649,14 +758,20 @@
      "source": "fridayparts.com"
     }
    ],
-   "photo": {
-    "src": "img/hpv118-mvrotnkr.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Hitachi ZX200-3 – ZX270-3 экскаваторлары",
    "desc_kk": "-3 буынды экскаваторларға арналған Hitachi HPV118 сериялы негізгі сорғы.",
-   "brand_kk": "Hitachi HPV сериясы"
+   "brand_kk": "Hitachi HPV сериясы",
+   "photos": [
+    {
+     "src": "img/hpv118-mvrotnkr.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/hpv118-mvrotnkr.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "hpv145",
@@ -689,14 +804,20 @@
      "source": "fridayparts.com"
     }
    ],
-   "photo": {
-    "src": "img/hpv145.jpg",
-    "note": ""
-   },
    "kind": "",
    "use_kk": "Hitachi ZX330 – ZX350 экскаваторлары",
    "desc_kk": "Hitachi HPV145G сериялы негізгі сорғы.",
-   "brand_kk": "Hitachi HPV сериясы"
+   "brand_kk": "Hitachi HPV сериясы",
+   "photos": [
+    {
+     "src": "img/hpv145.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/hpv145.jpg",
+    "note": ""
+   }
   },
   {
    "id": "ap2d28",
@@ -713,14 +834,20 @@
     "SR-AP2D28LV2RS7-221"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/uchida.jpg",
-    "note": "фото запчастей серии"
-   },
    "kind": "",
    "use_kk": "Шағын экскаваторлар, 5–6 т",
    "desc_kk": "Шағын экскаваторларға арналған Uchida (Rexroth) AP2D сериялы сорғы.",
-   "brand_kk": "Uchida-Rexroth AP2D сериясы"
+   "brand_kk": "Uchida-Rexroth AP2D сериясы",
+   "photos": [
+    {
+     "src": "img/uchida.jpg",
+     "note": "фото запчастей серии"
+    }
+   ],
+   "photo": {
+    "src": "img/uchida.jpg",
+    "note": "фото запчастей серии"
+   }
   },
   {
    "id": "ap2d36",
@@ -752,14 +879,20 @@
      "source": "fridayparts.com"
     }
    ],
-   "photo": {
-    "src": "img/uchida-b.jpg",
-    "note": "фото запчастей серии"
-   },
    "kind": "",
    "use_kk": "Шағын және орта экскаваторлар, 7–10 т",
    "desc_kk": "Uchida (Rexroth) AP2D36 сериялы сорғы.",
-   "brand_kk": "Uchida-Rexroth AP2D сериясы"
+   "brand_kk": "Uchida-Rexroth AP2D сериясы",
+   "photos": [
+    {
+     "src": "img/uchida-b.jpg",
+     "note": "фото запчастей серии"
+    }
+   ],
+   "photo": {
+    "src": "img/uchida-b.jpg",
+    "note": "фото запчастей серии"
+   }
   },
   {
    "id": "a10vso28",
@@ -776,14 +909,20 @@
     "SR-A10VSO28ED73/31R-VSC12N01"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/a10vso28.jpg",
-    "note": ""
-   },
    "kind": "",
    "use_kk": "Мобильді және өнеркәсіптік гидравлика",
    "desc_kk": "Ашық контурлы реттелмелі аксиалды-поршеньді сорғы, 28 см³.",
-   "brand_kk": "Rexroth A10VSO сериясы"
+   "brand_kk": "Rexroth A10VSO сериясы",
+   "photos": [
+    {
+     "src": "img/a10vso28.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/a10vso28.jpg",
+    "note": ""
+   }
   },
   {
    "id": "a10vso71",
@@ -800,14 +939,20 @@
     "A10VSO71DFR1/31L-PSC62N00"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/a10vso71.jpg",
-    "note": ""
-   },
    "kind": "",
    "use_kk": "Мобильді және өнеркәсіптік гидравлика",
    "desc_kk": "Реттелмелі аксиалды-поршеньді сорғы, 71 см³, DFR реттегіші.",
-   "brand_kk": "Rexroth A10VSO сериясы"
+   "brand_kk": "Rexroth A10VSO сериясы",
+   "photos": [
+    {
+     "src": "img/a10vso71.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/a10vso71.jpg",
+    "note": ""
+   }
   },
   {
    "id": "a10vso74",
@@ -824,14 +969,20 @@
     "267-2755, 235-4110, 289-6370, 10r-6685, 10r-0537, 136-1805, 1361805, 112-6564, A10VO74DFLR/31R-VSC12N00, 00978582"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/a10vso74-mvrqhskq.jpg",
-    "note": ""
-   },
    "kind": "",
    "use_kk": "Мобильді гидравлика",
    "desc_kk": "DFLR қуат реттегіші бар 74 см³ реттелмелі сорғы.",
-   "brand_kk": "Rexroth A10VSO сериясы"
+   "brand_kk": "Rexroth A10VSO сериясы",
+   "photos": [
+    {
+     "src": "img/a10vso74-mvrqhskq.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/a10vso74-mvrqhskq.jpg",
+    "note": ""
+   }
   },
   {
    "id": "a10vo60",
@@ -857,14 +1008,20 @@
      "source": "kramp.com"
     }
    ],
-   "photo": {
-    "src": "img/rexroth-a10vo.jpg",
-    "note": "фото серии Rexroth"
-   },
    "kind": "",
    "use_kk": "Мобильді техника және ауыл шаруашылығы техникасы",
    "desc_kk": "A10VO реттелмелі сорғысы, 60 см³, 52/53 сериялары.",
-   "brand_kk": "Rexroth A10VO сериясы"
+   "brand_kk": "Rexroth A10VO сериясы",
+   "photos": [
+    {
+     "src": "img/rexroth-a10vo.jpg",
+     "note": "фото серии Rexroth"
+    }
+   ],
+   "photo": {
+    "src": "img/rexroth-a10vo.jpg",
+    "note": "фото серии Rexroth"
+   }
   },
   {
    "id": "a10vo63",
@@ -881,14 +1038,20 @@
     "350-0666, 3500666, 335-8197, 3358197, 296-6714, 2966714"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/a10vo63-mvrqs0gw.jpg",
-    "note": "фото серии Rexroth"
-   },
    "kind": "",
    "use_kk": "Мобильді техника",
    "desc_kk": "A10VO реттелмелі сорғысы, 63 см³, LA8DS қуат реттегіші.",
-   "brand_kk": "Rexroth A10VO сериясы"
+   "brand_kk": "Rexroth A10VO сериясы",
+   "photos": [
+    {
+     "src": "img/a10vo63-mvrqs0gw.jpg",
+     "note": "фото серии Rexroth"
+    }
+   ],
+   "photo": {
+    "src": "img/a10vo63-mvrqs0gw.jpg",
+    "note": "фото серии Rexroth"
+   }
   },
   {
    "id": "a10vo71-72",
@@ -905,14 +1068,20 @@
     "SA10VO72EP1D/53R-VSD15N00"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/a10vso-grey.jpg",
-    "note": "фото похожего насоса"
-   },
    "kind": "",
    "use_kk": "Мобильді техника",
    "desc_kk": "A10VO реттелмелі сорғылары: 71 см³ (DFLR реттегіші) және 72 см³ (электрпропорционалды EP).",
-   "brand_kk": "Rexroth A10VO сериясы"
+   "brand_kk": "Rexroth A10VO сериясы",
+   "photos": [
+    {
+     "src": "img/a10vso-grey.jpg",
+     "note": "фото похожего насоса"
+    }
+   ],
+   "photo": {
+    "src": "img/a10vso-grey.jpg",
+    "note": "фото похожего насоса"
+   }
   },
   {
    "id": "a2fo",
@@ -931,14 +1100,20 @@
     "SA2FO32/61R-PAB05"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/a2fo.jpg",
-    "note": ""
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, мобильді техника",
    "desc_kk": "61 сериялы көлбеу блокты реттелмейтін сорғылар: 23, 28 және 32 см³, сол және оң айналу.",
-   "brand_kk": "Rexroth A2FO сериясы"
+   "brand_kk": "Rexroth A2FO сериясы",
+   "photos": [
+    {
+     "src": "img/a2fo.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/a2fo.jpg",
+    "note": ""
+   }
   },
   {
    "id": "a7vo55",
@@ -954,14 +1129,20 @@
     "SA7VO55LRDS/63L-NZB01-S"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/rexroth-a7vo.jpg",
-    "note": "фото серии Rexroth"
-   },
    "kind": "",
    "use_kk": "Мобильді техника",
    "desc_kk": "Көлбеу блокты реттелмелі сорғы, 55 см³, қысымды шектейтін LR қуат реттегіші.",
-   "brand_kk": "Rexroth A7VO сериясы"
+   "brand_kk": "Rexroth A7VO сериясы",
+   "photos": [
+    {
+     "src": "img/rexroth-a7vo.jpg",
+     "note": "фото серии Rexroth"
+    }
+   ],
+   "photo": {
+    "src": "img/rexroth-a7vo.jpg",
+    "note": "фото серии Rexroth"
+   }
   },
   {
    "id": "a10fe-fm",
@@ -979,16 +1160,22 @@
     "SA10FM28/52RVSC16N007-S01"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/mic-a10fm.jpg",
-    "note": "фото серии A10FM"
-   },
    "kind": "Аксиально-поршневой гидромотор",
    "use_kk": "Мобильді техника жетектері",
    "desc_kk": "Реттелмейтін аксиалды-поршеньді гидромоторлар: A10FE10, A10FE16, A10FM28.",
    "kind_kk": "Аксиалды-поршеньді гидромотор",
    "name_kk": "Rexroth A10FE / A10FM гидромоторлары",
-   "brand_kk": "Rexroth A10F сериясы"
+   "brand_kk": "Rexroth A10F сериясы",
+   "photos": [
+    {
+     "src": "img/mic-a10fm.jpg",
+     "note": "фото серии A10FM"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-a10fm.jpg",
+    "note": "фото серии A10FM"
+   }
   },
   {
    "id": "pve21",
@@ -1012,10 +1199,11 @@
      "source": "ebay"
     }
    ],
-   "photo": null,
    "kind": "",
    "use_kk": "Шағын тиегіштер, суару техникасы",
-   "desc_kk": "Алюминий корпустағы ашық контурлы аксиалды-поршеньді сорғы."
+   "desc_kk": "Алюминий корпустағы ашық контурлы аксиалды-поршеньді сорғы.",
+   "photos": [],
+   "photo": null
   },
   {
    "id": "sks-a17fo",
@@ -1036,13 +1224,19 @@
     "A17FO107"
    ],
    "cross": [],
+   "kind": "",
+   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
+   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады.",
+   "photos": [
+    {
+     "src": "img/mic-a17fo.jpg",
+     "note": "фото серии A17FO"
+    }
+   ],
    "photo": {
     "src": "img/mic-a17fo.jpg",
     "note": "фото серии A17FO"
-   },
-   "kind": "",
-   "use_kk": "Қуат алу қорабы бар жүк көліктері: самосвалдар, КМУ, қоқыс тасығыштар",
-   "desc_kk": "A17FO сериялы, көлбеу блокты, реттелмейтін аксиалды-поршеньді сорғы. Жұмыс көлемі: 32, 45, 56, 63, 80 және 107 см³. Жүк көлігінің қуат алу қорабына орнатылады."
+   }
   },
   {
    "id": "boxin-g30-iso",
@@ -1062,14 +1256,21 @@
     "Group 30 ISO 100cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-iso63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "ISO фланецті, 30-топтағы шойын тісті сорғы. Жұмыс көлемі: 34,45, 51, 63, 80, 90 және 100 см³.",
-   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 34сс bidirectional"
+   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 34сс bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-iso63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "docs": [],
+   "photo": {
+    "src": "img/gear-cbhw-iso63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-shesterenchatyy-nasos-30-serii-iso-2",
@@ -1089,14 +1290,20 @@
     "Group 30 ISO 100cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-iso63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "ISO фланецті, 30-топтағы шойын тісті сорғы. Жұмыс көлемі: 34,45, 51, 63, 80, 90 және 100 см³.",
-   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 43сс bidirectional"
+   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 43сс bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-iso63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-iso63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-shesterenchatyy-nasos-30-serii-iso-3",
@@ -1116,14 +1323,20 @@
     "Group 30 ISO 100cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-iso63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "ISO фланецті, 30-топтағы шойын тісті сорғы. Жұмыс көлемі: 34,45, 51, 63, 80, 90 және 100 см³.",
-   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 51сс bidirectional"
+   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 51сс bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-iso63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-iso63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-shesterenchatyy-nasos-30-serii-iso-4",
@@ -1143,14 +1356,20 @@
     "Group 30 ISO 100cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-iso63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "ISO фланецті, 30-топтағы шойын тісті сорғы. Жұмыс көлемі: 34,45, 51, 63, 80, 90 және 100 см³.",
-   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 63сс bidirectional"
+   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 63сс bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-iso63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-iso63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-shesterenchatyy-nasos-30-serii-iso-5",
@@ -1170,14 +1389,20 @@
     "Group 30 ISO 100cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-iso63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "ISO фланецті, 30-топтағы шойын тісті сорғы. Жұмыс көлемі: 34,45, 51, 63, 80, 90 және 100 см³.",
-   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 80сс bidirectional"
+   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 80сс bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-iso63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-iso63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-shesterenchatyy-nasos-30-serii-iso-6",
@@ -1197,14 +1422,20 @@
     "Group 30 ISO 100cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-iso63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "ISO фланецті, 30-топтағы шойын тісті сорғы. Жұмыс көлемі: 34,45, 51, 63, 80, 90 және 100 см³.",
-   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 90сс bidirectional"
+   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 90сс bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-iso63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-iso63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-shesterenchatyy-nasos-30-serii-iso",
@@ -1224,14 +1455,20 @@
     "Group 30 ISO 100cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-iso63.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "ISO фланецті, 30-топтағы шойын тісті сорғы. Жұмыс көлемі: 34,45, 51, 63, 80, 90 және 100 см³.",
-   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 100сс bidirectional"
+   "name_kk": "Boxin — 30 сериялы тісті сорғы, ISO 100сс bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-iso63.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-iso63.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-g30-uni",
@@ -1248,14 +1485,20 @@
     "Group 30 UNI 80cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-uni80.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "UNI фланецті, 30-топтағы шойын тісті сорғы: 63 және 80 см³.",
-   "name_kk": "Boxin — 30-топтағы тісті сорғы, UNI 63cc bidirectional"
+   "name_kk": "Boxin — 30-топтағы тісті сорғы, UNI 63cc bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-uni80.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-uni80.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-shesterenchatyy-nasos-gruppy-30-un-2",
@@ -1272,14 +1515,20 @@
     "Group 30 UNI 80cc"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/gear-cbhw-uni80.jpg",
-    "note": "фото серии"
-   },
    "kind": "",
    "use_kk": "Самосвалдар, КМУ, қоқыс тасығыштар",
    "desc_kk": "UNI фланецті, 30-топтағы шойын тісті сорғы: 63 және 80 см³.",
-   "name_kk": "Boxin — 30-топтағы тісті сорғы, UNI 80cc bidirectional"
+   "name_kk": "Boxin — 30-топтағы тісті сорғы, UNI 80cc bidirectional",
+   "photos": [
+    {
+     "src": "img/gear-cbhw-uni80.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/gear-cbhw-uni80.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "boxin-p6-40",
@@ -1296,13 +1545,19 @@
     "Piston pump ISO-40cc"
    ],
    "cross": [],
+   "kind": "",
+   "use_kk": "Жүк көліктерінің гидравликасы",
+   "desc_kk": "ISO фланецті поршеньді сорғы, 40 см³.",
+   "photos": [
+    {
+     "src": "img/boxin-p6-40.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/boxin-p6-40.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Жүк көліктерінің гидравликасы",
-   "desc_kk": "ISO фланецті поршеньді сорғы, 40 см³."
+   }
   },
   {
    "id": "boxin-b6-50",
@@ -1319,13 +1574,19 @@
     "Piston pump ISO B6-50"
    ],
    "cross": [],
+   "kind": "",
+   "use_kk": "Жүк көліктерінің гидравликасы",
+   "desc_kk": "ISO фланецті поршеньді сорғы, 50 см³.",
+   "photos": [
+    {
+     "src": "img/boxin-b6-50.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/boxin-b6-50.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Жүк көліктерінің гидравликасы",
-   "desc_kk": "ISO фланецті поршеньді сорғы, 50 см³."
+   }
   },
   {
    "id": "boxin-p7-63",
@@ -1342,13 +1603,19 @@
     "Piston pump ISO-63cc"
    ],
    "cross": [],
+   "kind": "",
+   "use_kk": "Жүк көліктерінің гидравликасы",
+   "desc_kk": "ISO фланецті поршеньді сорғы, 63 см³.",
+   "photos": [
+    {
+     "src": "img/boxin-p7-63.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/boxin-p7-63.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Жүк көліктерінің гидравликасы",
-   "desc_kk": "ISO фланецті поршеньді сорғы, 63 см³."
+   }
   },
   {
    "id": "boxin-p9-80",
@@ -1365,13 +1632,19 @@
     "Piston pump ISO-80cc"
    ],
    "cross": [],
+   "kind": "",
+   "use_kk": "Жүк көліктерінің гидравликасы",
+   "desc_kk": "ISO фланецті поршеньді сорғы, 80 см³, 25 МПа-ға дейін.",
+   "photos": [
+    {
+     "src": "img/boxin-p9-80.jpg",
+     "note": ""
+    }
+   ],
    "photo": {
     "src": "img/boxin-p9-80.jpg",
     "note": ""
-   },
-   "kind": "",
-   "use_kk": "Жүк көліктерінің гидравликасы",
-   "desc_kk": "ISO фланецті поршеньді сорғы, 80 см³, 25 МПа-ға дейін."
+   }
   },
   {
    "id": "boxin-lb80",
@@ -1388,14 +1661,20 @@
     "LB-80"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/boxin-lb80.jpg",
-    "note": ""
-   },
    "kind": "",
    "use_kk": "Жүк көліктерінің қуат алу қораптары",
    "desc_kk": "Көлбеу блокты аксиалды-поршеньді сорғы (bent pump), 80 см³, 30 МПа-ға дейін.",
-   "name_kk": "Boxin LB-80 — көлбеу блокты сорғы, 80 см³"
+   "name_kk": "Boxin LB-80 — көлбеу блокты сорғы, 80 см³",
+   "photos": [
+    {
+     "src": "img/boxin-lb80.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/boxin-lb80.jpg",
+    "note": ""
+   }
   },
   {
    "id": "kom-zf50d",
@@ -1411,15 +1690,21 @@
     "KOM ZF50D"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/kom-zf50d.jpg",
-    "note": ""
-   },
    "kind": "Коробка отбора мощности",
    "use_kk": "ZF беріліс қорабы бар жүк көліктері",
    "desc_kk": "ZF беріліс қорабына арналған қуат алу қорабы (КОМ): айналу моменті 479,7 Н·м, беріліс қатынасы 1:1.",
    "kind_kk": "Қуат алу қорабы",
-   "name_kk": "ZF50D қуат алу қорабы"
+   "name_kk": "ZF50D қуат алу қорабы",
+   "photos": [
+    {
+     "src": "img/kom-zf50d.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/kom-zf50d.jpg",
+    "note": ""
+   }
   },
   {
    "id": "valve-dh25",
@@ -1436,15 +1721,21 @@
     "DH25"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/valve-dh25.jpg",
-    "note": ""
-   },
    "kind": "Гидрораспределитель",
    "use_kk": "Самосвалдар, аспалы жабдық",
    "desc_kk": "Қолмен басқарылатын ағын бөлгіш (гидротаратқыш): 200 л/мин-ға дейін, 315 бар, G1 бұрандасы.",
    "kind_kk": "Гидротаратқыш",
-   "name_kk": "DH25 гидротаратқышы"
+   "name_kk": "DH25 гидротаратқышы",
+   "photos": [
+    {
+     "src": "img/valve-dh25.jpg",
+     "note": ""
+    }
+   ],
+   "photo": {
+    "src": "img/valve-dh25.jpg",
+    "note": ""
+   }
   },
   {
    "id": "valve-qfck",
@@ -1460,15 +1751,21 @@
     "QFCK-F20L"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/mic-qfck.jpg",
-    "note": "фото серии"
-   },
    "kind": "Гидрораспределитель",
    "use_kk": "Самосвалдар",
    "desc_kk": "Самосвал гидравликасына арналған гидротаратқыш.",
    "kind_kk": "Гидротаратқыш",
-   "name_kk": "QFCK-F20L гидротаратқышы"
+   "name_kk": "QFCK-F20L гидротаратқышы",
+   "photos": [
+    {
+     "src": "img/mic-qfck.jpg",
+     "note": "фото серии"
+    }
+   ],
+   "photo": {
+    "src": "img/mic-qfck.jpg",
+    "note": "фото серии"
+   }
   },
   {
    "id": "hema-jcb",
@@ -1506,14 +1803,20 @@
      "source": "turparts.com"
     }
    ],
-   "photo": {
-    "src": "img/hema-qx5.jpg",
-    "note": "фото серии HEMA"
-   },
    "kind": "",
    "use_kk": "JCB экскаватор-тиегіштері",
    "desc_kk": "JCB экскаватор-тиегіштеріне арналған HEMA тісті сорғылары.",
-   "name_kk": "JCB 3CX / 4CX үшін HEMA"
+   "name_kk": "JCB 3CX / 4CX үшін HEMA",
+   "photos": [
+    {
+     "src": "img/hema-qx5.jpg",
+     "note": "фото серии HEMA"
+    }
+   ],
+   "photo": {
+    "src": "img/hema-qx5.jpg",
+    "note": "фото серии HEMA"
+   }
   },
   {
    "id": "hema-hidromek",
@@ -1537,14 +1840,20 @@
      "source": "turparts.com, sesaotomotiv.com"
     }
    ],
-   "photo": {
-    "src": "img/hema-qr.jpg",
-    "note": "фото серии HEMA"
-   },
    "kind": "",
    "use_kk": "Hidromek экскаватор-тиегіштері",
    "desc_kk": "Hidromek HMK 102B / 102S үшін HEMA тісті сорғысы.",
-   "name_kk": "Hidromek 102B / 102S үшін HEMA"
+   "name_kk": "Hidromek 102B / 102S үшін HEMA",
+   "photos": [
+    {
+     "src": "img/hema-qr.jpg",
+     "note": "фото серии HEMA"
+    }
+   ],
+   "photo": {
+    "src": "img/hema-qr.jpg",
+    "note": "фото серии HEMA"
+   }
   },
   {
    "id": "hema-case",
@@ -1573,14 +1882,20 @@
      "source": "optipart.ru"
     }
    ],
-   "photo": {
-    "src": "img/hema-1cp3.jpg",
-    "note": "фото серии HEMA"
-   },
    "kind": "",
    "use_kk": "Case және New Holland экскаватор-тиегіштері",
    "desc_kk": "Case және New Holland экскаватор-тиегіштеріне арналған HEMA тісті сорғылары.",
-   "name_kk": "Case / New Holland үшін HEMA"
+   "name_kk": "Case / New Holland үшін HEMA",
+   "photos": [
+    {
+     "src": "img/hema-1cp3.jpg",
+     "note": "фото серии HEMA"
+    }
+   ],
+   "photo": {
+    "src": "img/hema-1cp3.jpg",
+    "note": "фото серии HEMA"
+   }
   },
   {
    "id": "hema-terex",
@@ -1610,14 +1925,20 @@
      "source": "optipart.ru"
     }
    ],
-   "photo": {
-    "src": "img/hema-1900.jpg",
-    "note": "фото серии HEMA"
-   },
    "kind": "",
    "use_kk": "Terex, Fermec, Çukurova экскаватор-тиегіштері",
    "desc_kk": "Terex және Fermec экскаватор-тиегіштеріне арналған HEMA (David Brown) тісті сорғылары.",
-   "name_kk": "Terex / Fermec үшін HEMA"
+   "name_kk": "Terex / Fermec үшін HEMA",
+   "photos": [
+    {
+     "src": "img/hema-1900.jpg",
+     "note": "фото серии HEMA"
+    }
+   ],
+   "photo": {
+    "src": "img/hema-1900.jpg",
+    "note": "фото серии HEMA"
+   }
   },
   {
    "id": "hema-other",
@@ -1652,14 +1973,20 @@
      "source": "qjtophyds.com"
     }
    ],
-   "photo": {
-    "src": "img/hema-2200.jpg",
-    "note": "фото серии HEMA"
-   },
    "kind": "",
    "use_kk": "Экскаватор-тиегіштер",
    "desc_kk": "HEMA тісті сорғылары. Қолданылуын шильдиктегі код бойынша таңдаймыз — суретін WhatsApp-қа жіберіңіз.",
-   "name_kk": "HEMA — 3в1 тракторларына арналған басқа сорғылар"
+   "name_kk": "HEMA — 3в1 тракторларына арналған басқа сорғылар",
+   "photos": [
+    {
+     "src": "img/hema-2200.jpg",
+     "note": "фото серии HEMA"
+    }
+   ],
+   "photo": {
+    "src": "img/hema-2200.jpg",
+    "note": "фото серии HEMA"
+   }
   },
   {
    "id": "hema-1pn082",
@@ -1675,14 +2002,20 @@
     "1PN.082.CGS1/268"
    ],
    "cross": [],
-   "photo": {
-    "src": "img/hema-1.jpg",
-    "note": "фото серии HEMA"
-   },
    "kind": "",
    "use_kk": "Мобильді гидравлика",
    "desc_kk": "HEMA 1PN сериялы алюминий тісті сорғы, ~8,2 см³.",
-   "name_kk": "HEMA 1PN082 — алюминий тісті сорғы"
+   "name_kk": "HEMA 1PN082 — алюминий тісті сорғы",
+   "photos": [
+    {
+     "src": "img/hema-1.jpg",
+     "note": "фото серии HEMA"
+    }
+   ],
+   "photo": {
+    "src": "img/hema-1.jpg",
+    "note": "фото серии HEMA"
+   }
   }
  ],
  "pick": {
